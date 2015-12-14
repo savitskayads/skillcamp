@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProgram extends Migration
+class CreateVacation extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,12 @@ class CreateProgram extends Migration
      */
     public function up()
     {
-        Schema::create('programs', function(Blueprint $table)
+        Schema::create('vacations', function(Blueprint $table)
         {
             $table->increments('id', 11);
             $table->string('title', 255);
-            $table->text('description');
-            $table->string('plases', 255);
-            $table->integer('price');
-            $table->integer('vacation');
-            $table->timestamp('start_date');
-            $table->timestamp('finish_date');
-            $table->text('content');
-            $table->boolean('published')->default(false);
+            $table->string('link', 255);
+            $table->string('image', 255);
             $table->timestamps();
         });
     }
