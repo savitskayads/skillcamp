@@ -1,0 +1,154 @@
+html{color: #141415;}
+
+body{margin:0;padding:0;font: 14px Roboto,arial,sans-serif;font-size: 1em;background-color: #fff;}
+body.hidden{overflow:hidden;}
+
+a{text-decoration:none;}
+
+*, *::before, *::after {-moz-box-sizing: border-box;box-sizing: border-box;}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dd, ol, ul, form, fieldset, legend, table, th, td, caption, hr {margin: 0;padding: 0;}
+
+.clear:after{content: "";display: table;clear: both;}
+
+.wrap{width: 1200px; margin: 0 auto;}
+
+/*--Шапка--*/
+
+header{}
+header>.wrap{}
+header>.wrap>.line{padding:10px;}
+header>.wrap>.line>.bar-left{float:left;width: 300px;}
+header>.wrap>.line>.bar-right{float:right;width: 370px;}
+header>.wrap>.line>.bar-center{margin: 0 370px 0 300px;padding:0 10px;}
+
+/*--Меню--*/
+
+.content-list.menu{display:table;width:100%;table-layout: fixed;}
+.content-list.menu>.item{display: table-cell;}
+.content-list.menu>.item>a{display:block;text-align:center;color:#118AB7;font-size: 1.2em;}
+
+/*--Социальные сети--*/
+
+.social-links{float:left;}
+.social-links>a{display:inline-block;color:#fff;line-height:30px;width:30px;text-align:center;margin-right:2px;margin-bottom:5px;}
+.social-links>a.vk{background-color:#2E77A4;}
+.social-links>a.fb{background-color:#4D67A2;}
+.social-links>a.in{background-color:#40719A;}
+.social-links>a.ok{background-color:#F49424;}
+
+.feedback{float:right;display:inline-block;line-height:30px;padding:0 10px;background-color:#FF0200;color:#fff;cursor:pointer;}
+
+/*--Контакты--*/
+
+.contacts{}
+.contacts>*{font-size: 0.95em;}
+.contacts>* .fa-circle{color:#1288BA;}
+.contacts>.text{color:#1288BA;vertical-align: middle;}
+
+/*--Поиск--*/
+
+.search{border: 1px solid #1288BA;float:left; width: 140px;height:30px;padding-right: 30px;position:relative;}
+.search .inputbox{width:100%;height:28px;border:0;outline:none;padding:0 10px;}
+.search .submit{position:absolute;top:0;right:0;bottom:0;line-height:28px;color:#333;text-align:center;width:30px;}
+
+/*--Блок пользователя--*/
+
+.userblock{float:right;}
+.userblock>.login{height:30px;}
+.userblock>.login>a{color:#1288BA;display:inline-block;line-height:30px;margin-left: 5px;}
+
+/*--Блоки на странице--*/
+
+.wrapper{}
+.wrapper>.wrap{padding: 40px 10px;}
+
+.block{border-top: 1px solid #1288BA;}
+.block>.wrap{padding: 30px 10px;}
+.block.type-1{background-color:#E5F1FD;}
+.block.type-2{background-color:#fff;}
+.block.type-3{}
+.block>.wrap>.head{text-align:center;margin-bottom:15px;}
+.block>.wrap>.head>span{font-size:2em;}
+
+/*--Выбор сезона--*/
+
+.content-list.seasons{}
+.content-list.seasons>.item{float:left;cursor:pointer;background-position:5px center;background-size: 50px 50px;background-repeat:no-repeat;overflow:hidden;background-color:#fff;padding: 10px 10px 10px 60px;height:60px;border-radius: 15px;border:1px solid;width: calc((100% - 60px)/7);margin-left:10px;}
+.content-list.seasons>.item:first-child{margin-left:0;}
+.content-list.seasons>.item>span{vertical-align:middle;font-weight: bold;}
+.content-list.seasons>.item.summer{border-color:#668402;padding-top: 20px;background-image:url(../../../public/img/summer.svg);}
+.content-list.seasons>.item.autumn{border-color:#DD250D;padding-top: 20px;background-image:url(../../../public/img/autumn.svg);}
+.content-list.seasons>.item.spring{border-color:#F9AC06;padding-top: 20px;background-image:url(../../../public/img/spring.svg);}
+.content-list.seasons>.item.winter{border-color:#0091CA;padding-top: 20px;background-image:url(../../../public/img/winter.svg);}
+.content-list.seasons>.item.weekend{border-color:#E50000;background-image:url(../../../public/img/weekend.svg);}
+.content-list.seasons>.item.festival{border-color:#0090CF;padding-top: 20px;background-image:url(../../../public/img/festival.svg);}
+.content-list.seasons>.item.all{border-color:#0091CC;background-image:url(../../../public/img/all.svg);}
+
+
+/*--Список мероприятий--*/
+
+.content-list.events{}
+.content-list.events>.item{float:left;width: calc((100% - 40px)/3);border-radius:15px;border: 1px solid #1487BE;padding:5px 10px 20px;background-color:#fff;margin: 0 20px 20px 0;}
+.content-list.events>.item:nth-child(3n){margin-right: 0;}
+.content-list.events>.item>.cat{}
+.content-list.events>.item>.cat>span{display:inline-block;margin-right: 5px;font-size: 0.8em;color:#1487BE;}
+.content-list.events>.item>.content{height: 160px;overflow:hidden;}
+.content-list.events>.item>.content>.title{text-align:center;margin-bottom: 5px;}
+.content-list.events>.item>.content>.title>span{white-space: nowrap;color:#1487BE;font-weight:bold;font-size: 1.3em;}
+.content-list.events>.item>.content>.image{float:left;width:170px;}
+.content-list.events>.item>.content>.information{margin-left:170px;padding-left:5px;}
+.content-list.events>.item>.content>.information>.title{display:block;font-weight: bold;margin-bottom: 5px;}
+.content-list.events>.item>.content>.information>.value{display:block;margin-bottom: 10px;}
+.content-list.events>.item>.more{margin-bottom: 10px;}
+.content-list.events>.item>.more>.text{float:left;width:170px;}
+.content-list.events>.item>.more>.text>span{font-size:0.95em;color:#1487BE;}
+.content-list.events>.item>.more>.button{margin-left:175px;background-color:#1487BE;line-height: 50px;text-align:center;}
+.content-list.events>.item>.more>.button>span{color:#fff;}
+.content-list.events>.item>.price{}
+.content-list.events>.item>.price>.text{float:left;width:170px;border: 1px solid #1487BE;text-align:center;line-height: 48px;}
+.content-list.events>.item>.price>.text>span{font-weight: bold; color:#1487BE;}
+.content-list.events>.item>.price>.button{margin-left:175px;background-color:#1487BE;line-height: 50px;text-align:center;}
+.content-list.events>.item>.price>.button>span{color:#fff;}
+
+/*--Список новостей--*/
+
+.content-list.news{}
+.content-list.news>.item{width:calc((100% - 160px)/3);margin-right: 80px;float:left;}
+.content-list.news>.item:nth-child(3n){margin-right: 0;}
+.content-list.news>.item>.information{}
+.content-list.news>.item>.information>span{color:#1487BE;}
+.content-list.news>.item>.head{margin-bottom: 10px;}
+.content-list.news>.item>.head>span{color:#1487BE;font-size:1.1em;}
+.content-list.news>.item>.image{margin-bottom: 10px;}
+.content-list.news>.item>.image>img{width:100%;}
+.content-list.news>.item>.text{margin-bottom: 10px;}
+.content-list.news>.item>.text>span{font-size:0.95em;color:#A0A0A0;text-align:justify;}
+.content-list.news>.item>.more{}
+.content-list.news>.item>.more>.button{display:inline-block;padding: 0 40px;border: 1px solid #1487BE;}
+.content-list.news>.item>.more>.button>span{font-size:0.8em;color:#1487BE;}
+
+
+/*--Подвал--*/
+
+footer{background-color:#1488BB;}
+footer>.wrap{padding: 30px 10px;}
+footer>.wrap>.bar-left{float:left;width: 330px;}
+footer>.wrap>.bar-right{float:right;width: 250px;}
+footer>.wrap>.bar-center{margin: 0 250px 0 330px;padding:0 20px;}
+
+footer .dev{float:right;}
+
+/*--Копирайты--*/
+
+.logo{width:100px;float:left;}
+.copyright{margin-left:110px;}
+.copyright>.sitename{}
+.copyright>.sitename>.desc{display:block;font-size:1.1em;text-align:justify;}
+.copyright>.sitename>.name{display:block;}
+.copyright>.copy{font-size:0.8em;}
+
+/*--Контакты в футере--*/
+
+footer .contacts{float:left;width:50%;padding-right:50px;font-size:0.95em;}
+footer .contacts>span{display:block;margin-bottom:5px;}
