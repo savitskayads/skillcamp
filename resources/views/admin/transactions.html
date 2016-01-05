@@ -1,0 +1,28 @@
+<div class="header">
+	<div class="clear">
+		<div class="title"><span>Транзакции</span></div>
+	</div>
+</div>
+
+
+	<form method="post">
+		<table class="table-list">
+			<thead>
+				<tr>
+					<th class="center col-1"><input class="checkbox" type="checkbox" name="checkall" value=""></th>
+					<th class="center col-2">ID</th>
+					<th>Операция</th>
+					<th class="col-4">Сумма</th>
+					<th class="col-5">Дата</th>
+					<th class="col-4">Состояние</th>
+					<th class="center col-btn"><i class="fa fa-th-list"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php echo $transactions_array; ?>
+			</tbody>
+		</table>
+		<?php echo $pagination; ?>
+	</form>
+
+<div id="overlay"></div>

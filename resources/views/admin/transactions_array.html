@@ -1,0 +1,26 @@
+<tr id="<?php echo $id; ?>">
+	<td class="center col-1">
+		<input type="checkbox" name="checkelement[]" value="<?php echo $id; ?>">
+	</td>
+	<td class="center col-2"><?php echo $id; ?></td>
+	<td>User01 оплатил заказ AA0001 (<a href="#modal_info_<?php echo $id; ?>" class="open_modal">Подробнее</a>)</td>
+	<td class="col-4"><?php echo $amount; ?></td>
+	<td class="col-5">11:24 16.08.2015</td>
+	<td class="col-4"><?php echo $paid_inf; ?></td>
+	<td class="center col-btn">
+		<div class="droplist-group">
+			<i class="fa fa-ellipsis-v"></i>
+			<div class="droplist" style="display: none">
+				<div>
+					<ul>
+						<li><a onclick="r_delete({id})" class="deny"><i class="fa pull-left fa-times"></i>Удалить</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</td>
+	<div class="modal_div" id="modal_info_<?php echo $id; ?>">
+		<span class="modal_close">×</span>
+		тут будет информация
+	</div>
+</tr>

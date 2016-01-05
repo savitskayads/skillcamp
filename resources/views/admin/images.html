@@ -1,0 +1,29 @@
+<div class="upload-group" style="display: none;">
+	<div class="inline-block">
+		<form action="" method="POST" enctype="multipart/form-data">
+			<div class="inline-title"><span>Выберите файлы</span></div>
+			<div class="inline-value"><input type="file" class="inputbox" name="upload-files[]" multiple></div>
+			<div class="btn-group">
+				<button class="btn upload"><i class="fa pull-left fa-upload"></i>Загрузить</button>
+			</div>
+		</form>
+	</div>
+	<div class="inline-block">
+		<div class="inline-info"><span>Загрузка файлов (максимальный размер: 10 MB)</span></div>
+	</div>
+</div>
+<div class='view-group'>
+	<div class='images-list clear'>
+		[image-item]
+			<div class="image-item" id="{id}">
+				<div class="controls">
+					<a onclick="delete_foto({id})" class="del delimage" title=""><i class="fa pull-right fa-trash"></i></a>
+					<input class="checkbox" type="checkbox" name="rm[]" value="kino">
+				</div>
+				<div class="image">
+					<img src="{path}" alt="">
+				</div>
+			</div>
+		[/image-item]
+	</div>
+</div>

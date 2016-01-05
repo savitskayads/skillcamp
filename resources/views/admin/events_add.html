@@ -1,0 +1,81 @@
+<form action="" method="POST" class="uploadpreviewform">
+	<input type="hidden" name="id" value="{id}">
+	<div class="add-event">
+		<div class="inline-block">
+			<div class="line-title"><span>Название</span></div><div class="line-value"><input class="inputbox" type="text" name="title" value="{name}" placeholder="Название квеста"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>ID</span></div><div class="line-value"><input class="inputbox" type="text" name="titleid" value="{id}" disabled></div>
+		</div>
+	</div>
+	<div class="upload-group">
+		<div class="inline-block">
+			<div class="title"><span>Превью</span></div>
+				<div class="inline-title"><span>Выберите файл</span></div>
+				<div class="line-value"><input type="file" class="inputbox" name="preview"></div>
+				<div class="btn-group">
+					<button class="btn upload uploadpreview"><i class="fa pull-left fa-upload"></i>Загрузить</button>
+				</div>
+				<input type="hidden" name="path" value="">
+		</div>
+		<div class="inline-block">
+			<div class="inline-info"><span>Загрузка файла (максимальный размер: 10 MB)</span></div>
+		</div>
+	</div>
+	<div class="view-group viewuploadpreview">
+		{preview}
+	</div>
+	<div class="add-event">
+		<div class="inline-block">
+			<div class="line-title"><span>Участников</span></div><div class="line-value"><input class="inputbox" type="text" name="members" value="{members}" placeholder="Число участников"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>Адрес</span></div><div class="line-value"><input class="inputbox" type="text" name="place" value="{place}" placeholder="Адрес квеста"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>Телефон</span></div><div class="line-value"><input class="inputbox" type="text" name="phone" value="{phone}" placeholder="Телефон для связи"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>Возрастное ограничение</span></div><div class="line-value"><input class="inputbox" type="text" name="rate" value="{rate}" placeholder="Возрастное ограничение"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>Время игры</span></div><div class="line-value"><input class="inputbox" type="text" name="play_time" value="{play_time}" placeholder="Время игры"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>Сложность</span></div><div class="line-value"><input class="inputbox" type="text" name="difficultly" value="{difficultly}" placeholder="Сложность"></div>
+		</div>
+		<div class="inline-block">
+			<div class="title"><span>Описание</span></div><div class="value"><textarea class="textbox" type="text" name="description" placeholder="Описание квеста">{desc}</textarea></div>
+		</div>
+	</div>
+</form>
+<div class="upload-group">
+	<div class="inline-block">
+		<div class="title"><span>Изображения</span></div>
+		<form action="" method="POST" enctype="multipart/form-data" class='uploadspreviewform'>
+			<div class="inline-title"><span>Выберите файлы</span></div>
+			<div class="line-value"><input type="file" class="inputbox" name="spreview[]" multiple></div>
+			<div class="btn-group">
+				<button class="btn upload uploadspreview"><i class="fa pull-left fa-upload"></i>Загрузить</button>
+			</div>
+		</form>
+	</div>
+	<div class="inline-block">
+		<div class="inline-info"><span>Загрузка файлов (максимальный размер: 10 MB)</span></div>
+	</div>
+</div>
+<div class="view-group viewuploadspreview">
+	<form class='pathsform'>
+		<div class="images-list clear">
+			{spreview}
+		</div>
+	</form>
+</div>
+<div class="add-event">
+	<div class="inline-block">
+		<div class="btn-group">
+			<a href="" class="btn add addevent"><i class="fa pull-left fa-floppy-o"></i>Сохранить</a>
+			<a href="?do=events" class="btn cancel"><i class="fa pull-left fa-times-circle"></i>Отмена</a>
+		</div>
+	</div>
+</div>

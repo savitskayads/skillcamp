@@ -1,0 +1,31 @@
+<div id="popup">
+	<div class="bg"></div>
+	<div class="body" id="popup-schedule-add">
+		<div class="header">
+			<div class="title"><span>Новая дата</span></div>
+			<div onclick="close_popup()" class="close"><span><i class="fa fa-times"></i></span></div>
+		</div>
+			<div class="content">
+				<div class="inline-block">
+				<div class="inline-title">Выберите дату</div>
+				<div class="inline-value">
+					<script src="./blocks/js/jquery.datetimepicker.js"></script>
+					<link rel="stylesheet" type="text/css" href="./blocks/css/datetimepicker.css">
+					<input class="inputbox" type="text" id="dateinput" name="date">
+					<script type="text/javascript">
+						jQuery('#dateinput').datetimepicker({
+							timepicker:false,
+							format:'d/m/Y',
+							minDate:'0'
+						});
+					</script>
+				</div>
+			</div>
+			<div class="inline-block">
+				<div class="btn-group">
+				<a onclick="add_date_seance()" class="btn add"><i class="fa pull-left fa-plus"></i>Добавить</a>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>

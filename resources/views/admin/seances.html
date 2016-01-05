@@ -1,0 +1,82 @@
+<div class="event-seances tab-block">
+	<div class="seances tabs">
+		<ul>
+			<li class="active">Понедельник</li>
+			<li>Вторник</li>
+			<li>Среда</li>
+			<li>Четверг</li>
+			<li>Пятница</li>
+			<li>Суббота</li>
+			<li>Воскресенье</li>
+		</ul>
+	</div>
+	<div class="box-content">
+		<section id="monday" class="visible">
+			{mon}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 1)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+		<section id="tuesday">
+			{tue}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 2)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+		<section id="wednesday">
+			{wed}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 3)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+		<section id="thursday">
+			{thu}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 4)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+		<section id="friday">
+			{fri}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 5)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+		<section id="saturday">
+			{sat}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 6)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+		<section id="sunday">
+			{sun}
+			<div class="inline-block">
+				<div class="btn-group">
+					<a onclick="add_seance({id}, 7)" class="btn add"><i class="fa pull-left fa-plus-square-o"></i>Добавить</a>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<div class="event-seances tab-block dateseances" id="{id}">
+	<div class="seances tabs seancesdatetab">
+		<ul>
+			{dates}
+			<a onclick="date_seance()" class="btn new"><i class="fa fa-plus"></i></a>
+		</ul>
+	</div>
+	<div class="box-content seancesdate">
+		{seances}
+	</div>
+</div>

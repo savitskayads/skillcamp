@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layout')
 @section('content')
 
 <div id="slider" class="slider clear">
@@ -41,15 +41,15 @@
                             <span>{{  $program->vacation_title }}</span>
                         </div>
                         <div class="content">
-                            <div class="title"><span>{{  $program->title }}</span></div>
-                            <div class="image"><img src="images/{{ $program->image }}" alt="" width="168" height="119"></div>
+                            <div class="title"><span><a href="{!! web_url() !!}/admin/programs/{!! $program->id !!}/edit">{{  $program->title }}</a></span></div>
+                            <div class="image"><img src="uploads/small/{{ $program->image }}" alt="" width="168" height="119"></div>
                             <div class="information">
                                 <span class="title">Дата проведения:</span>
                                 <span class="value">C {{ date("m", strtotime($program->start_date)) }} {{$monthes[(date('n', strtotime($program->start_date)))]}}
                                     {{ date("Y", strtotime($program->start_date)) }} по {{ date("m", strtotime($program->finish_date)) }} {{$monthes[(date('n', strtotime($program->finish_date)))]}}
                                     {{ date("Y", strtotime($program->finish_date)) }}</span>
                                 <span class="title">Количество мест:</span>
-                                <span class="value">{{ $program->plases }}</span>
+                                <span class="value">{{ $program->plaсes }}</span>
                             </div>
                         </div>
                         <div class="more clear">

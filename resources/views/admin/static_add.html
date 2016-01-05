@@ -1,0 +1,43 @@
+<form action="" method="POST" class="uploadpreviewform">
+	<input type="hidden" name="id" value="{id}">
+	<div class="add-event">
+		<div class="inline-block">
+			<div class="line-title"><span>Название</span></div><div class="line-value"><input class="inputbox" type="text" name="title" value="{name}" placeholder="Название страницы"></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>ID</span></div><div class="line-value"><input class="inputbox" type="text" name="titleid" value="{id}" disabled></div>
+		</div>
+		<div class="inline-block">
+			<div class="line-title"><span>Цена</span></div><div class="line-value"><input class="inputbox" type="text" name="price" value="{price}" placeholder="Цена"></div>
+		</div>
+	</div>
+	<div class="upload-group">
+		<div class="inline-block">
+			<div class="title"><span>Превью</span></div>
+				<div class="inline-title"><span>Выберите файл</span></div>
+				<div class="line-value"><input type="file" class="inputbox" name="preview"></div>
+				<div class="btn-group">
+					<button class="btn upload uploadpreview"><i class="fa pull-left fa-upload"></i>Загрузить</button>
+				</div>
+			</div>
+		<div class="inline-block">
+			<div class="inline-info"><span>Загрузка файла (максимальный размер: 10 MB)</span></div>
+		</div>
+	</div>
+	<div class="view-group viewuploadpreview">
+		{preview}
+	</div>
+	<div class="add-event">
+		<div class="inline-block">
+			<div class="title"><span>Содержимое страницы</span></div><div class="value"><textarea class="textbox" type="text" name="text" placeholder="Содержимое страницы">{text}</textarea></div>
+		</div>
+	</div>
+</form>
+<div class="add-event">
+	<div class="inline-block">
+		<div class="btn-group">
+			<a href="" class="btn add addstatic"><i class="fa pull-left fa-floppy-o"></i>Сохранить</a>
+			<a href="?do=static" class="btn cancel"><i class="fa pull-left fa-times-circle"></i>Отмена</a>
+		</div>
+	</div>
+</div>

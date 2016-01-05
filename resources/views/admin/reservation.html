@@ -1,0 +1,39 @@
+<table class="table-list">
+	<tr>
+		<th class="center col-2">ID</th>
+		<th>Квест</th>
+		<th>Цена</th>
+		{codeth}
+		<th class="col-4">Дата</th>
+		<th class="col-5">Контакты</th>
+		<th class="center col-btn"><i class="fa fa-th-list"></i></th>
+	</tr>
+	[reservation]
+		<tr id='{id}'>
+			<td class="center col-2">{id}</td>
+			<td>{event}</td>
+			<td>{price}</td>
+			{codetd}
+			<td class="col-4">{date}</td>
+			<td class="col-5">{name}</td>
+			<td class="center col-btn">
+				<div class="droplist-group">
+					<i class="fa fa-ellipsis-v"></i>
+					<div class="droplist" style="display: none">
+						<div>
+							<ul>
+								[unsubmitted]
+									<li><a onclick="accept({id})" class="accept"><i class="fa pull-left fa-chevron-down"></i>Принять</a></li>
+									<li><a onclick="deny({id})" class="deny"><i class="fa pull-left fa-times"></i>Отказать</a></li>
+								[/unsubmitted]
+								[submitted]
+									<li><a onclick="r_delete({id})" class="deny"><i class="fa pull-left fa-times"></i>Удалить</a></li>
+								[/submitted]
+							</ul>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	[/reservation]
+</table>
