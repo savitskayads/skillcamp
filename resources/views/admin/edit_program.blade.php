@@ -19,9 +19,7 @@
                 <div class="inline-title"><span>Выберите файл</span></div>
 
                 <div class="line-value"> {!! Form::file('img', null, [ 'class' => 'inputbox img-form']) !!}</div>
-                <div class="btn-group">
-                    <button class="btn upload uploadpreview"><i class="fa pull-left fa-upload"></i>Загрузить</button>
-                </div>
+
                 <input type="hidden" name="path" value="">
             </div>
             <div class="inline-block">
