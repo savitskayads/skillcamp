@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin'],function()
     Route::get('programs/create', ['middleware' => 'admin', 'uses'=>'ProgramController@create'] );
     Route::get('programs/{id}/edit', ['middleware' => 'admin', 'uses'=>'ProgramController@edit'] );
     Route::post('programs/save', ['middleware' => 'admin', 'uses'=>'ProgramController@save'] );
+    Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
 //news routes
     Route::get('news', ['middleware' => 'admin', 'uses'=>'NewsController@index'] );
     Route::get('news/create', ['middleware' => 'admin', 'uses'=>'NewsController@create'] );

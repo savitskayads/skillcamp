@@ -21,9 +21,11 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $programs=Program::join('vacations', 'programs.vacation', '=', 'vacations.id')
-            ->select('programs.*', 'vacations.title as vacation_title')
-            ->get();
+
+        $programs=Program::all();
+//        $programs=Program::join('vacations', 'programs.vacation', '=', 'vacations.id')
+//            ->select('programs.*', 'vacations.title as vacation_title')
+//            ->get();
         return view('admin.programs', ['programs'=> $programs]);
     }
 
@@ -35,7 +37,9 @@ class ProgramController extends Controller
     public function create()
     {
         $program = new Program();
-        return view('admin.edit_program')->with('program', $program);
+
+        $vacations=Vacation::all();
+        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program]);
     }
 
     public function save(){
@@ -51,11 +55,12 @@ class ProgramController extends Controller
         $program->telephone = Request::input('telephone');
         $program->price = Request::input('price');
         $program->places = Request::input('places');
-        $program->vacation = Request::input('vacation');
+        $program->vacations()->sync(Request::input('vacation'));
         $program->age = Request::input('age');
         $program->start_date = Request::input('start_date') ;
         $program->finish_date = Request::input('finish_date') ;
         $program->description = Request::input('description');
+        $program->active = Request::input('active');
         $program->save();
         if(Request::hasFile('img')){
 
@@ -122,12 +127,17 @@ class ProgramController extends Controller
     public function edit($id)
     {
         $program = Program::find($id);
+
+        $program_vacations=Program::find($id)->vacations()->get();
+
+        foreach($program_vacations as $one){
+            $vacation_ids[]=$one->id;
+        }
+
         $vacations=Vacation::all();
-        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program]);
 
 
-
-
+        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program,'vacation_ids'=>$vacation_ids]);
     }
 
     /**
@@ -150,6 +160,8 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $program = Program::find($id);
+        $program->delete();
+        return redirect('admin/programs');
     }
 }

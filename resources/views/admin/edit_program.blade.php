@@ -5,7 +5,12 @@
         <input type="hidden" name="id" value="{{$program->id}}">
         <div class="add-event">
             <div class="inline-block">
-                <div class="line-title"><span>Название</span></div><div class="line-value">{!!  Form::text('title', $program->title, ['placeholder' => 'Название', 'class'=>'inputbox']) !!}</div>
+                <div class="line-title"><span>Название</span></div><div class="line-value">
+                    {!!  Form::text('title', $program->title, ['placeholder' => 'Название', 'class'=>'inputbox']) !!}</div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Опубликована</span></div>
+                    {!! Form::checkbox('active', $program->active, $program->active) !!}
             </div>
         </div>
         <div class="upload-group">
@@ -13,16 +18,20 @@
                 <div class="title"><span>Изображение</span></div>
                 <div class="inline-title"><span>Выберите файл</span></div>
 
-                <div class="line-value"> {!! Form::file('img', null,[ 'class'=>'inputbox']) !!}</div>
-                {{--<div class="btn-group">--}}
-                    {{--<button class="btn upload uploadpreview"><i class="fa pull-left fa-upload"></i>Загрузить</button>--}}
-                {{--</div>--}}
+                <div class="line-value"> {!! Form::file('img', null, [ 'class' => 'inputbox img-form']) !!}</div>
+                <div class="btn-group">
+                    <button class="btn upload uploadpreview"><i class="fa pull-left fa-upload"></i>Загрузить</button>
+                </div>
                 <input type="hidden" name="path" value="">
             </div>
             <div class="inline-block">
                 <div class="inline-info"><span>Загрузка файла (максимальный размер: 10 MB)</span></div>
             </div>
-            <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $program->image }}" alt="" width="168" height="119"></div>
+            @if($program->image == '')
+                <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" alt="" width="168" height="119"></div>
+            @else
+                <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $program->image }}" alt="" class="img-upload" width="168" height="119"></div>
+            @endif
         </div>
         <div class="view-group viewuploadpreview">
             {preview}
@@ -45,10 +54,10 @@
                 <div class="line-title"><span>Сезон</span></div>
                     @foreach($vacations as $vacation)
                         {!! Form::label('vacation',$vacation->title) !!}
-                        @if($vacation->id == $program->vacation)
-                            {!! Form::checkbox('vacation', $vacation->id, true) !!}
+                        @if(in_array($vacation->id,$vacation_ids))
+                            {!! Form::checkbox('vacation[]', $vacation->id, true) !!}
                         @else
-                            {!! Form::checkbox('vacation', $vacation->id, false) !!}
+                            {!! Form::checkbox('vacation[]', $vacation->id, false) !!}
                         @endif
                     @endforeach
             </div>
@@ -85,13 +94,32 @@
                 <div class="btn-group">
                     {{--{!! Form::submit('Сохранить', array('class'=>'btn add addevent', 'id' => 'edit_programs')) !!}--}}
                     <button class="btn add add-program" type="submit"><i class="fa pull-left fa-floppy-o"></i>Сохранить</button>
-                    <a href="?do=events" class="btn cancel"><i class="fa pull-left fa-times-circle"></i>Отмена</a>
+                    <a href="{{web_url()}}/admin/programs" class="btn cancel"><i class="fa pull-left fa-times-circle"></i>Отмена</a>
                 </div>
             </div>
         </div>
         {!! Form::close() !!}
+
+    <script type="text/javascript">
+        $('input[name=active]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        })
+
+        $('input[name=img]').on('change', function(fileInput){
+
+            var file = fileInput.target.files[0];
+
+                var imageType = /image.*/;
+
+                if (file.type.match(imageType)) {
+
+                    var img = $('.img-upload');
+
+                    img.attr('src', URL.createObjectURL(file))
+
+                }
+
+        })
+    </script>
 @stop
-
-<script type="text/javascript">
-
-</script>
