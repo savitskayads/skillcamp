@@ -34,9 +34,9 @@
 <div id="wrapper" class="wrapper clear">
     <div id="menu" class="menu-panel">
         <ul>
-            <li class="active"><a href="{{web_url()}}/admin/programs"><i class="fa pull-left fa-graduation-cap"></i>Программы лагеря</a></li>
-            <li class="active"><a href="{{web_url()}}/admin/news"><i class="fa pull-left fa-bullhorn"></i>Новости</a></li>
-            <li class="active"><a href="?do=events"><i class="fa pull-left fa-users"></i>Пользователи</a></li>
+            <li @if(Request::segment(2)=='programs') class="active" @endif><a href="{{web_url()}}/admin/programs"><i class="fa pull-left fa-graduation-cap"></i>Программы лагеря</a></li>
+            <li @if(Request::segment(2)=='news') class="active" @endif><a href="{{web_url()}}/admin/news"><i class="fa pull-left fa-bullhorn"></i>Новости</a></li>
+            <li><a href="?do=events"><i class="fa pull-left fa-users"></i>Пользователи</a></li>
         </ul>
     </div>
 @yield('content')

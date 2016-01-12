@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="content {pagetag}">
+        <div class="content programs">
             <div class="clear">
                 <table class="table-list">
                     <tr>
@@ -27,7 +27,7 @@
                     @foreach($programs as $program)
                         <tr id={{$program->id}}>
                             <td class="center col-2">{{$program->id}}</td>
-                            <td>{{$program->title}}</td>
+                            <td><a href="{!! web_url() !!}/admin/programs/{!! $program->id !!}/edit">{{  $program->title }}</a></td>
                             <td>{{$program->vacation_title}}</td>
                             <td>{{$program->places}}</td>
                             <td>{{$program->price}}</td>
@@ -39,7 +39,7 @@
                                         <div>
                                             <ul>
                                                 <li><a href="{{web_url()}}/admin/programs/{{$program->id}}/edit" class="accept"><i class="fa pull-left fa-chevron-down"></i>Изменить</a></li>
-                                                <li><a onclick="r_delete({{$program->id}})" class="deny"><i class="fa pull-left fa-times"></i>Удалить</a></li>
+                                                <li><a href="{{web_url()}}/admin/programs/{{$program->id}}/delete"><i class="fa pull-left fa-times"></i>Удалить</a></li>
                                             </ul>
                                         </div>
                                     </div>

@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="content {pagetag}">
+        <div class="content news">
             <div class="clear">
                 <table class="table-list">
                     <tr>
