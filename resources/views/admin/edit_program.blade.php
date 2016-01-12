@@ -28,7 +28,7 @@
                 <div class="inline-info"><span>Загрузка файла (максимальный размер: 10 MB)</span></div>
             </div>
             @if($program->image == '')
-                <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" alt="" width="168" height="119"></div>
+                <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" class="img-upload" alt="" width="168" height="119"></div>
             @else
                 <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $program->image }}" alt="" class="img-upload" width="168" height="119"></div>
             @endif
