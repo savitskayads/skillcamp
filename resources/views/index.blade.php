@@ -41,8 +41,17 @@
                             <span>{{  $program->vacation_title }}</span>
                         </div>
                         <div class="content">
-                            <div class="title"><span><a href="{!! web_url() !!}/admin/programs/{!! $program->id !!}/edit">{{  $program->title }}</a></span></div>
-                            <div class="image"><img src="uploads/small/{{ $program->image }}" alt="" width="168" height="119"></div>
+                            <div class="title">
+                                <span>
+                                    {{  $program->title }}
+                                </span></div>
+                            <div class="image">
+                                @if($program->image == '')
+                                    <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" alt="" width="168" height="119"></div>
+                                @else
+                                    <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $program->image }}" alt="" width="168" height="119"></div>
+                                @endif
+                            </div>
                             <div class="information">
                                 <span class="title">Дата проведения:</span>
                                 <span class="value">C {{ date("m", strtotime($program->start_date)) }} {{$monthes[(date('n', strtotime($program->start_date)))]}}

@@ -6,6 +6,7 @@ use App\News;
 use App\Program;
 use App\Vacation;
 use Illuminate\Http\Request;
+use Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -26,14 +27,16 @@ class IndexController extends Controller
         );
 
         $vacations=Vacation::all();
-
-        $programs=Program::join('vacations', 'programs.vacation', '=', 'vacations.id')
-            ->select('programs.*', 'vacations.title as vacation_title')
+        $programs = Program::where('active','=','1')
             ->get();
 
         $news=News::all();
-
-        return view('index', ['vacations' => $vacations, 'programs' => $programs, 'monthes'=>$monthes, 'news'=>$news]);
+        if(Auth::check()){
+            $user=Auth::user()->name;
+        } else {
+            $user='guest';
+        }
+        return view('index', ['vacations' => $vacations, 'programs' => $programs, 'monthes'=>$monthes, 'news'=>$news, 'user'=>$user]);
 
     }
 
