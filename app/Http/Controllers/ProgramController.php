@@ -162,6 +162,21 @@ class ProgramController extends Controller
     {
         $program = Program::find($id);
         $program->delete();
-        return redirect('admin/programs');
+        return 'true';
+    }
+
+    public function publish($id)
+    {
+        $program = Program::find($id);
+        $program->active = 1;
+        $program -> save();
+        return 'true';
+    }
+    public function unpublish($id)
+    {
+        $program = Program::find($id);
+        $program->active = 0;
+        $program -> save();
+        return 'true';
     }
 }

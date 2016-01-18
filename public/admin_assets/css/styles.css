@@ -221,3 +221,4 @@ body.auth{background-color:#F3F3F3;}
 .uploadpreviewform, .upload-group, .add-event{margin-left: 250px;}
 .uploadpreviewform .upload-group{margin-left: 0;}
 .uploadpreviewform .add-event{margin-left: 0;}
+tr.active{border: #3498db;  border-style: groove;}

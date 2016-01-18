@@ -37,11 +37,16 @@ Route::group(['prefix' => 'admin'],function()
         return view('admin.changepass')->with('message',$message);
     }]);
     Route::post('changepass',  ['middleware' => 'admin', 'uses'=>'AdminController@changepass']);
+    Route::get('logout', 'Auth\AuthController@getLogout');
+
 //Programs routes
     Route::get('programs', ['middleware' => 'admin', 'uses'=>'ProgramController@index'] );
     Route::get('programs/create', ['middleware' => 'admin', 'uses'=>'ProgramController@create'] );
     Route::get('programs/{id}/edit', ['middleware' => 'admin', 'uses'=>'ProgramController@edit'] );
     Route::post('programs/save', ['middleware' => 'admin', 'uses'=>'ProgramController@save'] );
+    Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
+    Route::any('/programs/publish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@publish'] );
+    Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
     Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
 //news routes
     Route::get('news', ['middleware' => 'admin', 'uses'=>'NewsController@index'] );
