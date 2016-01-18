@@ -129,7 +129,7 @@ class ProgramController extends Controller
         $program = Program::find($id);
 
         $program_vacations=Program::find($id)->vacations()->get();
-
+        $vacation_ids = array();
         foreach($program_vacations as $one){
             $vacation_ids[]=$one->id;
         }

@@ -101,27 +101,6 @@
 
             });
         });
-
-        $('input[name=active]').on('click',function(){
-            var v=Math.abs(this.value-1);
-            this.value=v;
-        })
-
-        $('input[name=img]').on('change', function(fileInput){
-
-            var file = fileInput.target.files[0];
-
-            var imageType = /image.*/;
-
-            if (file.type.match(imageType)) {
-
-                var img = $('.img-upload');
-
-                img.attr('src', URL.createObjectURL(file))
-
-            }
-
-        })
     </script>
 
 
