@@ -80,17 +80,21 @@
         <div class="head"><span>Новости</span></div>
         <div class="content">
             <div class="content-list news clear">
-                @foreach($news as $new)
+                @foreach($all_news as $news)
                 <div class="item">
                     <div class="information">
-                        <span>{{ $new->date }}</span>
+                        <span>{{ $news->date }}</span>
                     </div>
-                    <div class="head"><span>{{ $new->title }}</span></div>
+                    <div class="head"><span>{{ $news->title }}</span></div>
                     <div class="image">
-                        <img src="images/{{ $new->image }}" alt="">
+                        @if($news->image == '')
+                            <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" alt="" width="340" height="127"></div>
+                        @else
+                            <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $news->image }}" alt="" width="340" height="127"></div>
+                        @endif
                     </div>
                     <div class="text">
-                        <span>{{ $new->description }}</span>
+                        <span>{{ $news->description }}</span>
                     </div>
                     <div class="more"><a href="#" class="button"><span>Подробнее</span></a></div>
                 </div>

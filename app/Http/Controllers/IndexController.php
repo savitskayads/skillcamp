@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\News;
-use App\Program;
-use App\Vacation;
-use Illuminate\Http\Request;
-use Auth;
+use Request;
 
-use App\Http\Requests;
+use Requests;
 use App\Http\Controllers\Controller;
-
+use App\Program;
+use App\News;
+use App\Vacation;
+use Input;
+use Illuminate\Routing;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Validator;
+use Illuminate\Support\Facades\Auth;
 class IndexController extends Controller
 {
     /**
@@ -30,13 +33,14 @@ class IndexController extends Controller
         $programs = Program::where('active','=','1')
             ->get();
 
-        $news=News::all();
+        $all_news = News::where('active','=','1')
+            ->get();
         if(Auth::check()){
             $user=Auth::user()->name;
         } else {
             $user='guest';
         }
-        return view('index', ['vacations' => $vacations, 'programs' => $programs, 'monthes'=>$monthes, 'news'=>$news, 'user'=>$user]);
+        return view('index', ['vacations' => $vacations, 'programs' => $programs, 'monthes'=>$monthes, 'all_news'=>$all_news, 'user'=>$user]);
 
     }
 
