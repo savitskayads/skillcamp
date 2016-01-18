@@ -51,6 +51,11 @@ Route::group(['prefix' => 'admin'],function()
 //news routes
     Route::get('news', ['middleware' => 'admin', 'uses'=>'NewsController@index'] );
     Route::get('news/create', ['middleware' => 'admin', 'uses'=>'NewsController@create'] );
-    Route::get('logout', 'Auth\AuthController@getLogout');
+    Route::get('news/{id}/edit', ['middleware' => 'admin', 'uses'=>'NewsController@edit'] );
+    Route::post('news/save', ['middleware' => 'admin', 'uses'=>'NewsController@save'] );
+    Route::any('news/{id}/delete', ['middleware' => 'admin', 'uses'=>'NewsController@destroy'] );
+    Route::any('/news/publish/{id}', ['middleware' => 'admin', 'uses'=>'NewsController@publish'] );
+    Route::any('/news/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'NewsController@unpublish'] );
+    Route::any('/news/{id}/delete', ['middleware' => 'admin', 'uses'=>'NewsController@destroy'] );
 
 });
