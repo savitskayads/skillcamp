@@ -1,36 +1,38 @@
-@extends('layout')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <form  method="POST" action="/skillcamp/public/auth/register" role="form" class = "login-form">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div class="form-group">
             <label for="email">ФИО</label>
             <input type="text" name="name" class="form-control" placeholder="Иванов Иван Иванович">
-            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         </div>
         <div class="form-group">
             <label for="email">E-mail</label>
             <input type="text" name="email" class="form-control">
-            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         </div>
         <div class="form-group">
             <label for="password">Пароль</label>
             <input type="password" name="password" class="form-control">
-            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         </div>
         <div class="form-group">
             <label for="password">Повторите пароль</label>
             <input type="password" name="password_confirmation" class="form-control">
-            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         </div>
-        @if(isset($message))
+        <?php if(isset($message)): ?>
             <div class=" message" style="color: red;">
-                {{$message}}
+                <?php echo e($message); ?>
+
             </div>
-        @endif
+        <?php endif; ?>
         <div class="inline-block">
             <input class="btn btn-success" type="submit" name="login" value="Регистрация">
         </div>
     </form>
-@stop
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

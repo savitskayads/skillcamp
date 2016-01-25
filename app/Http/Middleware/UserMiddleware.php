@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class AdminAuthMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,11 +14,7 @@ class AdminAuthMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
+
     protected $auth;
 
     /**
@@ -32,12 +28,12 @@ class AdminAuthMiddleware
         $this->auth = $auth;
         $this->user = $this->auth->user();
     }
+
     public function handle($request, Closure $next)
     {
-
         if ($this->auth->guest()) {
-                return redirect('/');
-        } else if($this->user->name != 'admin'){
+            return redirect('user/login');
+        } else if($this->user->name == 'admin'){
             return redirect('/');
         }
 

@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/styles.css') }}" />--}}
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/fonts.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/style.css')); ?>" />
+    <?php /*<link rel="stylesheet" type="text/css" href="<?php echo e(asset('admin_assets/css/styles.css')); ?>" />*/ ?>
+    <?php /*<link rel="stylesheet" type="text/css" href="<?php echo e(asset('admin_assets/css/fonts.css')); ?>" />*/ ?>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -49,17 +49,17 @@
                     </form>
                 </div>
                 <div class="userblock">
-                    @if(Auth::check())
+                    <?php if(Auth::check()): ?>
                         <div class="login">
-                            <a href="{{web_url()}}/user">Личный кабинет</a>
-                            <a href="{{web_url()}}/logout">Выйти</a>
+                            <a href="<?php echo e(web_url()); ?>/user">Личный кабинет</a>
+                            <a href="<?php echo e(web_url()); ?>/logout">Выйти</a>
                         </div>
-                    @else
+                    <?php else: ?>
                         <div class="login">
-                            <a href="{{web_url()}}/user/login">Войти на сайт</a>
-                            <a href="{{web_url()}}/auth/register">Регистрация</a>
+                            <a href="<?php echo e(web_url()); ?>/user/login">Войти на сайт</a>
+                            <a href="<?php echo e(web_url()); ?>/auth/register">Регистрация</a>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="bar-center">
@@ -85,7 +85,7 @@
     </div>
 </header>
 
-@yield('content')
+<?php echo $__env->yieldContent('content'); ?>
 
 <footer>
     <div class="wrap">

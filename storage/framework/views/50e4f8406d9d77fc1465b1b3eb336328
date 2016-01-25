@@ -1,0 +1,37 @@
+<?php $__env->startSection('content'); ?>
+    <form  method="POST" action="login" role="form" class = "login-form">
+        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+            <div class="form-group">
+                <?php if(isset($message)): ?>
+                    <label for="email">Ваш e-mail</label>
+                    <input type="text" name="email" class="form-control" value="<?php echo e($email); ?>">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <?php else: ?>
+                    <label for="email">Ваш e-mail</label>
+                    <input type="text" name="email" class="form-control">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <?php endif; ?>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" name="password" class="form-control">
+                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            </div>
+            <?php if(isset($message)): ?>
+                <div class=" message" style="color: red;">
+                    <?php echo e($message); ?>
+
+                </div>
+                <?php if($message_type == 'not_confirmed'): ?>
+                    <div class="confirm" style="color: red;">
+                        <a href="confirmation_code/<?php echo e($id); ?>">Заново выслать подтвержение</a>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+
+        <div class="inline-block">
+            <input class="btn btn-default" type="submit" name="login" value="Войти">
+        </div>
+    </form>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

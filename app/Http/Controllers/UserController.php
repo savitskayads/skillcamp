@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
+use Input;
+use App\User;
+use Validator;
+use Mail;
+use Flash;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -16,14 +23,79 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.person');
     }
 
+    public function login(){
+
+        if(Auth::check()){
+            return view('user.person');
+        } else {
+            return view('auth.login');
+        }
+    }
+
+    public function authenticate()
+    {
+        $email=Input::get('email');
+        $password=Input::get('password');
+        $message = '';
+
+        if (Auth::attempt(['email' => $email, 'password' => $password]))
+        {
+            if(Auth::user()->confirmed != 1){
+                $id = Auth::user()->id;
+                $message = 'e-mail не подтвержден!';
+                $message_type = 'not_confirmed';
+                return view('auth.login')
+                    ->with('message',$message)
+                    ->with('message_type',$message_type)
+                    ->with('email',$email)
+                    ->with('id',$id);
+            }
+            return redirect()->intended('user');
+        }
+        else
+        {
+            $message = 'Неверные данные!';
+            $message_type = 'data_error';
+            return view('auth.login')
+                ->with('message',$message)
+                ->with('message_type',$message_type)
+                ->with('email',$email);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function confirmation_code($id){
+
+        $confirmation_code = str_random(30);
+
+        $user = User::find($id);
+        $email = $user->email;
+        $user->confirmation_code = $confirmation_code;
+        $user->save();
+        Mail::send('emails.verify', array('confirmation_code' => $confirmation_code,'email' => $email), function($message) use ($email) {
+            $message->to($email, 'User')
+                ->subject('Подтверждение e-mail');
+        });
+        return view('auth.login');
+    }
+
+    public function childs()
+    {
+        return view('user.childs');
+    }
+
+    public function child()
+    {
+        return view('user.child');
+    }
+
     public function create()
     {
         //

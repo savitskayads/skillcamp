@@ -128,6 +128,43 @@ header>.wrap>.line>.bar-center{margin: 0 370px 0 300px;padding:0 10px;}
 .content-list.news>.item>.more>.button{display:inline-block;padding: 0 40px;border: 1px solid #1487BE;}
 .content-list.news>.item>.more>.button>span{font-size:0.8em;color:#1487BE;}
 
+/*--Страница входа на сайт--*/
+.login-form{
+    width: 50%;
+    margin-top: 10%;
+    margin-bottom: 21%;
+    margin-left: 25%;
+}
+/*--Личный кабинет--*/
+.data-form{
+    width: 50%;
+    margin-top: 2%;
+    margin-bottom: 11%;
+    margin-left: 2%;
+}
+
+.cabinet h1{
+     margin-left: 2%;
+     margin-top: 5%;
+     color: #118AB7;
+ }
+
+.cabinet h3{
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.cabinet .table-responsive{
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 20% ;
+}
+
+.cabinet p{
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
 
 /*--Подвал--*/
 

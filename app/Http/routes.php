@@ -22,8 +22,18 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 
 // Registration Routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
-
+Route::post('auth/register', 'Auth\AuthController@postUserRegister');
+Route::get('register/verify/{confirmationCode}','Auth\AuthController@confirm');
+//User routes
+Route::group(['prefix' => 'user'],function()
+{
+    Route::get('login','UserController@login' );
+    Route::post('login', 'UserController@authenticate');
+    Route::get('/', ['middleware' => 'user', 'uses'=>'UserController@index']);
+    Route::get('childs', ['middleware' => 'user', 'uses'=>'UserController@childs']);
+    Route::get('child', ['middleware' => 'user', 'uses'=>'UserController@child']);
+    Route::get('confirmation_code/{id}', 'UserController@confirmation_code');
+});
 //Admin routes
 Route::group(['prefix' => 'admin'],function()
 {
