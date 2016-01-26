@@ -128,6 +128,11 @@ header>.wrap>.line>.bar-center{margin: 0 370px 0 300px;padding:0 10px;}
 .content-list.news>.item>.more>.button{display:inline-block;padding: 0 40px;border: 1px solid #1487BE;}
 .content-list.news>.item>.more>.button>span{font-size:0.8em;color:#1487BE;}
 
+/*--Страница регистрации--*/
+.danger-message{color: red; display: block}
+.ok-message{color: forestgreen; display: block}
+.message{display: none;}
+
 /*--Страница входа на сайт--*/
 .login-form{
     width: 50%;

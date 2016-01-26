@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -84,11 +84,21 @@ class AuthController extends Controller
     public function postUserRegister(Request $request)
     {
         $validator = $this->validator($request->all());
+        $email = User::where('email','=',$request->input('email'))->count();
+        if($email>0){
+            $message='Пользователь с таким e-mail уже существует';
+            return view('auth.register')->with('message', $message);
+        }
 
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+
+            $message='Вы ввели неверные данные';
+            return view('auth.register')->with('message', $message);
+
+//            $this->throwValidationException(
+//                $request, $validator
+//            );
+
         }
 
         $user = $this->create($request->all());
@@ -104,8 +114,8 @@ class AuthController extends Controller
             ->with('id',$id);;
     }
 
-    public function check_email(){
-        $email = Request::input('email');
+    public function check_email(Request $request){
+        $email = $request->input('email');
         $user = User::where('email','=',$email)
             ->get();
         if(!$user){

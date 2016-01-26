@@ -24,6 +24,7 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postUserRegister');
 Route::get('register/verify/{confirmationCode}','Auth\AuthController@confirm');
+Route::post('user/check_email','UserController@check_email');
 //User routes
 Route::group(['prefix' => 'user'],function()
 {

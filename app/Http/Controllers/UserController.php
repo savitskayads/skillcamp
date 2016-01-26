@@ -101,6 +101,28 @@ class UserController extends Controller
         //
     }
 
+    public function check_email()
+    {
+        $email = Request::input('email');
+        $users = User::where('email','=',$email)->count();
+        if($users > 0){
+            return 'false';
+        }else {
+            return 'true';
+        }
+    }
+
+    public function check_password()
+    {
+        $email = Input::get('email');
+        $users = User::where('email','=',$email)->count();
+        if($users > 0) {
+            return 'false';
+        }else {
+            return 'true';
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
