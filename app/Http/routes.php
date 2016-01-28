@@ -31,8 +31,12 @@ Route::group(['prefix' => 'user'],function()
 {
     Route::get('login','UserController@login' );
     Route::post('login', 'UserController@authenticate');
+    Route::post('login', 'UserController@authenticate');
+    Route::post('login', 'UserController@authenticate');
     Route::get('confirmation_code/{id}', 'UserController@confirmation_code');
     Route::get('/', ['middleware' => 'user', 'uses'=>'UserController@index']);
+    Route::get('{id}/edit', ['middleware' => 'user', 'uses'=>'UserController@edit']);
+    Route::post('save', ['middleware' => 'user', 'uses'=>'UserController@save']);
 
     //Childrens routes
     Route::get('childrens', ['middleware' => 'user', 'uses'=>'ChildrenController@index'] );

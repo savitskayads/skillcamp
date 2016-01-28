@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Support\Facades\Session;
 use Input;
 use App\User;
 use Validator;
@@ -24,7 +25,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.person');
+        $id = Session::get('user_id');
+        $user = User::find($id);
+        return view('user.person')->with('user',$user);
     }
 
     public function login(){
@@ -92,6 +95,16 @@ class UserController extends Controller
         //
     }
 
+    public function save()
+    {
+        $id = Request::input('id');
+        $user = User::find($id);
+        $user->name = Request::input('name');
+        $user->email=Request::input('email');
+        $user->phone=Request::input('phone');
+        $user->save();
+    }
+
     public function check_email()
     {
         $email = Request::input('email');
@@ -144,7 +157,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit',['user'=> $user]);
     }
 
     /**
