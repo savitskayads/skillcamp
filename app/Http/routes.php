@@ -25,16 +25,24 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postUserRegister');
 Route::get('register/verify/{confirmationCode}','Auth\AuthController@confirm');
 Route::post('user/check_email','UserController@check_email');
+
 //User routes
 Route::group(['prefix' => 'user'],function()
 {
     Route::get('login','UserController@login' );
     Route::post('login', 'UserController@authenticate');
-    Route::get('/', ['middleware' => 'user', 'uses'=>'UserController@index']);
-    Route::get('childs', ['middleware' => 'user', 'uses'=>'UserController@childs']);
-    Route::get('child', ['middleware' => 'user', 'uses'=>'UserController@child']);
     Route::get('confirmation_code/{id}', 'UserController@confirmation_code');
+    Route::get('/', ['middleware' => 'user', 'uses'=>'UserController@index']);
+
+    //Childrens routes
+    Route::get('childrens', ['middleware' => 'user', 'uses'=>'ChildrenController@index'] );
+    Route::get('childrens/create', ['middleware' => 'user', 'uses'=>'ChildrenController@create'] );
+    Route::get('childrens/{id}/edit', ['middleware' => 'user', 'uses'=>'ChildrenController@edit'] );
+    Route::get('childrens/{id}/edit_form', ['middleware' => 'user', 'uses'=>'ChildrenController@edit_form'] );
+    Route::post('childrens/save', ['middleware' => 'user', 'uses'=>'ChildrenController@save'] );
+    Route::any('childrens/{id}/delete', ['middleware' => 'user', 'uses'=>'ChildrenController@destroy'] );
 });
+
 //Admin routes
 Route::group(['prefix' => 'admin'],function()
 {
@@ -50,16 +58,15 @@ Route::group(['prefix' => 'admin'],function()
     Route::post('changepass',  ['middleware' => 'admin', 'uses'=>'AdminController@changepass']);
     Route::get('logout', 'Auth\AuthController@getLogout');
 
-//Programs routes
+    //Programs routes
     Route::get('programs', ['middleware' => 'admin', 'uses'=>'ProgramController@index'] );
     Route::get('programs/create', ['middleware' => 'admin', 'uses'=>'ProgramController@create'] );
     Route::get('programs/{id}/edit', ['middleware' => 'admin', 'uses'=>'ProgramController@edit'] );
     Route::post('programs/save', ['middleware' => 'admin', 'uses'=>'ProgramController@save'] );
-    Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
     Route::any('/programs/publish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@publish'] );
     Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
     Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
-//news routes
+    //News routes
     Route::get('news', ['middleware' => 'admin', 'uses'=>'NewsController@index'] );
     Route::get('news/create', ['middleware' => 'admin', 'uses'=>'NewsController@create'] );
     Route::get('news/{id}/edit', ['middleware' => 'admin', 'uses'=>'NewsController@edit'] );

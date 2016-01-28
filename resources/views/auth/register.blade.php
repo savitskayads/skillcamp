@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-    <form  method="POST" action="/skillcamp/public/auth/register" role="form" class = "login-form">
+    <form  method="POST" action="register" role="form" class = "login-form">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <div class="form-group">
             <label for="email">ФИО</label>

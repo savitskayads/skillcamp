@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Session;
 
 class UserMiddleware
 {
@@ -35,6 +36,11 @@ class UserMiddleware
             return redirect('user/login');
         } else if($this->user->name == 'admin'){
             return redirect('/');
+        }
+
+        if(!Session::has('user_id')){
+        $user_id = $this->user->id;
+        Session::put('user_id',$user_id);
         }
 
         return $next($request);

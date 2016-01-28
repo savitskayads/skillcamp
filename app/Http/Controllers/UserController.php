@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Child;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -84,16 +85,6 @@ class UserController extends Controller
                 ->subject('Подтверждение e-mail');
         });
         return view('auth.login');
-    }
-
-    public function childs()
-    {
-        return view('user.childs');
-    }
-
-    public function child()
-    {
-        return view('user.child');
     }
 
     public function create()
