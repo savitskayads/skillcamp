@@ -37,9 +37,9 @@ class ProgramController extends Controller
     public function create()
     {
         $program = new Program();
-
+        $vacation_ids = array();
         $vacations=Vacation::all();
-        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program]);
+        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program, 'vacation_ids'=>$vacation_ids]);
     }
 
     public function save(){
