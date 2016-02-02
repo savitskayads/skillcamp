@@ -25,13 +25,15 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postUserRegister');
 Route::get('register/verify/{confirmationCode}','Auth\AuthController@confirm');
 Route::post('user/check_email','UserController@check_email');
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //User routes
 Route::group(['prefix' => 'user'],function()
 {
     Route::get('login','UserController@login' );
-    Route::post('login', 'UserController@authenticate');
-    Route::post('login', 'UserController@authenticate');
     Route::post('login', 'UserController@authenticate');
     Route::get('confirmation_code/{id}', 'UserController@confirmation_code');
     Route::get('/', ['middleware' => 'user', 'uses'=>'UserController@index']);

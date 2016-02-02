@@ -19,7 +19,7 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
             @if(isset($message))
-                <div class=" message" style="color: red;">
+                <div class=" message" style="color: red; display:block;">
                     {{$message}}
                 </div>
                 @if($message_type == 'not_confirmed')
@@ -28,6 +28,7 @@
                     </div>
                 @endif
             @endif
+        <a href="{{web_url()}}/password/email">Восстановить пароль</a>
 
         <div class="inline-block">
             <input class="btn btn-default" type="submit" name="login" value="Войти">
