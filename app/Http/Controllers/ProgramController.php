@@ -61,6 +61,9 @@ class ProgramController extends Controller
         $program->finish_date = Request::input('finish_date') ;
         $program->description = Request::input('description');
         $program->active = Request::input('active');
+        $program->document_1 = Request::input('document_1');
+        $program->document_2 = Request::input('document_2');
+        $program->document_3 = Request::input('document_3');
         $program->save();
         if(Request::hasFile('img')){
 

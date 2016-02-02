@@ -30,6 +30,9 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+//Proposale routes
+Route::get('program/proposale/{id}', 'ProposaleController@get_proposale');
+
 //User routes
 Route::group(['prefix' => 'user'],function()
 {
@@ -81,5 +84,13 @@ Route::group(['prefix' => 'admin'],function()
     Route::any('/news/publish/{id}', ['middleware' => 'admin', 'uses'=>'NewsController@publish'] );
     Route::any('/news/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'NewsController@unpublish'] );
     Route::any('/news/{id}/delete', ['middleware' => 'admin', 'uses'=>'NewsController@destroy'] );
+    //Proposales routes
+    Route::get('proposales', ['middleware' => 'admin', 'uses'=>'ProposaleController@index'] );
+    Route::get('programs/create', ['middleware' => 'admin', 'uses'=>'ProgramController@create'] );
+    Route::get('programs/{id}/edit', ['middleware' => 'admin', 'uses'=>'ProgramController@edit'] );
+    Route::post('programs/save', ['middleware' => 'admin', 'uses'=>'ProgramController@save'] );
+    Route::any('/programs/publish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@publish'] );
+    Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
+    Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
 
 });

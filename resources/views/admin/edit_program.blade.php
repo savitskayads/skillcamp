@@ -86,6 +86,21 @@
             <div class="inline-block">
                 <div class="title"><span>Описание</span></div><div class="value"><textarea class="textbox" type="text" name="description" placeholder="Описание программы">{{ $program->description }}</textarea></div>
             </div>
+            <div class="inline-block">
+                <div class="line-title">Документы, которые необходимо прикрепить:</div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Документ 1</span></div>
+                {!! Form::checkbox('document_1', $program->document_1, $program->document_1) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Документ 2</span></div>
+                {!! Form::checkbox('document_2', $program->document_2, $program->document_2) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Документ 3</span></div>
+                {!! Form::checkbox('document_3', $program->document_3, $program->document_3) !!}
+            </div>
         </div>
         <div class="add-event">
             <div class="inline-block">
@@ -102,7 +117,19 @@
         $('input[name=active]').on('click',function(){
             var v=Math.abs(this.value-1);
             this.value=v;
-        })
+        });
+        $('input[name=document_1]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_2]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_3]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
 
         $('input[name=img]').on('change', function(fileInput){
 

@@ -67,7 +67,7 @@
                         </div>
                         <div class="price clear">
                             <div class="text"><span>Цена: {{ $program->price }} руб.</span></div>
-                            <div class="button"><span>Заказать</span></div>
+                            <div class="button"><span class="white"><a href="{{web_url()}}/program/proposale/{{$program->id}}" style="color: white">Заказать</a></span></div>
                         </div>
                     </div>
                 @endforeach
