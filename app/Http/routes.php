@@ -98,6 +98,12 @@ Route::group(['prefix' => 'admin'],function()
     Route::get('users/{id}/edit', ['middleware' => 'admin', 'uses'=>'UserController@admin_edit'] );
     Route::post('users/save', ['middleware' => 'admin', 'uses'=>'UserController@admin_save'] );
     Route::get('users/{id}/delete', ['middleware' => 'admin', 'uses'=>'UserController@admin_destroy'] );
+    Route::get('sizes', ['middleware' => 'admin', 'uses'=>'ChildrenController@sizes'] );
+    Route::get('documents', ['middleware' => 'admin', 'uses'=>'ChildrenController@documents'] );
+    Route::get('money', ['middleware' => 'admin', 'uses'=>'ChildrenController@money'] );
+    Route::get('phones', ['middleware' => 'admin', 'uses'=>'ChildrenController@phones'] );
+    Route::get('calls', ['middleware' => 'admin', 'uses'=>'ChildrenController@calls'] );
+    Route::get('outgoing_calls', ['middleware' => 'admin', 'uses'=>'ChildrenController@outgoing_calls'] );
 
 
 });

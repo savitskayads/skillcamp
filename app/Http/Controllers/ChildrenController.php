@@ -48,10 +48,12 @@ class ChildrenController extends Controller
         $children->user_id = Session::get('user_id');
         $children->name = Request::input('name');
         $children->surname = Request::input('surname');
+        $children->sex = Request::input('sex');
         $children->birthday_date = Request::input('birthday_date');
         $children->document = Request::input('document');
         $children->document_number = Request::input('document_number');
         $children->registration = Request::input('registration');
+        $children->adress = Request::input('adress');
         $children->school_number = Request::input('school_number');
         $children->school_class = Request::input('school_class');
         $children->sea = Request::input('sea');
@@ -102,6 +104,47 @@ class ChildrenController extends Controller
         $message = "Вы успешно добавили данные о ребенке";
         return redirect('user/childrens');
     }
+
+    public function sizes(){
+        $childrens = Children::all();
+        return view('admin.sizes')
+            ->with('childrens', $childrens);
+    }
+
+    public function documents(){
+        $childrens = Children::all();
+        return view('admin.documents')
+            ->with('childrens', $childrens);
+    }
+
+    public function money(){
+        $childrens = Children::all();
+        return view('admin.money')
+            ->with('childrens', $childrens);
+    }
+
+    public function phones(){
+        $childrens = Children::leftJoin('users','users.id','=','childrens.user_id')
+            ->select('users.*', 'childrens.name as children_name','childrens.surname as children_surname')
+            ->get();
+        return view('admin.phones')->with('users',$childrens);
+    }
+
+    public function calls(){
+        $childrens = Children::leftJoin('users','users.id','=','childrens.user_id')
+            ->select('users.*', 'childrens.name as children_name','childrens.surname as children_surname')
+            ->get();
+        return view('admin.calls')->with('users',$childrens);
+    }
+
+    public function outgoing_calls(){
+        $childrens = Children::leftJoin('users','users.id','=','childrens.user_id')
+            ->select('users.*', 'childrens.name as children_name','childrens.surname as children_surname', 'childrens.registration as children_registration',
+                'childrens.adress as children_adress', 'childrens.birthday_date as children_birthday','childrens.family as children_family')
+            ->get();
+        return view('admin.outgoing_calls')->with('users',$childrens);
+    }
+
 
     /**
      * Store a newly created resource in storage.
