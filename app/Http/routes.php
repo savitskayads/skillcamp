@@ -92,5 +92,12 @@ Route::group(['prefix' => 'admin'],function()
     Route::any('/programs/publish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@publish'] );
     Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
     Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
+    //Users routes
+    Route::get('users', ['middleware' => 'admin', 'uses'=>'UserController@show_all'] );
+    Route::get('users/create', ['middleware' => 'admin', 'uses'=>'UserController@admin_create'] );
+    Route::get('users/{id}/edit', ['middleware' => 'admin', 'uses'=>'UserController@admin_edit'] );
+    Route::post('users/save', ['middleware' => 'admin', 'uses'=>'UserController@admin_save'] );
+    Route::get('users/{id}/delete', ['middleware' => 'admin', 'uses'=>'UserController@admin_destroy'] );
+
 
 });

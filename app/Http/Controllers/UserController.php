@@ -94,6 +94,46 @@ class UserController extends Controller
     {
         //
     }
+//admin actions
+    public function show_all(){
+        $users = User::where('name','!=','admin')->get();
+        return view('admin.users')->with('users',$users);
+    }
+
+    public function admin_create()
+    {
+        $user = new User();
+        return view('admin.edit_user')->with('user',$user);
+    }
+
+    public function admin_edit($id)
+    {
+        $user = User::find($id);
+        return view('admin.edit_user',['user'=> $user]);
+    }
+
+    public function admin_save()
+    {
+        $id = Input::get('id');
+        $user = User::find($id);
+        if(!$user) {
+            $user = new User;
+        }
+        $user->name = Input::get('name');
+        $user->email=Input::get('email');
+        $user->confirmed=Input::get('confirmed');
+        $user->phone=Input::get('phone');
+        $user->save();
+        return redirect('admin/users');
+    }
+
+    public function admin_destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('admin/users');
+    }
+
 
     public function save()
     {
@@ -103,6 +143,7 @@ class UserController extends Controller
         $user->email=Request::input('email');
         $user->phone=Request::input('phone');
         $user->save();
+        return redirect('user');
     }
 
     public function check_email()
