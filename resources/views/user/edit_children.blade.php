@@ -44,6 +44,12 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
             <div class="form-group">
+                <label for="sex">Пол</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="мужской">мужской</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="женский">женский</label>
+            </div>
+
+            <div class="form-group">
                 <label for="birthday_date">Дата рождения</label>
                 <input type="text" name="birthday_date" class="form-control" value="{{$children->birthday_date}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -63,6 +69,11 @@
             <div class="form-group">
                 <label for="registration">Прописка</label>
                 <textarea class="form-control" rows="3" id="comment" name="registration">{{$children->registration}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="adress">Фактическое место жительства</label>
+                <textarea class="form-control" rows="3" id="adress" name="adress">{{$children->adress}}</textarea>
             </div>
 
             <div class="form-group">
