@@ -52,6 +52,9 @@ Route::group(['prefix' => 'user'],function()
 
     //Proposale routes
     Route::get('proposale/{id}', ['middleware' => 'user','uses'=>'ProposaleController@get_proposale']);
+    Route::post('proposale/create', ['middleware' => 'user','uses'=>'ProposaleController@create']);
+    Route::post('proposale/parent_data', ['middleware' => 'user','uses'=>'ProposaleController@parent_data_save']);
+    Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
 });
 
 //Admin routes
