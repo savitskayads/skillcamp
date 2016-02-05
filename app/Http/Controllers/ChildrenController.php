@@ -181,12 +181,6 @@ class ChildrenController extends Controller
         return view('user.edit_children',['children'=> $children]);
     }
 
-    public function edit_form()
-    {
-
-        return view('user.children_form');
-    }
-
     /**
      * Update the specified resource in storage.
      *
