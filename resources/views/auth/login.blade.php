@@ -33,5 +33,11 @@
         <div class="inline-block">
             <input class="btn btn-default" type="submit" name="login" value="Войти">
         </div>
+        <br>
+        <div class="inline-block">
+            Чтобы отправить заявку на программу, Вы должны быть зарегистрированы
+            <br>
+            <a href="{{web_url()}}/auth/register">Регистрация</a>
+        </div>
     </form>
 @stop
