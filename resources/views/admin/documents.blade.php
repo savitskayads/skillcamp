@@ -29,15 +29,15 @@
                         <th>Гражданство</th>
                         <th class="center col-btn"><i class="fa fa-th-list"></i></th>
                     </tr>
-                    @foreach($childrens as $children)
-                        <tr class='children' id={{$children->id}}>
-                            <td class="center col-2">{{$children->id}}</td>
-                            <td>{{$children->name}} {{$children->surname}}</td>
-                            <td>??</td>
-                            <td>??</td>
-                            <td>??</td>
-                            <td>??</td>
-                            <td>??</td>
+                    @foreach($proposales as $proposale)
+                        <tr class='proposale' id={{$proposale->id}}>
+                            <td class="center col-2">{{$proposale->id}}</td>
+                            <td>{{$proposale->children_name}} {{$proposale->children_surname}}</td>
+                            <td>{{$proposale->registration_date}}</td>
+                            <td>Зима</td>
+                            <td>{{$proposale->program_name}}</td>
+                            <td>{{$proposale->session}}</td>
+                            <td>{{$proposale->children_document}}</td>
                             <td>??</td>
                             <td>??</td>
                             <td>??</td>

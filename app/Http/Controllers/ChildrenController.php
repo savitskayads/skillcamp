@@ -117,15 +117,24 @@ class ChildrenController extends Controller
     }
 
     public function documents(){
-        $childrens = Children::all();
+
+        $proposales = Proposale::join('childrens','proposales.children_id','=','childrens.id')
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('proposales.*','childrens.name as children_name','childrens.surname as children_surname',
+                'childrens.id as children_id','childrens.document as children_document','programs.title as program_name')
+            ->get();
         return view('admin.documents')
-            ->with('childrens', $childrens);
+            ->with('proposales', $proposales);
     }
 
     public function money(){
-        $childrens = Children::all();
+        $proposales = Proposale::join('childrens','proposales.children_id','=','childrens.id')
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('proposales.*','childrens.name as children_name','childrens.surname as children_surname',
+                'childrens.id as children_id','programs.title as program_name')
+            ->get();
         return view('admin.money')
-            ->with('childrens', $childrens);
+            ->with('proposales', $proposales);
     }
 
     public function phones(){
