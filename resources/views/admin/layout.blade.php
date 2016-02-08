@@ -23,7 +23,7 @@
                         <ul>
                             <li><a href="{{web_url()}}/admin/changepass">Изменить пароль</a></li>
                             <li><a href="?do=history">История</a></li>
-                            <li><a href="logout">Выйти</a></li>
+                            <li><a href="{{web_url()}}/logout">Выйти</a></li>
                         </ul>
                     </div>
                 </div>
