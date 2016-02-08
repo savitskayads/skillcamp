@@ -63,25 +63,70 @@
                 <div class="line-title"><span>Возраст участников</span></div><div class="line-value">{!! Form::text('age', $program->age, ['placeholder' => 'Возраст участников', 'class'=>'inputbox']) !!}</div>
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Начало программы (формат гггг-мм-дд)</span></div><div class="line-value">
+                <div class="line-title"><span>Начало программы </span></div><div class="line-value">
                     @if($program->start_date!='0000-00-00 00:00:00')
-                    {!! Form::text('start_date', date("Y-m-d", strtotime($program->start_date)), ['placeholder' => 'Начало', 'class'=>'inputbox']) !!}
+                    {!! Form::text('start_date', $program->start_date, ['placeholder' => 'Начало', 'class'=>'inputbox']) !!}
                     @else
                     {!! Form::text('start_date','', ['placeholder' => 'Начало', 'class'=>'inputbox']) !!}
                     @endif
                 </div>
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Окончание программы (формат гггг-мм-дд)</span></div><div class="line-value">
-                    @if($program->finish_date!='0000-00-00 00:00:00')
-                        {!! Form::text('finish_date', date("Y-m-d", strtotime($program->finish_date)), ['placeholder' => 'Окончание', 'class'=>'inputbox']) !!}
+                <div class="line-title"><span>Окончание программы </span></div><div class="line-value">
+                    @if($program->finish_date!='')
+                        {!! Form::text('finish_date',$program->finish_date, ['placeholder' => 'Окончание', 'class'=>'inputbox']) !!}
                     @else
                         {!! Form::text('finish_date','', ['placeholder' => 'Окончание', 'class'=>'inputbox']) !!}
                     @endif
+                </div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Смена 1 </span></div><div class="line-value">
+                    @if($program->session_1_start!='')
+                        {!! Form::text('session_1_start', $program->session_1_start, ['class'=>'inputbox']) !!}
+                    @else
+                        {!! Form::text('session_1_start', '', ['class'=>'inputbox']) !!}
+                    @endif
+                    окончание
+                    @if($program->session_1_finish!='')
+                        {!! Form::text('session_1_finish', $program->session_1_finish, ['class'=>'inputbox']) !!}
+                    @else
+                        {!! Form::text('session_1_finish', '', ['class'=>'inputbox']) !!}
+                    @endif
                    </div>
             </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Смена 2 </span></div><div class="line-value">
+                    начало
+                    @if($program->session_2_start!='')
+                        {!! Form::text('session_2_start', $program->session_2_start, ['class'=>'inputbox']) !!}
+                    @else
+                        {!! Form::text('session_2_start', '', ['class'=>'inputbox']) !!}
+                    @endif
+                    окончание
+                    @if($program->session_2_finish!='')
+                        {!! Form::text('session_2_finish', $program->session_2_finish, ['class'=>'inputbox']) !!}
+                    @else
+                        {!! Form::text('session_2_finish', '', ['class'=>'inputbox']) !!}
+                    @endif
+                </div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Смена 3 </span></div><div class="line-value">
 
-
+                    @if($program->session_3_start!='')
+                        {!! Form::text('session_3_start', $program->session_3_start, ['class'=>'inputbox']) !!}
+                    @else
+                        {!! Form::text('session_3_start', '', ['class'=>'inputbox']) !!}
+                    @endif
+                    окончание
+                    @if($program->session_3_finish!='')
+                        {!! Form::text('session_3_finish', $program->session_3_finish, ['class'=>'inputbox']) !!}
+                    @else
+                        {!! Form::text('session_3_finish', '', ['class'=>'inputbox']) !!}
+                    @endif
+                </div>
+            </div>
 
             <div class="inline-block">
                 <div class="title"><span>Описание</span></div><div class="value"><textarea class="textbox" type="text" name="description" placeholder="Описание программы">{{ $program->description }}</textarea></div>
