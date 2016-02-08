@@ -6,7 +6,7 @@ use App\Children;
 use App\User;
 use App\Proposale;
 use Illuminate\Http\Request;
-
+use App\Temporary_proposale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Program;
@@ -40,6 +40,24 @@ class ProposaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create_temporary()
+    {
+        $proposale = new Temporary_proposale();
+        $user_id = Session::get('user_id');
+        $proposale->user_id = $user_id;
+        $proposale->program_id = Input::get('program_id');
+        $proposale->session = Input::get('session');
+        if (!Input::get('transfer')){
+            $proposale->transfer = 'нет';
+        } else {
+            $proposale->transfer = Input::get('transfer');
+        }
+        $proposale->registration_date = date("d.m.Y");
+        $proposale->save();
+        $user=User::find($user_id);
+        return view('user.proposale_parent')->with('user',$user)->with('proposale_id',$proposale->id);
+    }
+
     public function create()
     {
         $proposale = new Proposale();
@@ -58,16 +76,17 @@ class ProposaleController extends Controller
     }
 
     public function parent_data_save(){
-        $id = Input::get('id');
+        $user_id = Input::get('id');
         $proposale_id = Input::get('proposale_id');
-        $user = User::find($id);
+        $user = User::find($user_id);
         $user->name = Input::get('name');
         $user->email=Input::get('email');
         $user->phone=Input::get('phone');
         $user->save();
-        $children = new Children();
-        $children->user_id = $id;
-        $children->save();
+        $children = Children::where('user_id','=',$user_id)->first();
+        if(!$children){
+            $children = new Children();
+        }
 
         return view('user.proposale_children')
             ->with('children',$children)
@@ -80,6 +99,10 @@ class ProposaleController extends Controller
 
         $children_id = Input::get('children_id');
         $children = Children::find($children_id);
+        if(!$children){
+            $children = new Children();
+        }
+
         $children->surname =Input::get('surname');
         $children->name =Input::get('name');
         $children->patronymic=Input::get('patronymic');
@@ -90,21 +113,31 @@ class ProposaleController extends Controller
         $children->registration=Input::get('registration');
         $children->save();
 
-        $id = Input::get('id');
-        $user = User::find($id);
+        $user_id = Input::get('id');
+        $user = User::find($user_id);
         $user->passport=Input::get('passport');
         $user->passport_date=Input::get('passport_date');
         $user->save();
 
         $proposale_id = Input::get('proposale_id');
-        $proposale = Proposale::find($proposale_id);
+        $temporary_proposale = Temporary_proposale::find($proposale_id);
+        $proposale = new Proposale();
         $proposale->children_id = $children_id;
+        $proposale->user_id = $user_id;
+        $proposale->program_id = $temporary_proposale->program_id;
+        $proposale->session = $temporary_proposale->session;
+        $proposale->transfer =$temporary_proposale->transfer;
+        $proposale->registration_date = $temporary_proposale->registration_date;
         $proposale->save();
+        $temporary_proposale->delete();
 
+        return view('user.proposale_success',['children'=> $children]);
+        //return view('user.edit_children',['children'=> $children]);
 
-        return view('user.edit_children',['children'=> $children]);
+    }
 
-
+    public function test(){
+        return view('user.proposale_success');
     }
 
     /**

@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'IndexController@index');
+Route::get('test', 'ProposaleController@test');
 Route::get('home', function()
 {
     return Redirect::to('/');
@@ -52,7 +53,7 @@ Route::group(['prefix' => 'user'],function()
 
     //Proposale routes
     Route::get('proposale/{id}', ['middleware' => 'user','uses'=>'ProposaleController@get_proposale']);
-    Route::post('proposale/create', ['middleware' => 'user','uses'=>'ProposaleController@create']);
+    Route::post('proposale/create', ['middleware' => 'user','uses'=>'ProposaleController@create_temporary']);
     Route::post('proposale/parent_data', ['middleware' => 'user','uses'=>'ProposaleController@parent_data_save']);
     Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
 });
@@ -89,14 +90,7 @@ Route::group(['prefix' => 'admin'],function()
     Route::any('/news/publish/{id}', ['middleware' => 'admin', 'uses'=>'NewsController@publish'] );
     Route::any('/news/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'NewsController@unpublish'] );
     Route::any('/news/{id}/delete', ['middleware' => 'admin', 'uses'=>'NewsController@destroy'] );
-    //Proposales routes
-    Route::get('proposales', ['middleware' => 'admin', 'uses'=>'ProposaleController@index'] );
-    Route::get('programs/create', ['middleware' => 'admin', 'uses'=>'ProgramController@create'] );
-    Route::get('programs/{id}/edit', ['middleware' => 'admin', 'uses'=>'ProgramController@edit'] );
-    Route::post('programs/save', ['middleware' => 'admin', 'uses'=>'ProgramController@save'] );
-    Route::any('/programs/publish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@publish'] );
-    Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
-    Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
+
     //Users routes
     Route::get('users', ['middleware' => 'admin', 'uses'=>'UserController@show_all'] );
     Route::get('users/create', ['middleware' => 'admin', 'uses'=>'UserController@admin_create'] );
