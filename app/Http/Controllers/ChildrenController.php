@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Proposale;
 use Illuminate\Support\Facades\Session;
 use Request;
-
+use App\Program;
 use App\Http\Controllers\Controller;
 use App\Children;
 use Input;
@@ -106,9 +107,13 @@ class ChildrenController extends Controller
     }
 
     public function sizes(){
-        $childrens = Children::all();
+        $proposales = Proposale::join('childrens','proposales.children_id','=','childrens.id')
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('proposales.*','childrens.*','childrens.id as children_id','programs.title as program_name')
+            ->get();
+
         return view('admin.sizes')
-            ->with('childrens', $childrens);
+            ->with('proposales', $proposales);
     }
 
     public function documents(){

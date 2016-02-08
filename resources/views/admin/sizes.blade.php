@@ -28,19 +28,19 @@
                         <th>Смена</th>
                         <th class="center col-btn"><i class="fa fa-th-list"></i></th>
                     </tr>
-                    @foreach($childrens as $children)
-                        <tr class='children' id={{$children->id}}>
-                            <td class="center col-2">{{$children->id}}</td>
-                            <td>{{$children->name}} {{$children->surname}}</td>
-                            <td>{{$children->sex}}</td>
-                            <td>{{$children->birthday_date}}</td>
-                            <td>{{$children->height}}</td>
-                            <td>{{$children->weight}}</td>
-                            <td>{{$children->clothing_size}}</td>
-                            <td>??</td>
-                            <td>??</td>
-                            <td>??</td>
-                            <td>??</td>
+                    @foreach($proposales as $proposale)
+                        <tr class='children' id={{$proposale->id}}>
+                            <td class="center col-2">{{$proposale->id}}</td>
+                            <td>{{$proposale->name}} {{$proposale->surname}}</td>
+                            <td>{{$proposale->sex}}</td>
+                            <td>{{$proposale->birthday_date}}</td>
+                            <td>{{$proposale->height}}</td>
+                            <td>{{$proposale->weight}}</td>
+                            <td>{{$proposale->clothing_size}}</td>
+                            <td>{{$proposale->registration_date}}</td>
+                            <td>Зима</td>
+                            <td>{{$proposale->program_name}}</td>
+                            <td>{{$proposale->session}}</td>
                             {{--<td class="center col-btn">--}}
                                 {{--<div class="droplist-group">--}}
                                     {{--<i class="fa fa-ellipsis-v"></i>--}}
