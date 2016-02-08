@@ -59,6 +59,12 @@ class ProgramController extends Controller
         $program->age = Request::input('age');
         $program->start_date = Request::input('start_date') ;
         $program->finish_date = Request::input('finish_date') ;
+        $program->session_1_start = Request::input('session_1_start') ;
+        $program->session_1_finish = Request::input('session_1_finish') ;
+        $program->session_2_start = Request::input('session_2_start') ;
+        $program->session_2_finish = Request::input('session_2_finish') ;
+        $program->session_3_start = Request::input('session_3_start') ;
+        $program->session_3_finish = Request::input('session_3_finish') ;
         $program->description = Request::input('description');
         $program->active = Request::input('active');
         $program->document_1 = Request::input('document_1');

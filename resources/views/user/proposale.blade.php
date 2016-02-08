@@ -14,6 +14,14 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="sel1">Смена</label>
+            <select class="form-control" id="sel1" name="session">
+                    <option value="1">Первая</option>
+                    <option value="2">Вторая</option>
+                    <option value="3">Третья</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="transfer">Трансфер</label>
             <div class="radio">
                 <label><input type="radio" name="transfer" value="да">Да</label>
