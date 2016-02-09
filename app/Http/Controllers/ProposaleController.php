@@ -58,23 +58,6 @@ class ProposaleController extends Controller
         return view('user.proposale_parent')->with('user',$user)->with('proposale_id',$proposale->id);
     }
 
-    public function create()
-    {
-        $proposale = new Proposale();
-        $user_id = Session::get('user_id');
-        $proposale->user_id = $user_id;
-        $proposale->program_id = Input::get('program_id');
-        if (!$proposale->transfer){
-            $proposale->transfer = 'нет';
-        } else {
-            $proposale->transfer = Input::get('transfer');
-        }
-        $proposale->registration_date = date("d.m.Y");
-        $proposale->save();
-        $user=User::find($user_id);
-        return view('user.proposale_parent')->with('user',$user)->with('proposale_id',$proposale->id);
-    }
-
     public function parent_data_save(){
         $user_id = Input::get('id');
         $proposale_id = Input::get('proposale_id');
@@ -132,12 +115,20 @@ class ProposaleController extends Controller
         $temporary_proposale->delete();
 
         return view('user.proposale_success',['children'=> $children]);
-        //return view('user.edit_children',['children'=> $children]);
 
     }
 
-    public function test(){
-        return view('user.proposale_success');
+    public function all_proposales()
+    {
+        $user_id = Session::get('user_id');
+        $proposales = Proposale::where('proposales.user_id','=',$user_id)
+              ->join('childrens','proposales.children_id','=','childrens.id')
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
+                'programs.start_date as program_start','programs.finish_date as program_finish')
+            ->get();
+
+        return view('user.proposales')->with('proposales',$proposales);
     }
 
     /**
