@@ -60,4 +60,31 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $('.children').dblclick(function(){
+            if ($(this).hasClass('active-row')){
+                return;
+            } else {
+                if($('tr').is('.active-row')){
+                    var c = $('.active-row').find('td').not(':first');
+                    $.each(c, function(i, v) {
+                        var text = $(v).find('input').val();
+                        $(v).find('input').remove();
+                        $(v).text(text);
+                    });
+                    $('.active-row').removeClass('active-row');
+                }
+                $(this).addClass('active-row');
+                var proposale_id = $(this).attr('id');
+                var cells = $(this).find('td').not(':first');
+                $.each(cells, function(i, v) {
+                    var val = $(v).text();
+                    var input = '<input type = "text" value = "'+val+'">';
+                    $(v).text('');
+                    $(input).prependTo($(v));
+                });
+            }
+        });
+    </script>
 @stop
