@@ -16,31 +16,21 @@
             <div class="clear">
                 <table class="table-list">
                     <tr>
+                        <th>ID</th>
                         <th>Программа</th>
                         <th class="col-4">Время проведения</th>
                         <th>От кого</th>
                         <th>Ребенок</th>
-                        <th class="center col-btn"><i class="fa fa-th-list"></i></th>
                     </tr>
-                        <tr class='program' >
-                            <td class="center col-2">Зимняя сказка</td>
-                            <td>C 01.01.2016 по 12.01.2028</td>
-                            <td>Иванов Петр Петрович</td>
-                            <td>Иванова Мария Петровна</td>
-                            <td class="center col-btn">
-                                <div class="droplist-group">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <div class="droplist" style="display: none">
-                                        <div>
-                                            <ul>
-                                                <li><a href="{{web_url()}}/admin/programs/edit" class="accept"><i class="fa pull-left fa-chevron-down"></i>Изменить</a></li>
-                                                <li><a href="{{web_url()}}/admin/programs/delete"><i class="fa pull-left fa-times"></i>Удалить</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                    @foreach($proposales as $proposale)
+                    <tr class='proposale' >
+                        <td>{{$proposale->id}}</td>
+                        <td class="center col-2">{{$proposale->program_name}}</td>
+                        <td>C {{$proposale->program_start}} по {{$proposale->program_finish}}</td>
+                        <td>{{$proposale->user_name}}</td>
+                        <td>{{$proposale->children_name}} {{$proposale->children_surname}}</td>
+                    </tr>
+                    @endforeach
                 </table>
             </div>
         </div>

@@ -22,7 +22,15 @@ class ProposaleController extends Controller
      */
     public function index()
     {
-        return view('admin.proposales');
+        $proposales = Proposale::join('childrens','proposales.children_id','=','childrens.id')
+            ->join('users','proposales.user_id','=','users.id')
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
+                'users.name as user_name',
+                'programs.start_date as program_start','programs.finish_date as program_finish')
+            ->orderBy('proposales.id','desc')
+            ->get();
+        return view('admin.proposales')->with('proposales',$proposales);
     }
 
     public function get_proposale($id){
