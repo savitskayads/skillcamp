@@ -1,7 +1,32 @@
 @font-face {
+    font-family: 'VDS';
+    src: local('VDS'), url('../fonts/vds/vds.woff2') format('woff2'), url('../fonts/vds/vds.woff') format('woff'), url('../fonts/vds/vds.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'VDS';
+    src: local('VDS Italic'), local('VDS-Italic'), url('../fonts/vdsitalic/vdsitalic.woff2') format('woff2'), url('../fonts/vdsitalic/vdsitalic.woff') format('woff'), url('../fonts/vdsitalic/vdsitalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'VDS';
+    src: local('VDS Bold'), local('VDS-Bold'), url('../fonts/vdsbold/vdsbold.woff2') format('woff2'), url('../fonts/vdsbold/vdsbold.woff') format('woff'), url('../fonts/vdsbold/vdsbold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'VDS';
+    src: local('VDS Bold Italic'), local('VDS-BoldItalic'), url('../fonts/vdsbolditalic/vdsbolditalic.woff2') format('woff2'), url('../fonts/vdsbolditalic/vdsbolditalic.woff') format('woff'), url('../fonts/vdsbolditalic/vdsbolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
   font-family: 'FontAwesome';
-  src: url('/resources/assets/fonts/fontawesome-webfont.eot?v=4.3.0');
-  src: url('/resources/assets/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+  src: url('../fonts/fontawesome-webfont.eot?v=4.3.0');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }

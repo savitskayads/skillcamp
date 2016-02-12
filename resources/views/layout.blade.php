@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/styles.css') }}" />--}}
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/fonts.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/fonts.css') }}" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
@@ -15,80 +13,117 @@
 
 </head>
 <body>
+
 <header>
-    <div class="wrap">
-        <div class="line clear">
-            <div id="menu-1" class="content-list menu">
-                <div class="item"><a href="#" title=""><span>Главная</span></a></div>
-                <div class="item"><a href="#" title=""><span>Участникам</span></a></div>
-                <div class="item"><a href="#" title=""><span>О нас</span></a></div>
-                <div class="item"><a href="#" title=""><span>Галерея</span></a></div>
-                <div class="item"><a href="#" title=""><span>Родителям</span></a></div>
-                <div class="item"><a href="#" title=""><span>Агентствам</span></a></div>
-                <div class="item"><a href="#" title=""><span>Новости</span></a></div>
-                <div class="item"><a href="#" title=""><span>Отзывы</span></a></div>
-                <div class="item"><a href="#" title=""><span>Друзья</span></a></div>
-                <div class="item"><a href="#" title=""><span>Контакты</span></a></div>
+    <div class="content wrap">
+        <div class="logo"><img src="{{web_url()}}/img/logo.svg" alt="Логотип Skillcamp - Детский лагерь навыка"></div>
+        <div class="social-links">
+            <div class="content-list">
+                <div class="item vk"><a href=""><span><i class="fa fa-fw fa-vk"></i></span></a></div>
+                <div class="item in"><a href=""><span><i class="fa fa-fw fa-instagram"></i></span></a></div>
+                <div class="item fb"><a href=""><span><i class="fa fa-fw fa-facebook"></i></span></a></div>
+                <div class="item ok"><a href=""><span><i class="fa fa-fw fa-odnoklassniki"></i></span></a></div>
             </div>
         </div>
-        <div class="line clear">
-            <div class="bar-left clear">
-                <div class="social-links">
-                    <a href="#" class="vk"><i class="fa fa-fw fa-vk"></i></a>
-                    <a href="#" class="in"><i class="fa fa-fw fa-instagram"></i></a>
-                    <a href="#" class="fb"><i class="fa fa-fw fa-facebook"></i></a>
-                    <a href="#" class="ok"><i class="fa fa-fw fa-odnoklassniki"></i></a>
-                </div>
-                <div class="feedback"><span>Заказать звонок</span></div>
-            </div>
-            <div class="bar-right clear">
-                <div id="search" class="search">
-                    <form>
-                        <input type="text" name="query" placeholder="Поиск" class="inputbox">
-                        <div class="submit" onclick="$(this).parent('form').submit()"><i class="fa fa-search"></i></div>
-                    </form>
-                </div>
-                <div class="userblock">
-                    @if(Auth::check())
-                        <div class="login">
-                            <a href="{{web_url()}}/user">Личный кабинет</a>
-                            <a href="{{web_url()}}/logout">Выйти</a>
-                        </div>
-                    @else
-                        <div class="login">
-                            <a href="{{web_url()}}/user/login">Войти на сайт</a>
-                            <a href="{{web_url()}}/auth/register">Регистрация</a>
-                        </div>
-                    @endif
+        <div class="search">
+            <form>
+                <input type="text" name="query" placeholder="Поиск" class="inputbox">
+                <div class="submit" onclick="$(this).parent('form').submit()"><i class="fa fa-search"></i></div>
+            </form>
+        </div>
+        <div class="profile">
+            @if(Auth::check())
+                <div class="link"><a href="{{web_url()}}/user"><span>личный кабинет</span></a></div>
+                <div class="link"><a href="{{web_url()}}/user/logout"><span>выход</span></a></div>
+            @else
+                <div class="link"><a href="{{web_url()}}/auth/register"><span>регистрация</span></a></div>
+                <div class="link"><a href="{{web_url()}}/user/login"><span>вход</span></a></div>
+            @endif
+        </div>
+    </div>
+</header>
+<div class="block seasons">
+    <div class="content wrap">
+        <div class="content-list clear">
+            <div class="item winter active">
+                <div class="content clear">
+                    <span>Зима</span>
                 </div>
             </div>
-            <div class="bar-center">
-                <div class="contacts">
-						<span class="fa-stack">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-at fa-stack-1x fa-inverse"></i>
-						</span>
-                    <span class="text">info@skillcamp.ru</span>
-						<span class="fa-stack">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-						</span>
-                    <span class="text">+7 (495) 943-79-25</span>
-						<span class="fa-stack">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-						</span>
-                    <span class="text">+7 (495) 973-14-28</span>
+            <div class="item spring">
+                <div class="content clear">
+                    <span>Весна</span>
+                </div>
+            </div>
+            <div class="item summer">
+                <div class="content clear">
+                    <span>Лето</span>
+                </div>
+            </div>
+            <div class="item autumn">
+                <div class="content clear">
+                    <span>Осень</span>
+                </div>
+            </div>
+            <div class="item weekend">
+                <div class="content clear">
+                    <span>Выходной день</span>
+                </div>
+            </div>
+            <div class="item festival">
+                <div class="content clear">
+                    <span>Фестиваль</span>
+                </div>
+            </div>
+            <div class="item all">
+                <div class="content clear">
+                    <span>Все сезоны</span>
                 </div>
             </div>
         </div>
     </div>
-</header>
+</div>
+<div class="block menu">
+    <div class="content wrap">
+        <div class="content-list">
+            <div class="item"><a href=""><span>Главная</span></a></div>
+            <div class="item"><a href=""><span>Участникам</span></a></div>
+            <div class="item"><a href=""><span>О нас</span></a></div>
+            <div class="item"><a href=""><span>Галерея</span></a></div>
+            <div class="item"><a href=""><span>Родителям</span></a></div>
+            <div class="item"><a href=""><span>Агенствам</span></a></div>
+            <div class="item"><a href=""><span>Новости</span></a></div>
+            <div class="item"><a href=""><span>Отзывы</span></a></div>
+            <div class="item"><a href=""><span>Друзья</span></a></div>
+            <div class="item"><a href=""><span>Контакты</span></a></div>
+        </div>
+    </div>
+</div>
+<div id="slider" class="slider clear">
+    <div class="content-list clear">
+        <div class="item">
+            <div class="image"></div>
+            <div class="content">
+                <div class="wrap">
+                    <div class="text">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stock">
+    <div class="bg"></div>
+    <div class="content wrap">
+
+    </div>
+</div>
 
 @yield('content')
 
 <footer>
-    <div class="wrap">
+    <div class="content wrap clear">
         <div class="bar-left">
             <div class="logo"><img src="" alt=""></div>
             <div class="copyright">
@@ -101,14 +136,15 @@
         </div>
         <div class="bar-right">
             <div class="social-links">
-                <a href="#" class="vk"><i class="fa fa-vk"></i></a>
-                <a href="#" class="in"><i class="fa fa-instagram"></i></a>
-                <br>
-                <a href="#" class="fb"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="ok"><i class="fa fa-odnoklassniki"></i></a>
+                <div class="content-list">
+                    <div class="item vk"><a href=""><span><i class="fa fa-fw fa-vk"></i></span></a></div>
+                    <div class="item in"><a href=""><span><i class="fa fa-fw fa-instagram"></i></span></a></div>
+                    <div class="item fb"><a href=""><span><i class="fa fa-fw fa-facebook"></i></span></a></div>
+                    <div class="item ok"><a href=""><span><i class="fa fa-fw fa-odnoklassniki"></i></span></a></div>
+                </div>
             </div>
             <div class="dev">
-                <a href="#" title="Разработка и продвижение сайта - Агентство сирена"><img src="img/sirene.png" alt="Агентство сирена"></a>
+                <a href="#" title="Разработка и продвижение сайта - Агентство сирена"><img src="{{web_url()}}/img/sirene.png" alt="Агентство сирена"></a>
             </div>
         </div>
         <div class="bar-center clear">
