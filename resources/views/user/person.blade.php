@@ -5,6 +5,7 @@
         <p>
             <a href="{{web_url()}}/user" type="button" class="btn btn-default">Личные данные</a>
             <a href="{{web_url()}}/user/childrens" type="button" class="btn btn-default">Данные детей</a>
+            <a href="{{web_url()}}/user/proposales" type="button" class="btn btn-default">Заявки</a>
         </p>
         <hr>
         <form  method="POST" action="/skillcamp/public/auth/register" role="form" class = "data-form">
