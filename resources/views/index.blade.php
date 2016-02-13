@@ -24,7 +24,7 @@
                     <div class="members"><span><i class="fa pull-left fa-users"></i>{{$program->places}}</span></div>
                 </div>
                 <div class="main">
-                    <div class="title"><a href=""><span>{{$program->title}}</span></a></div>
+                    <div class="title"><a href="{{web_url()}}/program/{{$program->id}}"><span>{{$program->title}}</span></a></div>
                     <div class="text"><span>{{ mb_substr($program->description, 0, 65) }}...</span></div>
                 </div>
                 <div class="price clear">

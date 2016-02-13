@@ -7,6 +7,7 @@ use Request;
 use Requests;
 use App\Http\Controllers\Controller;
 use App\Program;
+use App\News;
 use App\Vacation;
 use Input;
 use Illuminate\Routing;
@@ -124,7 +125,11 @@ class ProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = Program::find($id);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('event', ['program' => $program, 'all_news'=>$all_news]);
+
     }
 
     /**

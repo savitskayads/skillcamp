@@ -62,7 +62,12 @@ class ProposaleController extends Controller
         }
         $proposale->registration_date = date("d.m.Y");
         $proposale->save();
+        $program  = Program::find($proposale->program_id);
+        $program->busy_places=$program->busy_places+1;
+        $program->save();
+
         $user=User::find($user_id);
+
         return view('user.proposale_parent')->with('user',$user)->with('proposale_id',$proposale->id);
     }
 

@@ -33,6 +33,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //Proposale routes
 Route::get('program/proposale/{id}', 'ProposaleController@get_proposale');
+Route::get('program/{id}', 'ProgramController@show');
 
 //User routes
 Route::group(['prefix' => 'user'],function()
@@ -83,6 +84,10 @@ Route::group(['prefix' => 'admin'],function()
     Route::any('/programs/publish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@publish'] );
     Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
     Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
+
+    //Proposales routes
+    Route::get('proposales', ['middleware' => 'admin', 'uses'=>'ProposaleController@index'] );
+
     //News routes
     Route::get('news', ['middleware' => 'admin', 'uses'=>'NewsController@index'] );
     Route::get('news/create', ['middleware' => 'admin', 'uses'=>'NewsController@create'] );
