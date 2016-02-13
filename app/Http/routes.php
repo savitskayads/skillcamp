@@ -34,6 +34,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 //Proposale routes
 Route::get('program/proposale/{id}', 'ProposaleController@get_proposale');
 Route::get('program/{id}', 'ProgramController@show');
+Route::get('news/{id}', 'NewsController@show');
 
 //User routes
 Route::group(['prefix' => 'user'],function()

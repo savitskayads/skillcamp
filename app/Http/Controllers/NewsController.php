@@ -105,7 +105,10 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $news = News::find($id);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('news', ['news' => $news, 'all_news'=>$all_news]);
     }
 
     /**

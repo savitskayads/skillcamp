@@ -50,7 +50,7 @@
                                 <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $news->image }}" alt="" width="340" height="127"></div>
                             @endif
                         </div>
-                        <div class="head"><a href=""><span>{{ $news->title }}</span></a></div>
+                        <div class="head"><a href="{{web_url()}}/news/{{$news->id}}"><span>{{ $news->title }}</span></a></div>
                         <div class="text">
                             <span>{{ $news->description }}</span>
                         </div>

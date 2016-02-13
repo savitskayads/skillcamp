@@ -11,6 +11,11 @@
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    <script src="{{asset('assets/js/jquery.js')}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.cover.js')}}"></script>
+
+
 </head>
 <body>
 
