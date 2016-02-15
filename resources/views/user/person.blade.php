@@ -19,22 +19,16 @@
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <br>{{$user->email}}
-                {{--<input type="text" name="email" class="form-control">--}}
-                {{--<input type="hidden" name="_token" value="{!! csrf_token() !!}">--}}
             </div>
             <div class="form-group">
                 <label for="phone">Телефон</label>
                 {{$user->phone}}
-                {{--<input type="text" name="email" class="form-control">--}}
-                {{--<input type="hidden" name="_token" value="{!! csrf_token() !!}">--}}
+            </div>
+            <div class="form-group">
+                <label for="phone">Паспорт</label>
+                {{$user->passport}} выдан {{$user->passport_date}}
             </div>
 
-            {{--<div class="form-group">--}}
-                {{--<label for="phone">Паспорт</label>--}}
-                {{--<p>{{$user->phone}}--}}
-                    {{--<input type="text" name="email" class="form-control">--}}
-                    {{--<input type="hidden" name="_token" value="{!! csrf_token() !!}">--}}
-            {{--</div>--}}
             <a href="{{web_url()}}/user/{{$user->id}}/edit">Изменить</a>
 
             @if(isset($message))

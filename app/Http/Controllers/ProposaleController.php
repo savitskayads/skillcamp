@@ -78,6 +78,9 @@ class ProposaleController extends Controller
         $user->name = Input::get('name');
         $user->email=Input::get('email');
         $user->phone=Input::get('phone');
+        $user->passport=Input::get('passport');
+        $user->passport_date=Input::get('passport_date');
+        $user->data_processing=Input::get('data_processing');
         $user->save();
         $children = Children::where('user_id','=',$user_id)->first();
         if(!$children){
@@ -110,10 +113,6 @@ class ProposaleController extends Controller
         $children->save();
 
         $user_id = Input::get('id');
-        $user = User::find($user_id);
-        $user->passport=Input::get('passport');
-        $user->passport_date=Input::get('passport_date');
-        $user->save();
 
         $proposale_id = Input::get('proposale_id');
         $temporary_proposale = Temporary_proposale::find($proposale_id);

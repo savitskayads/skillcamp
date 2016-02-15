@@ -48,16 +48,6 @@
                 <label><input type="radio" name="member" value="0">Новый участник</label>
             </div>
             <div class="form-group">
-                <label for="passport">Паспорт родителя(серия и номер)</label>
-                <input type="text" name="passport" class="form-control" value="{{$user->passport}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            </div>
-            <div class="form-group">
-                <label for="passport_date">Выдан</label>
-                <input type="text" name="passport_date" class="form-control" value="{{$user->passport_date}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            </div>
-            <div class="form-group">
                 <label for="registration">Прописка</label>
                 <textarea class="form-control" rows="3" id="comment" name="registration">{{$children->registration}}</textarea>
             </div>

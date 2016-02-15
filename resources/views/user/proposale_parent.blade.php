@@ -26,6 +26,23 @@
                 <input type="text" name="phone" class="form-control" value="{{$user->phone}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
+            <div class="form-group">
+                <label for="passport">Паспорт (серия и номер)</label>
+                <input type="text" name="passport" class="form-control" value="{{$user->passport}}">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            </div>
+            <div class="form-group">
+                <label for="passport_date">Выдан</label>
+                <input type="text" name="passport_date" class="form-control" value="{{$user->passport_date}}">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            </div>
+            <div class="form-group">
+                <label for="transfer">Согласие на обработку персональных данных</label>
+                <div class="radio">
+                    <label><input type="radio" name="data_processing" value="1">Да</label>
+                    <label><input type="radio" name="data_processing" value="0">Нет</label>
+                </div>
+            </div>
 
 
 

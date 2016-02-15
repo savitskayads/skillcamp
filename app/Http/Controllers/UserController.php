@@ -137,11 +137,14 @@ class UserController extends Controller
 
     public function save()
     {
-        $id = Request::input('id');
+        $id = Input::get('id');
         $user = User::find($id);
-        $user->name = Request::input('name');
-        $user->email=Request::input('email');
-        $user->phone=Request::input('phone');
+        $user->name = Input::get('name');
+        $user->email=Input::get('email');
+        $user->phone=Input::get('phone');
+        $user->passport=Input::get('passport');
+        $user->passport_date=Input::get('passport_date');
+        $user->data_processing=Input::get('data_processing');
         $user->save();
         return redirect('user');
     }
