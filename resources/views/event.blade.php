@@ -17,7 +17,12 @@
 						</div>
 						<div class="line">
 							<div class="title"><span>Пол</span></div>
-							<div class="value"><span>мальчики и девочки</span></div>
+							<div class="value"><span>
+									@if($program->sex=="mens")мальчики
+									@elseif($program->sex=="womens")девочки
+									@elseмальчики и девочки
+									@endif
+								</span></div>
 						</div>
 						<div class="line">
 							<div class="title"><span>Количество мест</span></div>
@@ -31,7 +36,7 @@
 					<div class="col clear">
 						<div class="price">
 							<div class="main">
-								<div class="sale"><span>{{ $program->action_price }}</span><div class="info" tooltip="Предложение ограничено! Только при оплате до 23 февраля"><i class="fa fa-info-circle"></i></div></div>
+								<div class="sale"><span>{{ $program->action_price }}</span><div class="info" tooltip="{{$program->action_description}}"><i class="fa fa-info-circle"></i></div></div>
 								<div class="original"><span>{{ $program->price }}</span></div>
 							</div>
 							<div class="bottom">

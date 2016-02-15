@@ -46,6 +46,13 @@
                 <div class="line-title"><span>Цена программы</span></div><div class="line-value">{!! Form::text('price', $program->price, ['placeholder' => 'Цена', 'class'=>'inputbox']) !!}</div>
             </div>
             <div class="inline-block">
+                <div class="line-title"><span>Цена по акции</span></div><div class="line-value">{!! Form::text('action_price', $program->action_price, ['placeholder' => 'Цена по акции', 'class'=>'inputbox']) !!}</div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Описание акции</span></div><div class="line-value">{!! Form::text('action_description', $program->action_description, ['placeholder' => 'Описание акции', 'class'=>'inputbox']) !!}</div>
+            </div>
+
+            <div class="inline-block">
                 <div class="line-title"><span>Количество мест</span></div><div class="line-value">{!! Form::text('places', $program->places, ['placeholder' => 'Количество мест', 'class'=>'inputbox']) !!}</div>
             </div>
             <div class="inline-block">
@@ -62,6 +69,13 @@
             <div class="inline-block">
                 <div class="line-title"><span>Возраст участников</span></div><div class="line-value">{!! Form::text('age', $program->age, ['placeholder' => 'Возраст участников', 'class'=>'inputbox']) !!}</div>
             </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Пол участников</span></div>
+                <label class="radio-inline"><input type="radio" name="sex" value="mens" @if($program->sex=='mens')checked="checked"@endif>мальчики</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="womens" @if($program->sex=='womens')checked="checked"@endif>девочки</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="all"  @if($program->sex=='all')checked="checked"@endif>все</label>
+            </div>
+
             <div class="inline-block">
                 <div class="line-title"><span>Начало программы </span></div><div class="line-value">
                     @if($program->start_date!='0000-00-00 00:00:00')
@@ -82,6 +96,7 @@
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Смена 1 </span></div><div class="line-value">
+                    начало
                     @if($program->session_1_start!='')
                         {!! Form::text('session_1_start', $program->session_1_start, ['class'=>'inputbox']) !!}
                     @else
@@ -113,7 +128,7 @@
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Смена 3 </span></div><div class="line-value">
-
+                    начало
                     @if($program->session_3_start!='')
                         {!! Form::text('session_3_start', $program->session_3_start, ['class'=>'inputbox']) !!}
                     @else

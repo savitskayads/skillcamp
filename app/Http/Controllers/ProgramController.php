@@ -58,6 +58,9 @@ class ProgramController extends Controller
         $program->places = Request::input('places');
         $program->vacations()->sync(Request::input('vacation'));
         $program->age = Request::input('age');
+        $program->sex = Request::input('sex');
+        $program->action_price = Request::input('action_price');
+        $program->action_description = Request::input('action_description');
         $program->start_date = Request::input('start_date') ;
         $program->finish_date = Request::input('finish_date') ;
         $program->session_1_start = Request::input('session_1_start') ;
