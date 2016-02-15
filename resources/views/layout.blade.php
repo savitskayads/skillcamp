@@ -39,7 +39,7 @@
         <div class="profile">
             @if(Auth::check())
                 <div class="link"><a href="{{web_url()}}/user"><span>личный кабинет</span></a></div>
-                <div class="link"><a href="{{web_url()}}/user/logout"><span>выход</span></a></div>
+                <div class="link"><a href="{{web_url()}}/logout"><span>выход</span></a></div>
             @else
                 <div class="link"><a href="{{web_url()}}/auth/register"><span>регистрация</span></a></div>
                 <div class="link"><a href="{{web_url()}}/user/login"><span>вход</span></a></div>
