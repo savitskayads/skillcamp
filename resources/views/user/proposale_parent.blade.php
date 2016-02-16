@@ -48,7 +48,7 @@
 
             <div class="inline-block">
                 <input class="btn btn-success" type="submit" value="Сохранить">
-                <a href="{{web_url()}}/proposale" class="btn btn-danger">Отмена</a>
+                <a href="{{web_url()}}/proposale/delete/{{$proposale_id}}" class="btn btn-danger">Отмена</a>
             </div>
             <br>
         </form>

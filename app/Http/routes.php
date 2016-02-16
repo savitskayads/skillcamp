@@ -59,6 +59,7 @@ Route::group(['prefix' => 'user'],function()
     Route::post('proposale/create', ['middleware' => 'user','uses'=>'ProposaleController@create_temporary']);
     Route::post('proposale/parent_data', ['middleware' => 'user','uses'=>'ProposaleController@parent_data_save']);
     Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
+    Route::get('proposale//delete/{$id}', ['middleware' => 'user','uses'=>'ProposaleController@destroy']);
 });
 
 //Admin routes

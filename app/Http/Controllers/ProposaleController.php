@@ -196,6 +196,8 @@ class ProposaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $temporary_proposale = Temporary_proposale::find($id);
+        $temporary_proposale->delete();
+        return view('index');
     }
 }
