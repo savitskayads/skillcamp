@@ -59,7 +59,6 @@ Route::group(['prefix' => 'user'],function()
     Route::post('proposale/create', ['middleware' => 'user','uses'=>'ProposaleController@create_temporary']);
     Route::post('proposale/parent_data', ['middleware' => 'user','uses'=>'ProposaleController@parent_data_save']);
     Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
-    Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
 });
 
 //Admin routes
@@ -111,6 +110,9 @@ Route::group(['prefix' => 'admin'],function()
     Route::get('phones', ['middleware' => 'admin', 'uses'=>'ChildrenController@phones'] );
     Route::get('calls', ['middleware' => 'admin', 'uses'=>'ChildrenController@calls'] );
     Route::get('outgoing_calls', ['middleware' => 'admin', 'uses'=>'ChildrenController@outgoing_calls'] );
+    Route::get('childrens', ['middleware' => 'admin', 'uses'=>'ChildrenController@show_all'] );
+    Route::get('children/create', ['middleware' => 'admin', 'uses'=>'ChildrenController@admin_create'] );
+    Route::get('children/show/{id}', ['middleware' => 'admin', 'uses'=>'ChildrenController@show'] );
 
 
 });

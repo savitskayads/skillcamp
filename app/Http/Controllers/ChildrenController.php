@@ -8,6 +8,7 @@ use Request;
 use App\Program;
 use App\Http\Controllers\Controller;
 use App\Children;
+use App\User;
 use Input;
 use Illuminate\Routing;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -159,6 +160,13 @@ class ChildrenController extends Controller
         return view('admin.outgoing_calls')->with('users',$childrens);
     }
 
+    public function show_all(){
+        $childrens = Children::all();
+        return view('admin.childrens')->with('childrens',$childrens);
+    }
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -179,7 +187,14 @@ class ChildrenController extends Controller
      */
     public function show($id)
     {
-        //
+        $children = Children::find($id);
+        $parent = User::find($children->user_id);
+        $proposales = Proposale::where('proposales.children_id','=',$children->id)
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('proposales.*','programs.title as program_name')
+            ->get();
+        return view('admin.show_children')->with('children',$children)->with('parent',$parent)->with('proposales',$proposales);
+
     }
 
     /**
