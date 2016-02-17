@@ -114,6 +114,8 @@ Route::group(['prefix' => 'admin'],function()
     Route::get('childrens', ['middleware' => 'admin', 'uses'=>'ChildrenController@show_all'] );
     Route::get('children/create', ['middleware' => 'admin', 'uses'=>'ChildrenController@admin_create'] );
     Route::get('children/show/{id}', ['middleware' => 'admin', 'uses'=>'ChildrenController@show'] );
+    Route::get('children/edit/{id}', ['middleware' => 'admin', 'uses'=>'ChildrenController@admin_edit'] );
+    Route::post('children/save', ['middleware' => 'admin', 'uses'=>'ChildrenController@admin_save'] );
 
 
 });

@@ -107,6 +107,91 @@ class ChildrenController extends Controller
         return redirect('user/childrens');
     }
 
+    public function admin_save(){
+        $id = Request::input('id');
+        $children = Children::find($id);
+        $flag = 0;
+        if(!$children){
+            $children = new Children;
+            $flag = 1;
+        }
+        $children->name = Request::input('name');
+        $children->surname = Request::input('surname');
+        $children->sex = Request::input('sex');
+        $children->birthday_date = Request::input('birthday_date');
+        $children->document = Request::input('document');
+        $children->document_number = Request::input('document_number');
+        $children->registration = Request::input('registration');
+        $children->adress = Request::input('adress');
+        $children->school_number = Request::input('school_number');
+        $children->school_class = Request::input('school_class');
+        $children->sea = Request::input('sea');
+        $children->sea_item = Request::input('sea_item');
+        $children->sea_years = Request::input('sea_years');
+        $children->sport = Request::input('sport');
+        $children->trait = Request::input('trait');
+        $children->pleasure = Request::input('pleasure');
+        $children->stress = Request::input('stress');
+        $children->things = Request::input('things');
+        $children->self = Request::input('self');
+        $children->control = Request::input('control');
+        $children->communication = Request::input('communication');
+        $children->communication_discomfort = Request::input('communication_discomfort');
+        $children->conviction = Request::input('conviction');
+        $children->bad_baby = Request::input('bad_baby');
+        $children->marketing = Request::input('marketing');
+        $children->chronic = Request::input('chronic');
+        $children->cold = Request::input('cold');
+        $children->sun = Request::input('sun');
+        $children->diet = Request::input('diet');
+        $children->allergy = Request::input('allergy');
+        $children->not_allergy = Request::input('not_allergy');
+        $children->medicine_allergy = Request::input('medicine_allergy');
+        $children->insects_allergy = Request::input('insects_allergy');
+        $children->train = Request::input('train');
+        $children->ills = Request::input('ills');
+        $children->operations = Request::input('operations');
+        $children->rupture = Request::input('rupture');
+        $children->concussion = Request::input('concussion');
+        $children->bad_bug = Request::input('bad_bug');
+        $children->another_medicine = Request::input('another_medicine');
+        $children->physics = Request::input('physics');
+        $children->swim = Request::input('swim');
+        $children->fear_height = Request::input('fear_height');
+        $children->fear_dark = Request::input('fear_dark');
+        $children->fear_animals = Request::input('fear_animals');
+        $children->physics_reaction = Request::input('physics_reaction');
+        $children->fatiguability = Request::input('fatiguability');
+        $children->vision = Request::input('vision');
+        $children->health = Request::input('health');
+        $children->height = Request::input('height');
+        $children->weight = Request::input('weight');
+        $children->clothing_size = Request::input('clothing_size');
+        $children->family = Request::input('family');
+
+        if(Request::hasFile('img')){
+
+            $image = Input::file('img');
+            $validator = Validator::make(
+                array(
+
+                    'image' => $image,
+                ),
+                array(
+                    'image' => 'mimes:jpeg,bmp,png',
+
+                )
+            );
+
+            $children->image = upload_program_image(Input::file('img'));
+
+        }
+
+        $children->save();
+        return redirect('admin/childrens');
+    }
+
+
     public function sizes(){
         $proposales = Proposale::join('childrens','proposales.children_id','=','childrens.id')
             ->join('programs','proposales.program_id','=','programs.id')
@@ -210,6 +295,11 @@ class ChildrenController extends Controller
         return view('user.edit_children',['children'=> $children]);
     }
 
+    public function admin_edit($id)
+    {
+        $children = Children::find($id);
+        return view('admin.edit_children',['children'=> $children]);
+    }
     /**
      * Update the specified resource in storage.
      *

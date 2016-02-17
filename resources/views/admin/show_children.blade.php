@@ -1,15 +1,17 @@
 @extends('admin.layout')
 @section('content')
+
     {!! Form::open(array('url'=>"#", 'files'=>true)) !!}
         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <input type="hidden" name="id" value="{{$children->id}}">
         <div class="add-event">
             <h3>Анкетные данные</h3>
+            <a href="{{web_url()}}/admin/children/edit/{{$children->id}}">Изменить</a>
             <br>
             @if($children->image == '')
-                <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" class="img-upload" alt="" width="200" height="150"></div>
+                <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" class="img-upload" alt="" height="200px" width="100px" ></div>
             @else
-                <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $program->image }}" alt="" class="img-upload" width="168" height="119"></div>
+                <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $children->image }}" alt="" class="img-upload"  width="100px" height="200px"></div>
             @endif
             <div class="inline-block">
                 <div class="line-title"><span>ФИО</span></div><div class="line-value"></div>
@@ -154,28 +156,24 @@
                 {{$children->insects_allergy}}
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Школа</span></div><div class="line-value"></div>
+                <div class="line-title"><span>Укачивает ли в транспорте</span></div><div class="line-value"></div>
                 {{$children->train}}
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Укачивает ли в транспорте</span></div><div class="line-value"></div>
+                <div class="line-title"><span>С какими болезнями лежал в больнице</span></div><div class="line-value"></div>
                 {{$children->ills}}
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>С какими болезнями лежал в больнице</span></div><div class="line-value"></div>
-                {{$children->operations}}
-            </div>
-            <div class="inline-block">
                 <div class="line-title"><span>Операции</span></div><div class="line-value"></div>
-                {{$children->rupture}}
+                {{$children->operations}}
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Переломы</span></div><div class="line-value"></div>
-                {{$children->concussion}}
+                {{$children->rupture}}
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Сотрясения мозга</span></div><div class="line-value"></div>
-                {{$children->operations}}
+                {{$children->concussion}}
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>прививка против клещевого энцефалита</span></div><div class="line-value"></div>

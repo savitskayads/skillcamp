@@ -23,7 +23,7 @@
                     @foreach($childrens as $children)
                         <tr class='user' id={{$children->id}}>
                             <td class="center col-2">{{$children->id}}</td>
-                            <td>{{$children->surname}} {{$children->name}}  {{$children->patronymic}}</td>
+                            <td><a href="{{web_url()}}/admin/children/show/{{$children->id}}">{{$children->surname}} {{$children->name}} {{$children->patronymic}}</a></td>
                             <td class="center col-btn">
                                 <div class="droplist-group">
                                     <i class="fa fa-ellipsis-v"></i>
@@ -31,6 +31,7 @@
                                         <div>
                                             <ul>
                                                 <li><a href="{{web_url()}}/admin/children/show/{{$children->id}}" class="accept"><i class="fa pull-left fa-chevron-down"></i>Посмотреть</a></li>
+                                                <li><a href="{{web_url()}}/admin/children/edit/{{$children->id}}" class="accept"><i class="fa pull-left fa-chevron-down"></i>Изменить</a></li>
                                             </ul>
                                         </div>
                                     </div>
