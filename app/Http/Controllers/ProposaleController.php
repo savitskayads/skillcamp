@@ -78,9 +78,9 @@ class ProposaleController extends Controller
         $user->name = Input::get('name');
         $user->email=Input::get('email');
         $user->phone=Input::get('phone');
+        $user->data_processing=Input::get('data_processing');
         $user->passport=Input::get('passport');
         $user->passport_date=Input::get('passport_date');
-        $user->data_processing=Input::get('data_processing');
         $user->save();
         $children = Children::where('user_id','=',$user_id)->first();
         if(!$children){

@@ -24,11 +24,19 @@
                 <label for="phone">Телефон</label>
                 {{$user->phone}}
             </div>
+            @if($user->data_processing==1)
             <div class="form-group">
                 <label for="phone">Паспорт</label>
                 {{$user->passport}} выдан {{$user->passport_date}}
             </div>
-
+            <div class="form-group">
+                <label>Согласие на обработку персональных данных</label> Получено
+            </div>
+            @else
+                <div class="form-group">
+                    <label>Согласие на обработку персональных данных</label> Не получено
+                </div>
+            @endif
             <a href="{{web_url()}}/user/{{$user->id}}/edit">Изменить</a>
 
             @if(isset($message))

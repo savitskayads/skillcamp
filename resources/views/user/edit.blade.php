@@ -8,7 +8,6 @@
             <a href="{{web_url()}}/user/proposales" type="button" class="btn btn-default">Заявки</a>
         </p>
         <hr>
-        {{--{!! Form::open(array('url'=>"user/childrens/save",'method'=>'POST', 'files'=>true)) !!}--}}
         <form  method="POST" action="{{web_url()}}/user/save" role="form" class = "data-form">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <h3>Изменение данных</h3>
@@ -31,6 +30,7 @@
                 <input type="text" name="phone" class="form-control" value="{{$user->phone}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
+            @if($user->data_processing==1)
             <div class="form-group">
                 <label for="passport">Паспорт (серия и номер)</label>
                 <input type="text" name="passport" class="form-control" value="{{$user->passport}}">
@@ -41,16 +41,21 @@
                 <input type="text" name="passport_date" class="form-control" value="{{$user->passport_date}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
+            @endif
             <div class="form-group">
                 <label for="transfer">Согласие на обработку персональных данных</label>
                 <div class="radio">
-                    <label><input type="radio" name="data_processing" value="1">Да</label>
-                    <label><input type="radio" name="data_processing" value="0">Нет</label>
+                    <label><input type="radio" name="data_processing" value="1" @if($user->data_processing==1) checked @endif >Да</label>
+                    <label><input type="radio" name="data_processing" value="0" @if($user->data_processing==0) checked @endif>Нет</label>
                 </div>
             </div>
-
-
-
+            <div class="form-group">
+                <label for="transfer">Получение рассылки</label>
+                <div class="radio">
+                    <label><input type="radio" name="delivery" value="1" @if($user->delivery==1) checked @endif >Да</label>
+                    <label><input type="radio" name="delivery" value="0" @if($user->delivery==0) checked @endif>Нет</label>
+                </div>
+            </div>
             <div class="inline-block">
                 <input class="btn btn-success" type="submit" value="Сохранить">
                 <a href="{{web_url()}}/user/childs" class="btn btn-danger">Отмена</a>

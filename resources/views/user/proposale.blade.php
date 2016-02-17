@@ -24,8 +24,10 @@
         <div class="form-group">
             <label for="transfer">Трансфер</label>
             <div class="radio">
-                <label><input type="radio" name="transfer" value="да">Да</label>
-                <label><input type="radio" name="transfer" value="нет">Нет</label>
+                <label><input type="radio" name="transfer" value="только на программу">только на программу</label>
+                <label><input type="radio" name="transfer" value="только с программы">только с программы</label>
+                <label><input type="radio" name="transfer" value="в обе стороны">в обе стороны</label>
+                <label><input type="radio" name="transfer" value="самостоятельная доставка в обе стороны">самостоятельная доставка в обе стороны</label>
             </div>
         </div>
         <div class="form-group">
@@ -36,6 +38,7 @@
 
         <div class="inline-block">
             <input class="btn btn-default" type="submit" name="login" value="Отправить">
+            <a href="{{web_url()}}" class="btn btn-danger">Отмена</a>
         </div>
     </form>
 

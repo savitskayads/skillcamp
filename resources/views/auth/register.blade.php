@@ -26,6 +26,12 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
         </div>
+        <div class="form-group">
+            <label class="checkbox-inline"><input type="checkbox" name="delivery" value="1">Я хочу получать рассылку</label>
+        </div>
+        <div class="form-group">
+            <label class="checkbox-inline"><input type="checkbox" name="data_processing" value="1">Я согласен на обработку персональных данных</label>
+        </div>
         @if(isset($message))
             <div class="danger-message">
                 {{$message}}

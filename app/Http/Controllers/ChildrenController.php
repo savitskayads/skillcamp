@@ -23,8 +23,9 @@ class ChildrenController extends Controller
     public function index()
     {
         $user_id = Session::get('user_id');
+        $user = User::find($user_id);
         $childrens=Children::where('user_id','=',$user_id)->get();
-        return view('user.childrens', ['childrens'=> $childrens]);
+        return view('user.childrens', ['childrens'=> $childrens,'user'=>$user]);
     }
 
     /**

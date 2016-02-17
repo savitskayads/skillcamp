@@ -71,6 +71,8 @@ class AuthController extends Controller
          return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'delivery' => $data['delivery'],
+            'data_processing' => $data['data_processing'],
             'password' => bcrypt($data['password']),
             'confirmation_code' => $confirmation_code
         ]);
@@ -94,16 +96,14 @@ class AuthController extends Controller
 
             $message='Вы ввели неверные данные';
             return view('auth.register')->with('message', $message);
-
-//            $this->throwValidationException(
-//                $request, $validator
-//            );
-
         }
 
         $user = $this->create($request->all());
         $email = $user->email;
         $id = $user->id;
+        $user->delivery = Input::get('delivery');
+        $user->data_processing = Input::get('data_processing');
+        $user->save();
         $message = 'Вы зарегистрировались на нашем сайте. Вам на почту поступило письмо с подтверждением Вашего почтового адреса.';
         $message_type = 'not_confirmed';
 
@@ -111,7 +111,7 @@ class AuthController extends Controller
             ->with('message',$message)
             ->with('message_type',$message_type)
             ->with('email',$email)
-            ->with('id',$id);;
+            ->with('id',$id);
     }
 
     public function check_email(Request $request){
