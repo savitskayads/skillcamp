@@ -8,7 +8,6 @@ use Requests;
 use App\Http\Controllers\Controller;
 use App\Program;
 use App\News;
-use App\Vacation;
 use Input;
 use Illuminate\Routing;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -29,7 +28,6 @@ class IndexController extends Controller
             9 => 'Сентября', 10 => 'Октября', 11 => 'Ноября', 12 => 'Декабря'
         );
 
-        $vacations=Vacation::all();
         $programs = Program::where('active','=','1')
             ->get();
 
@@ -40,7 +38,7 @@ class IndexController extends Controller
         } else {
             $user='guest';
         }
-        return view('index', ['vacations' => $vacations, 'programs' => $programs, 'monthes'=>$monthes, 'all_news'=>$all_news, 'user'=>$user]);
+        return view('index', ['programs' => $programs, 'monthes'=>$monthes, 'all_news'=>$all_news, 'user'=>$user]);
 
     }
 

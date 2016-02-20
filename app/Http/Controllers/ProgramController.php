@@ -8,7 +8,6 @@ use Requests;
 use App\Http\Controllers\Controller;
 use App\Program;
 use App\News;
-use App\Vacation;
 use Input;
 use Illuminate\Routing;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -38,9 +37,7 @@ class ProgramController extends Controller
     public function create()
     {
         $program = new Program();
-        $vacation_ids = array();
-        $vacations=Vacation::all();
-        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program, 'vacation_ids'=>$vacation_ids]);
+        return view('admin.edit_program',['program'=> $program]);
     }
 
     public function save(){
@@ -56,7 +53,7 @@ class ProgramController extends Controller
         $program->telephone = Request::input('telephone');
         $program->price = Request::input('price');
         $program->places = Request::input('places');
-        $program->vacations()->sync(Request::input('vacation'));
+        $program->vacation = Request::input('vacation');
         $program->age = Request::input('age');
         $program->sex = Request::input('sex');
         $program->action_price = Request::input('action_price');
@@ -144,17 +141,7 @@ class ProgramController extends Controller
     public function edit($id)
     {
         $program = Program::find($id);
-
-        $program_vacations=Program::find($id)->vacations()->get();
-        $vacation_ids = array();
-        foreach($program_vacations as $one){
-            $vacation_ids[]=$one->id;
-        }
-
-        $vacations=Vacation::all();
-
-
-        return view('admin.edit_program',['vacations' => $vacations,'program'=> $program,'vacation_ids'=>$vacation_ids]);
+        return view('admin.edit_program',['program'=> $program]);
     }
 
     /**

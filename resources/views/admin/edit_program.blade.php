@@ -57,14 +57,13 @@
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Сезон</span></div>
-                    @foreach($vacations as $vacation)
-                        {!! Form::label('vacation',$vacation->title) !!}
-                        @if(in_array($vacation->id,$vacation_ids))
-                            {!! Form::checkbox('vacation[]', $vacation->id, true) !!}
-                        @else
-                            {!! Form::checkbox('vacation[]', $vacation->id, false) !!}
-                        @endif
-                    @endforeach
+                <label class="radio-inline"><input type="radio" name="vacation" value="Зима" @if($program->vacation=='Зима')checked="checked"@endif>Зима</label>
+                <label class="radio-inline"><input type="radio" name="vacation" value="Весна" @if($program->vacation=='Весна')checked="checked"@endif>Весна</label>
+                <label class="radio-inline"><input type="radio" name="vacation" value="Лето" @if($program->vacation=='Лето')checked="checked"@endif>Лето</label>
+                <label class="radio-inline"><input type="radio" name="vacation" value="Осень" @if($program->vacation=='Осень')checked="checked"@endif>Осень</label>
+                <label class="radio-inline"><input type="radio" name="vacation" value="Выходной день" @if($program->vacation=='Выходной день')checked="checked"@endif>Выходной день</label>
+                <label class="radio-inline"><input type="radio" name="vacation" value="Фестиваль" @if($program->vacation=='Фестиваль')checked="checked"@endif>Фестиваль</label>
+                <label class="radio-inline"><input type="radio" name="vacation" value="Все сезоны" @if($program->vacation=='Все сезоны')checked="checked"@endif>Все сезоны</label>
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Возраст участников</span></div><div class="line-value">{!! Form::text('age', $program->age, ['placeholder' => 'Возраст участников', 'class'=>'inputbox']) !!}</div>
