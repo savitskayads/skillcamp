@@ -51,6 +51,90 @@ class ChildrenController extends Controller
         $children->user_id = Session::get('user_id');
         $children->name = Request::input('name');
         $children->surname = Request::input('surname');
+        $children->patronymic = Request::input('patronymic');
+        $children->sex = Request::input('sex');
+        $children->birthday_date = Request::input('birthday_date');
+        $children->document = Request::input('document');
+        $children->document_number = Request::input('document_number');
+        $children->registration = Request::input('registration');
+        $children->adress = Request::input('adress');
+        $children->reference = Request::input('reference');
+        $children->save();
+        return redirect('user/childrens');
+    }
+
+    public function save_application_form(){
+        $id = Request::input('id');
+        $children = Children::find($id);
+
+        $v = Validator::make(Request::all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'patronymic' => 'required',
+            'sex' => 'required',
+            'birthday_date' => 'required',
+            'document' => 'required',
+            'document_number' => 'required',
+            'registration' => 'required',
+            'adress' => 'required',
+            'school_number' => 'required',
+            'school_class' => 'required',
+            'sea' => 'required',
+            'sea_item' => 'required',
+            'sea_years' => 'required',
+            'sport' => 'required',
+            'trait' => 'required',
+            'pleasure' => 'required',
+            'stress' => 'required',
+            'stress' => 'required',
+            'things' => 'required',
+            'self' => 'required',
+            'control' => 'required',
+            'communication' => 'required',
+            'communication_discomfort' => 'required',
+            'conviction' => 'required',
+            'bad_baby' => 'required',
+            'marketing' => 'required',
+            'chronic' => 'required',
+            'cold' => 'required',
+            'sun' => 'required',
+            'diet' => 'required',
+            'allergy' => 'required',
+            'not_allergy' => 'required',
+            'medicine_allergy' => 'required',
+            'insects_allergy' => 'required',
+            'train' => 'required',
+            'ills' => 'required',
+            'operations' => 'required',
+            'rupture' => 'required',
+            'concussion' => 'required',
+            'bad_bug' => 'required',
+            'another_medicine' => 'required',
+            'physics' => 'required',
+            'swim' => 'required',
+            'fear_height' => 'required',
+            'fear_dark' => 'required',
+            'fear_animals' => 'required',
+            'physics_reaction' => 'required',
+            'fatiguability' => 'required',
+            'vision' => 'required',
+            'health' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+            'clothing_size' => 'required',
+            'family' => 'required'
+        ]);
+
+        if ($v->fails())
+        {
+            $children->application_form='заполнена не полностью';
+        }
+        else{
+            $children->application_form='заполнена';
+        }
+        $children->user_id = Session::get('user_id');
+        $children->name = Request::input('name');
+        $children->surname = Request::input('surname');
         $children->sex = Request::input('sex');
         $children->birthday_date = Request::input('birthday_date');
         $children->document = Request::input('document');
@@ -104,7 +188,6 @@ class ChildrenController extends Controller
         $children->family = Request::input('family');
 
         $children->save();
-        $message = "Вы успешно добавили данные о ребенке";
         return redirect('user/childrens');
     }
 
@@ -292,8 +375,19 @@ class ChildrenController extends Controller
     public function edit($id)
     {
         $children = Children::find($id);
+        $members = Proposale::where('proposales.children_id',$id)
+            ->join('programs','proposales.program_id','=','programs.id')
+            ->select('programs.title as program_title','programs.start_date as program_start','programs.finish_date as program_finish')
+            ->get();
 
-        return view('user.edit_children',['children'=> $children]);
+
+
+        return view('user.edit_children',['children'=> $children,'members'=>$members]);
+    }
+
+    public function edit_application_form($id){
+        $children = Children::find($id);
+        return view('user.application_form',['children'=> $children]);
     }
 
     public function admin_edit($id)

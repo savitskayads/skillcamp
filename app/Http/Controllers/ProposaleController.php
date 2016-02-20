@@ -137,7 +137,7 @@ class ProposaleController extends Controller
               ->join('childrens','proposales.children_id','=','childrens.id')
             ->join('programs','proposales.program_id','=','programs.id')
             ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
-                'programs.start_date as program_start','programs.finish_date as program_finish')
+                'programs.start_date as program_start','programs.finish_date as program_finish','childrens.application_form as application_form')
             ->get();
 
         return view('user.proposales')->with('proposales',$proposales);

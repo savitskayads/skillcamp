@@ -30,6 +30,7 @@
                         <th>Дата рождения</th>
                         <th>Документ</th>
                         <th>Прописка</th>
+                        <th>Анкета</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -41,7 +42,14 @@
                             <td>{{$children->birthday_date}}</td>
                             <td>{{$children->document}}</td>
                             <td>{{$children->registration}}</td>
-                            <td><a href="{{web_url()}}/user/childrens/{{$children->id}}/edit" >Изменить</a></td>
+                            <td>
+                                @if($children->application_form!="")
+                                    {{$children->application_form}} <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form">. редактировать</a>
+                                @else
+                                    <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form"> заполнить</a>
+                                @endif
+                            </td>
+                            <td><a href="{{web_url()}}/user/childrens/{{$children->id}}/edit" >Изменить основные данные</a></td>
                             <td><a href="{{web_url()}}/user/childrens/{{$children->id}}/delete" >Удалить</a></td>
                         </tr>
                     @endforeach

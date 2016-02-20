@@ -9,7 +9,7 @@
         </p>
         <hr>
         {{--{!! Form::open(array('url'=>"user/childrens/save",'method'=>'POST', 'files'=>true)) !!}--}}
-        <form  method="POST" action="{{web_url()}}/user/childrens/save" role="form" class = "data-form">
+        <form  method="POST" action="{{web_url()}}/user/childrens/save_application_form" role="form" class = "data-form">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <h3>Данные ребенка</h3>
 

@@ -50,7 +50,9 @@ Route::group(['prefix' => 'user'],function()
     Route::get('childrens', ['middleware' => 'user', 'uses'=>'ChildrenController@index'] );
     Route::get('childrens/create', ['middleware' => 'user', 'uses'=>'ChildrenController@create'] );
     Route::get('childrens/{id}/edit', ['middleware' => 'user', 'uses'=>'ChildrenController@edit'] );
+    Route::get('childrens/{id}/edit_application_form', ['middleware' => 'user', 'uses'=>'ChildrenController@edit_application_form'] );
     Route::post('childrens/save', ['middleware' => 'user', 'uses'=>'ChildrenController@save'] );
+    Route::post('childrens/save_application_form', ['middleware' => 'user', 'uses'=>'ChildrenController@save_application_form'] );
     Route::any('childrens/{id}/delete', ['middleware' => 'user', 'uses'=>'ChildrenController@destroy'] );
 
     //Proposale routes

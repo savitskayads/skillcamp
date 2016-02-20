@@ -27,7 +27,7 @@
                         <td>{{$proposale->program_name}}</td>
                         <td>{{$proposale->children_name}}</td>
                         <td>c {{$proposale->program_start}} по {{$proposale->program_finish}}</td>
-                        <td>??</td>
+                        <td>{{$proposale->application_form}}</td>
                     </tr>
                 @endforeach
                 </tbody>
