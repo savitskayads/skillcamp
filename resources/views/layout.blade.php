@@ -50,39 +50,41 @@
 <div class="block seasons">
     <div class="content wrap">
         <div class="content-list clear">
-            <div class="item winter active">
-                <div class="content clear">
-                    <span>Зима</span>
+
+                <div class="item winter active">
+                    <div class="content clear">
+                        <span><a href="{{web_url()}}/programs/winter">Зима</a></span>
+                    </div>
                 </div>
-            </div>
+
             <div class="item spring">
                 <div class="content clear">
-                    <span>Весна</span>
+                    <span><a href="{{web_url()}}/programs/spring">Весна</a></span>
                 </div>
             </div>
             <div class="item summer">
                 <div class="content clear">
-                    <span>Лето</span>
+                    <span><a href="{{web_url()}}/programs/summer">>Лето</a></span>
                 </div>
             </div>
             <div class="item autumn">
                 <div class="content clear">
-                    <span>Осень</span>
+                    <span><a href="{{web_url()}}/programs/autumn">Осень</a></span>
                 </div>
             </div>
             <div class="item weekend">
                 <div class="content clear">
-                    <span>Выходной день</span>
+                    <span><a href="{{web_url()}}/programs/weekend">Выходной день</a></span>
                 </div>
             </div>
             <div class="item festival">
                 <div class="content clear">
-                    <span>Фестиваль</span>
+                    <span><a href="{{web_url()}}/programs/festival">Фестиваль</a></span>
                 </div>
             </div>
             <div class="item all">
                 <div class="content clear">
-                    <span>Все сезоны</span>
+                    <span><a href="{{web_url()}}/programs/all">Все сезоны</a></span>
                 </div>
             </div>
         </div>
@@ -91,13 +93,13 @@
 <div class="block menu">
     <div class="content wrap">
         <div class="content-list">
-            <div class="item"><a href=""><span>Главная</span></a></div>
+            <div class="item"><a href="{{web_url()}}/"><span>Главная</span></a></div>
             <div class="item"><a href=""><span>Участникам</span></a></div>
             <div class="item"><a href=""><span>О нас</span></a></div>
             <div class="item"><a href=""><span>Галерея</span></a></div>
             <div class="item"><a href=""><span>Родителям</span></a></div>
             <div class="item"><a href=""><span>Агенствам</span></a></div>
-            <div class="item"><a href=""><span>Новости</span></a></div>
+            <div class="item"><a href="{{web_url()}}/news/1"><span>Новости</span></a></div>
             <div class="item"><a href=""><span>Отзывы</span></a></div>
             <div class="item"><a href=""><span>Друзья</span></a></div>
             <div class="item"><a href=""><span>Контакты</span></a></div>
@@ -124,8 +126,31 @@
 
     </div>
 </div>
-
 @yield('content')
+<div class="news block">
+    <div class="head wrap"><span>Новости</span></div>
+    <div class="content wrap">
+        <div class="content-list clear">
+            @foreach($all_news as $news)
+                <div class="item">
+                    <div class="content">
+                        <div class="image">
+                            @if($news->image == '')
+                                <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" alt="" width="340" height="127"></div>
+                            @else
+                                <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $news->image }}" alt="" width="340" height="127"></div>
+                            @endif
+                        </div>
+                        <div class="head"><a href="{{web_url()}}/news/{{$news->id}}"><span>{{ $news->title }}</span></a></div>
+                        <div class="text">
+                            <span>{{ $news->description }}</span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
 <footer>
     <div class="content wrap clear">

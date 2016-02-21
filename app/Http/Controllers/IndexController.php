@@ -42,6 +42,53 @@ class IndexController extends Controller
 
     }
 
+    public function vacations($vacation){
+
+        if($vacation=='winter'){
+            $programs = Program::where('active','=','1')
+                ->where('vacation','=','Зима')
+                ->get();
+        } elseif($vacation=='spring') {
+            $programs = Program::where('active', '=', '1')
+                ->where('vacation', '=', 'Весна')
+                ->get();
+        } elseif($vacation=='summer') {
+            $programs = Program::where('active', '=', '1')
+                ->where('vacation', '=', 'Лето')
+                ->get();
+        } elseif($vacation=='autumn') {
+            $programs = Program::where('active', '=', '1')
+                ->where('vacation', '=', 'Осень')
+                ->get();
+        } elseif($vacation=='weekend') {
+            $programs = Program::where('active', '=', '1')
+                ->where('vacation', '=', 'Выходной')
+                ->get();
+        } elseif($vacation=='festival') {
+            $programs = Program::where('active', '=', '1')
+                ->where('vacation', '=', 'Фестиваль')
+                ->get();
+        } else {
+            $programs = Program::where('active','=','1')
+                ->get();
+        }
+        $all_news = News::where('active','=','1')
+            ->get();
+
+        $monthes = array(
+            1 => 'Января', 2 => 'Февраля', 3 => 'Марта', 4 => 'Апреля',
+            5 => 'Мая', 6 => 'Июня', 7 => 'Июля', 8 => 'Августа',
+            9 => 'Сентября', 10 => 'Октября', 11 => 'Ноября', 12 => 'Декабря'
+        );
+
+        if(Auth::check()){
+            $user=Auth::user()->name;
+        } else {
+            $user='guest';
+        }
+        return view('index', ['programs' => $programs, 'monthes'=>$monthes, 'all_news'=>$all_news, 'user'=>$user]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

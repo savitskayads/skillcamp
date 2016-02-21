@@ -31,10 +31,11 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-//Proposale routes
+
 Route::get('program/proposale/{id}', 'ProposaleController@get_proposale');
 Route::get('program/{id}', 'ProgramController@show');
 Route::get('news/{id}', 'NewsController@show');
+Route::get('programs/{vacation}', 'IndexController@vacations');
 
 //User routes
 Route::group(['prefix' => 'user'],function()
