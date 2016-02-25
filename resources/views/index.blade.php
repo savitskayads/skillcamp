@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="information">
-                    <div class="date"><span><i class="fa pull-left fa-calendar"></i>c {{$program->start_date}} по {{$program->finish_date}}</span></div>
+                    <div class="date"><span><i class="fa pull-left fa-calendar"></i>c {{date('d/m/Y'($program->start_date)}} по {{date('d/m/Y'($program->finish_date)}}</span></div>
                     <div class="members"><span><i class="fa pull-left fa-users"></i>{{$program->places}}</span></div>
                 </div>
                 <div class="main">

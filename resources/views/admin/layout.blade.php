@@ -6,9 +6,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/styles.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/fonts.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datetimepicker.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.structure.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.theme.css') }}" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript"  src="{{ asset('admin_assets/js/jquery.datetimepicker.js') }}" ></script>
     <script type="text/javascript"  src="{{ asset('admin_assets/js/script.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.js') }}"></script>
 
 </head>
 <body>

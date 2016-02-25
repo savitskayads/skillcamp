@@ -30,7 +30,7 @@
 						</div>
 						<div class="line">
 							<div class="title"><span>Дата проведения</span></div>
-							<div class="value"><span>с {{ $program->start_date }} по {{ $program->finish_date }}</span></div>
+							<div class="value"><span>с {{ date('d/m/Y'($program->start_date) }} по {{ date('d/m/Y'($program->finish_date) }}</span></div>
 						</div>
 					</div>
 					<div class="col clear">

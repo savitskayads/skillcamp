@@ -1,5 +1,6 @@
 @extends('admin.layout')
 @section('content')
+
     {!! Form::open(array('url'=>"admin/programs/save",'method'=>'POST', 'files'=>true)) !!}
         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <input type="hidden" name="id" value="{{$program->id}}">
@@ -77,19 +78,19 @@
 
             <div class="inline-block">
                 <div class="line-title"><span>Начало программы </span></div><div class="line-value">
-                    @if($program->start_date!='0000-00-00 00:00:00')
-                    {!! Form::text('start_date', $program->start_date, ['placeholder' => 'Начало', 'class'=>'inputbox']) !!}
+                    @if($program->start_date!='')
+                    {!! Form::text('start_date', date('d/m/Y',$program->start_date), ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                    {!! Form::text('start_date','', ['placeholder' => 'Начало', 'class'=>'inputbox']) !!}
+                    {!! Form::text('start_date','', ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                 </div>
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Окончание программы </span></div><div class="line-value">
                     @if($program->finish_date!='')
-                        {!! Form::text('finish_date',$program->finish_date, ['placeholder' => 'Окончание', 'class'=>'inputbox']) !!}
+                        {!! Form::text('finish_date',date('d/m/Y',$program->finish_date), ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('finish_date','', ['placeholder' => 'Окончание', 'class'=>'inputbox']) !!}
+                        {!! Form::text('finish_date','', ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                 </div>
             </div>
@@ -97,15 +98,15 @@
                 <div class="line-title"><span>Смена 1 </span></div><div class="line-value">
                     начало
                     @if($program->session_1_start!='')
-                        {!! Form::text('session_1_start', $program->session_1_start, ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_1_start', date('d/m/Y',$program->session_1_start), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('session_1_start', '', ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_1_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                     окончание
                     @if($program->session_1_finish!='')
-                        {!! Form::text('session_1_finish', $program->session_1_finish, ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_1_finish', date('d/m/Y',$program->session_1_finish), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('session_1_finish', '', ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_1_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                    </div>
             </div>
@@ -113,15 +114,15 @@
                 <div class="line-title"><span>Смена 2 </span></div><div class="line-value">
                     начало
                     @if($program->session_2_start!='')
-                        {!! Form::text('session_2_start', $program->session_2_start, ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_2_start', date('d/m/Y',$program->session_2_start), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('session_2_start', '', ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_2_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                     окончание
                     @if($program->session_2_finish!='')
-                        {!! Form::text('session_2_finish', $program->session_2_finish, ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_2_finish', date('d/m/Y',$program->session_2_finish), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('session_2_finish', '', ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_2_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                 </div>
             </div>
@@ -129,15 +130,15 @@
                 <div class="line-title"><span>Смена 3 </span></div><div class="line-value">
                     начало
                     @if($program->session_3_start!='')
-                        {!! Form::text('session_3_start', $program->session_3_start, ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_3_start', date('d/m/Y',$program->session_3_start), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('session_3_start', '', ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_3_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                     окончание
                     @if($program->session_3_finish!='')
-                        {!! Form::text('session_3_finish', $program->session_3_finish, ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_3_finish', date('d/m/Y',$program->session_3_finish), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
-                        {!! Form::text('session_3_finish', '', ['class'=>'inputbox']) !!}
+                        {!! Form::text('session_3_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                 </div>
             </div>
@@ -205,5 +206,12 @@
                 }
 
         })
+
+
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $( ".datepicker" ).datepicker();
+        });
     </script>
 @stop
