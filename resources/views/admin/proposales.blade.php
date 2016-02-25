@@ -26,7 +26,7 @@
                     <tr class='proposale' >
                         <td>{{$proposale->id}}</td>
                         <td class="center col-2">{{$proposale->program_name}}</td>
-                        <td>C {{$proposale->program_start}} по {{$proposale->program_finish}}</td>
+                        <td>C {{(date('d/m/Y',strtotime($proposale->program_start))}} по {{date('d/m/Y',strtotime($proposale->program_finish))}}</td>
                         <td>{{$proposale->user_name}}</td>
                         <td>{{$proposale->children_name}} {{$proposale->children_surname}}</td>
                     </tr>

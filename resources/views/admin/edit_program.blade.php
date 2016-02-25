@@ -79,7 +79,7 @@
             <div class="inline-block">
                 <div class="line-title"><span>Начало программы </span></div><div class="line-value">
                     @if($program->start_date!='')
-                    {!! Form::text('start_date', date('d/m/Y',$program->start_date), ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
+                    {!! Form::text('start_date', date('d/m/Y',strtotime($program->start_date)), ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                     {!! Form::text('start_date','', ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
@@ -88,7 +88,7 @@
             <div class="inline-block">
                 <div class="line-title"><span>Окончание программы </span></div><div class="line-value">
                     @if($program->finish_date!='')
-                        {!! Form::text('finish_date',date('d/m/Y',$program->finish_date), ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('finish_date',date('d/m/Y',strtotime($program->finish_date)), ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('finish_date','', ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
@@ -98,13 +98,13 @@
                 <div class="line-title"><span>Смена 1 </span></div><div class="line-value">
                     начало
                     @if($program->session_1_start!='')
-                        {!! Form::text('session_1_start', date('d/m/Y',$program->session_1_start), ['class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('session_1_start', date('d/m/Y',strtotime($program->session_1_start)), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('session_1_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                     окончание
                     @if($program->session_1_finish!='')
-                        {!! Form::text('session_1_finish', date('d/m/Y',$program->session_1_finish), ['class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('session_1_finish', date('d/m/Y',strtotime($program->session_1_finish)), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('session_1_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
@@ -114,13 +114,13 @@
                 <div class="line-title"><span>Смена 2 </span></div><div class="line-value">
                     начало
                     @if($program->session_2_start!='')
-                        {!! Form::text('session_2_start', date('d/m/Y',$program->session_2_start), ['class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('session_2_start', date('d/m/Y',strtotime($program->session_2_start)), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('session_2_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                     окончание
                     @if($program->session_2_finish!='')
-                        {!! Form::text('session_2_finish', date('d/m/Y',$program->session_2_finish), ['class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('session_2_finish', date('d/m/Y',strtotime($program->session_2_finish)), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('session_2_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
@@ -130,13 +130,13 @@
                 <div class="line-title"><span>Смена 3 </span></div><div class="line-value">
                     начало
                     @if($program->session_3_start!='')
-                        {!! Form::text('session_3_start', date('d/m/Y',$program->session_3_start), ['class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('session_3_start', date('d/m/Y',strtotime($program->session_3_start)), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('session_3_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif
                     окончание
                     @if($program->session_3_finish!='')
-                        {!! Form::text('session_3_finish', date('d/m/Y',$program->session_3_finish), ['class'=>'inputbox','class'=>'datepicker']) !!}
+                        {!! Form::text('session_3_finish', date('d/m/Y',strtotime($program->session_3_finish)), ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @else
                         {!! Form::text('session_3_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
                     @endif

@@ -64,7 +64,7 @@
             </div>
             <div class="item summer">
                 <div class="content clear">
-                    <span><a href="{{web_url()}}/programs/summer">>Лето</a></span>
+                    <span><a href="{{web_url()}}/programs/summer">Лето</a></span>
                 </div>
             </div>
             <div class="item autumn">

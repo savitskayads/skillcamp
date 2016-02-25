@@ -54,8 +54,8 @@
                             </div>
                             <div class="information">
                                 <span class="title">Дата проведения:</span>
-                                <span class="value">C {{ date("m", strtotime($program->start_date)) }} {{$monthes[(date('n', strtotime($program->start_date)))]}}
-                                    {{ date("Y", strtotime($program->start_date)) }} по {{ date("m", strtotime($program->finish_date)) }} {{$monthes[(date('n', strtotime($program->finish_date)))]}}
+                                <span class="value">C {{ date("m", $program->start_date) }} {{$monthes[(date('n', $program->start_date))]}}
+                                    {{ date("Y", $program->start_date) }} по {{ date("m", $program->finish_date) }} {{$monthes[(date('n', $program->finish_date))]}}
                                     {{ date("Y", strtotime($program->finish_date)) }}</span>
                                 <span class="title">Количество мест:</span>
                                 <span class="value">{{ $program->plaсes }}</span>

@@ -33,7 +33,7 @@
                             <td><a href="{!! web_url() !!}/admin/programs/{!! $program->id !!}/edit">{{  $program->title }}</a></td>
                             <td>{{$program->places}}</td>
                             <td>{{$program->price}}</td>
-                            <td>{{date('d.m', $program->start_date) }} - {{date('d.m', $program->finish_date)}}</td>
+                            <td>{{date('d.m', strtotime($program->start_date)) }} - {{date('d.m', strtotime($program->finish_date))}}</td>
                             @if($program->active == 1)
                                 <td>Да</td>
                             @else

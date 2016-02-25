@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{$proposale->program_name}}</td>
                         <td>{{$proposale->children_name}}</td>
-                        <td>c {{$proposale->program_start}} по {{$proposale->program_finish}}</td>
+                        <td> c {{date('d/m/Y',strtotime($proposale->program_start))}} по {{date('d/m/Y',strtotime($proposale->program_finish))}}</td>
                         <td>{{$proposale->application_form}}</td>
                     </tr>
                 @endforeach
