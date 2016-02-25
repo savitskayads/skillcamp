@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Program;
 use Session;
 use Input;
+use App\News;
 
 class ProposaleController extends Controller
 {
@@ -30,7 +31,9 @@ class ProposaleController extends Controller
                 'programs.start_date as program_start','programs.finish_date as program_finish')
             ->orderBy('proposales.id','desc')
             ->get();
-        return view('admin.proposales')->with('proposales',$proposales);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('admin.proposales')->with('proposales',$proposales)->with('all_news',$all_news);
     }
 
     public function get_proposale($id){
@@ -39,7 +42,12 @@ class ProposaleController extends Controller
             $selected_program_id = 0;
         }
         $programs = Program::all();
-        return view('user.proposale')->with('programs',$programs)->with('selected_program_id',$selected_program_id);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.proposale')
+            ->with('programs',$programs)
+            ->with('selected_program_id',$selected_program_id)
+            ->with('all_news',$all_news);
     }
 
 
@@ -65,10 +73,12 @@ class ProposaleController extends Controller
         $program  = Program::find($proposale->program_id);
         $program->busy_places=$program->busy_places+1;
         $program->save();
-
         $user=User::find($user_id);
-
-        return view('user.proposale_parent')->with('user',$user)->with('proposale_id',$proposale->id);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.proposale_parent')->with('user',$user)
+            ->with('proposale_id',$proposale->id)
+            ->with('all_news',$all_news);
     }
 
     public function parent_data_save(){
@@ -86,11 +96,14 @@ class ProposaleController extends Controller
         if(!$children){
             $children = new Children();
         }
+        $all_news = News::where('active','=','1')
+            ->get();
 
         return view('user.proposale_children')
             ->with('children',$children)
             ->with('user',$user)
-            ->with('proposale_id',$proposale_id);
+            ->with('proposale_id',$proposale_id)
+            ->with('all_news',$all_news);
 
     }
 
@@ -125,8 +138,9 @@ class ProposaleController extends Controller
         $proposale->registration_date = $temporary_proposale->registration_date;
         $proposale->save();
         $temporary_proposale->delete();
-
-        return view('user.proposale_success',['children'=> $children]);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.proposale_success',['children'=> $children, 'all_news'=>$all_news]);
 
     }
 
@@ -139,8 +153,9 @@ class ProposaleController extends Controller
             ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
                 'programs.start_date as program_start','programs.finish_date as program_finish','childrens.application_form as application_form')
             ->get();
-
-        return view('user.proposales')->with('proposales',$proposales);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.proposales')->with('proposales',$proposales)->with('all_news',$all_news);
     }
 
     /**
@@ -198,6 +213,8 @@ class ProposaleController extends Controller
     {
         $temporary_proposale = Temporary_proposale::find($id);
         $temporary_proposale->delete();
-        return view('index');
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('index')->with('all_news',$all_news);
     }
 }

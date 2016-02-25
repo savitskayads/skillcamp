@@ -15,6 +15,7 @@ use Validator;
 use Mail;
 use Flash;
 use Redirect;
+use App\News;
 
 class UserController extends Controller
 {
@@ -27,15 +28,20 @@ class UserController extends Controller
     {
         $id = Session::get('user_id');
         $user = User::find($id);
-        return view('user.person')->with('user',$user);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.person')->with('user',$user)->with('all_news',$all_news);
     }
 
     public function login(){
 
+        $all_news = News::where('active','=','1')
+            ->get();
+
         if(Auth::check()){
-            return view('user.person');
+            return view('user.person')->with('all_news',$all_news);
         } else {
-            return view('auth.login');
+            return view('auth.login')->with('all_news',$all_news);
         }
     }
 
@@ -44,6 +50,8 @@ class UserController extends Controller
         $email=Input::get('email');
         $password=Input::get('password');
         $message = '';
+        $all_news = News::where('active','=','1')
+            ->get();
 
         if (Auth::attempt(['email' => $email, 'password' => $password]))
         {
@@ -55,9 +63,10 @@ class UserController extends Controller
                     ->with('message',$message)
                     ->with('message_type',$message_type)
                     ->with('email',$email)
-                    ->with('id',$id);
+                    ->with('id',$id)
+                    ->with('all_news',$all_news);
             }
-            return redirect()->intended('user');
+            return redirect()->intended('user')->with('all_news',$all_news);
         }
         else
         {
@@ -66,7 +75,8 @@ class UserController extends Controller
             return view('auth.login')
                 ->with('message',$message)
                 ->with('message_type',$message_type)
-                ->with('email',$email);
+                ->with('email',$email)
+                ->with('all_news',$all_news);
         }
     }
     /**
@@ -78,6 +88,8 @@ class UserController extends Controller
     public function confirmation_code($id){
 
         $confirmation_code = str_random(30);
+        $all_news = News::where('active','=','1')
+            ->get();
 
         $user = User::find($id);
         $email = $user->email;
@@ -87,7 +99,7 @@ class UserController extends Controller
             $message->to($email, 'User')
                 ->subject('Подтверждение e-mail');
         });
-        return view('auth.login');
+        return view('auth.login')->with('all_news',$all_news);
     }
 
     public function create()
@@ -142,6 +154,8 @@ class UserController extends Controller
         $user->name = Input::get('name');
         $user->email=Input::get('email');
         $user->phone=Input::get('phone');
+        $all_news = News::where('active','=','1')
+            ->get();
         if(Input::get('passport')){
             $user->passport=Input::get('passport');
             $user->passport_date=Input::get('passport_date');
@@ -149,7 +163,7 @@ class UserController extends Controller
         $user->data_processing=Input::get('data_processing');
         $user->delivery=Input::get('delivery');
         $user->save();
-        return redirect('user/'.$user->id.'/edit');
+        return redirect('user/'.$user->id.'/edit')->with('all_news',$all_news);
     }
 
     public function check_email()
@@ -205,7 +219,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('user.edit',['user'=> $user]);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.edit',['user'=> $user, 'all_news'=>$all_news]);
     }
 
     /**

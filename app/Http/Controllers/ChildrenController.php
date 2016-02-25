@@ -13,6 +13,7 @@ use Input;
 use Illuminate\Routing;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Validator;
+use App\News;
 class ChildrenController extends Controller
 {
     /**
@@ -25,7 +26,9 @@ class ChildrenController extends Controller
         $user_id = Session::get('user_id');
         $user = User::find($user_id);
         $childrens=Children::where('user_id','=',$user_id)->get();
-        return view('user.childrens', ['childrens'=> $childrens,'user'=>$user]);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.childrens', ['childrens'=> $childrens,'user'=>$user,'all_news'=>$all_news]);
     }
 
     /**
@@ -36,8 +39,11 @@ class ChildrenController extends Controller
     public function create()
     {
         $children = new Children();
+        $all_news = News::where('active','=','1')
+            ->get();
 
-        return view('user.edit_children',['children'=> $children]);
+        $members=new \Illuminate\Database\Eloquent\Collection;
+        return view('user.edit_children',['children'=> $children,'all_news'=>$all_news,'members'=>$members]);
     }
 
     public function save(){
@@ -60,6 +66,8 @@ class ChildrenController extends Controller
         $children->adress = Request::input('adress');
         $children->reference = Request::input('reference');
         $children->save();
+        $all_news = News::where('active','=','1')
+            ->get();
         return redirect('user/childrens');
     }
 
@@ -379,15 +387,16 @@ class ChildrenController extends Controller
             ->join('programs','proposales.program_id','=','programs.id')
             ->select('programs.title as program_title','programs.start_date as program_start','programs.finish_date as program_finish')
             ->get();
-
-
-
-        return view('user.edit_children',['children'=> $children,'members'=>$members]);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.edit_children',['children'=> $children,'members'=>$members,'all_news'=>$all_news]);
     }
 
     public function edit_application_form($id){
         $children = Children::find($id);
-        return view('user.application_form',['children'=> $children]);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.application_form',['children'=> $children,'all_news'=>$all_news]);
     }
 
     public function admin_edit($id)
