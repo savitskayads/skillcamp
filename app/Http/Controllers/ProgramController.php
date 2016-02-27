@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Vacation;
 use Request;
-
 use Requests;
 use App\Http\Controllers\Controller;
 use App\Program;
@@ -141,7 +141,9 @@ class ProgramController extends Controller
     public function edit($id)
     {
         $program = Program::find($id);
-        return view('admin.edit_program',['program'=> $program]);
+        $vacations = Vacation::where('program_id','=',$id)->get();
+
+        return view('admin.edit_program',['program'=> $program,'vacations'=>$vacations]);
     }
 
     /**

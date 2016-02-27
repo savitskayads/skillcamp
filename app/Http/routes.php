@@ -89,6 +89,12 @@ Route::group(['prefix' => 'admin'],function()
     Route::any('/programs/unpublish/{id}', ['middleware' => 'admin', 'uses'=>'ProgramController@unpublish'] );
     Route::any('programs/{id}/delete', ['middleware' => 'admin', 'uses'=>'ProgramController@destroy'] );
 
+    //Vacations routes
+    Route::get('programs/{id}/vacation/create', ['middleware' => 'admin', 'uses'=>'VacationController@create'] );
+    Route::post('programs/vacation/save', ['middleware' => 'admin', 'uses'=>'VacationController@save'] );
+    Route::get('programs/vacation/{id}/edit', ['middleware' => 'admin', 'uses'=>'VacationController@edit'] );
+    Route::get('programs/vacation/{vacation_id}/delete', ['middleware' => 'admin', 'uses'=>'VacationController@destroy'] );
+
     //Proposales routes
     Route::get('proposales', ['middleware' => 'admin', 'uses'=>'ProposaleController@index'] );
 

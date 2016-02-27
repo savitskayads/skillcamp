@@ -75,74 +75,6 @@
                 <label class="radio-inline"><input type="radio" name="sex" value="womens" @if($program->sex=='womens')checked="checked"@endif>девочки</label>
                 <label class="radio-inline"><input type="radio" name="sex" value="all"  @if($program->sex=='all')checked="checked"@endif>все</label>
             </div>
-
-            <div class="inline-block">
-                <div class="line-title"><span>Начало программы </span></div><div class="line-value">
-                    @if($program->start_date!='')
-                    {!! Form::text('start_date', date('d/m/Y',strtotime($program->start_date)), ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                    {!! Form::text('start_date','', ['placeholder' => 'Начало', 'class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                </div>
-            </div>
-            <div class="inline-block">
-                <div class="line-title"><span>Окончание программы </span></div><div class="line-value">
-                    @if($program->finish_date!='')
-                        {!! Form::text('finish_date',date('d/m/Y',strtotime($program->finish_date)), ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('finish_date','', ['placeholder' => 'Окончание', 'class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                </div>
-            </div>
-            <div class="inline-block">
-                <div class="line-title"><span>Смена 1 </span></div><div class="line-value">
-                    начало
-                    @if($program->session_1_start!='')
-                        {!! Form::text('session_1_start', date('d/m/Y',strtotime($program->session_1_start)), ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('session_1_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                    окончание
-                    @if($program->session_1_finish!='')
-                        {!! Form::text('session_1_finish', date('d/m/Y',strtotime($program->session_1_finish)), ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('session_1_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                   </div>
-            </div>
-            <div class="inline-block">
-                <div class="line-title"><span>Смена 2 </span></div><div class="line-value">
-                    начало
-                    @if($program->session_2_start!='')
-                        {!! Form::text('session_2_start', date('d/m/Y',strtotime($program->session_2_start)), ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('session_2_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                    окончание
-                    @if($program->session_2_finish!='')
-                        {!! Form::text('session_2_finish', date('d/m/Y',strtotime($program->session_2_finish)), ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('session_2_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                </div>
-            </div>
-            <div class="inline-block">
-                <div class="line-title"><span>Смена 3 </span></div><div class="line-value">
-                    начало
-                    @if($program->session_3_start!='')
-                        {!! Form::text('session_3_start', date('d/m/Y',strtotime($program->session_3_start)), ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('session_3_start', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                    окончание
-                    @if($program->session_3_finish!='')
-                        {!! Form::text('session_3_finish', date('d/m/Y',strtotime($program->session_3_finish)), ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @else
-                        {!! Form::text('session_3_finish', '', ['class'=>'inputbox','class'=>'datepicker']) !!}
-                    @endif
-                </div>
-            </div>
-
             <div class="inline-block">
                 <div class="title"><span>Описание</span></div><div class="value"><textarea class="textbox" type="text" name="description" placeholder="Описание программы">{{ $program->description }}</textarea></div>
             </div>
@@ -150,16 +82,36 @@
                 <div class="line-title">Документы, которые необходимо прикрепить:</div>
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Документ 1</span></div>
+                <div class="line-title"><span>Документ</span></div>
                 {!! Form::checkbox('document_1', $program->document_1, $program->document_1) !!}
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Документ 2</span></div>
+                <div class="line-title"><span>Полис</span></div>
                 {!! Form::checkbox('document_2', $program->document_2, $program->document_2) !!}
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Документ 3</span></div>
+                <div class="line-title"><span>Справка о контактах</span></div>
                 {!! Form::checkbox('document_3', $program->document_3, $program->document_3) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Справка о прививках</span></div>
+                {!! Form::checkbox('document_4', $program->document_4, $program->document_4) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Справка в бассейн</span></div>
+                {!! Form::checkbox('document_5', $program->document_5, $program->document_5) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Справка о нагрузках</span></div>
+                {!! Form::checkbox('document_6', $program->document_6, $program->document_6) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Согласие о пересечении границы</span></div>
+                {!! Form::checkbox('document_7', $program->document_7, $program->document_7) !!}
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Справка из школы</span></div>
+                {!! Form::checkbox('document_8', $program->document_8, $program->document_8) !!}
             </div>
         </div>
         <div class="add-event">
@@ -171,7 +123,104 @@
                 </div>
             </div>
         </div>
-        {!! Form::close() !!}
+    {!! Form::close() !!}
+
+    <br>
+    <h3 style="margin-left: 15%;">Время проведения программы</h3>
+    <a href="{{web_url()}}/admin/programs/{{$program->id}}/vacation/create" class="btn add" style="margin-left: 15%; margin-top: 1%; margin-bottom: 1%;">Добавить</a>
+    <br>
+    @if($vacations->count()!=0)
+    <table class="table-list" style="margin-left: 15%;">
+        <tr>
+            <th>Год</th>
+            <th>Сезон</th>
+            <th>Время проведения</th>
+            <th>Смена 1</th>
+            <th>Смена 2</th>
+            <th>Смена 3</th>
+            <th>Смена 4</th>
+            <th>Смена 5</th>
+            <th>Смена 6</th>
+            <th>Смена 7</th>
+            <th>Смена 8</th>
+            <th>Смена 9</th>
+            <th>Смена 10</th>
+        </tr>
+        @foreach($vacations as $vacation)
+            <tr class='vacation' id={{$vacation->id}}>
+                <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">{{$vacation->year}}</a></td>
+                <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">{{$vacation->season}}</a></td>
+                <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">с {{$vacation->start_date}} по {{$vacation->finish_date}}</a></td>
+                <td>
+                    @if($vacation->session_1_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_1_start}} по {{$vacation->session_1_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_2_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_2_start}} по {{$vacation->session_2_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_3_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_3_start}} по {{$vacation->session_3_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_4_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_4_start}} по {{$vacation->session_4_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_5_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_5_start}} по {{$vacation->session_5_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_6_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_6_start}} по {{$vacation->session_6_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_7_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_7_start}} по {{$vacation->session_7_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_8_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_8_start}} по {{$vacation->session_8_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_9_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_9_start}} по {{$vacation->session_9_finish}}
+                    @else
+                        нет
+                    @endif
+                </td><td>
+                    @if($vacation->session_10_start!='0000-00-00 00:00:00')
+                        с {{$vacation->session_10_start}} по {{$vacation->session_10_finish}}
+                    @else
+                        нет
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </table>
+    @else
+        <br>
+        <div class="inline-block" style="margin-left: 15%;">
+            <div class="line-title"><span>Время проведения еще не добавлено</span></div>
+        </div>
+    @endif
 
     <script type="text/javascript">
         $('input[name=active]').on('click',function(){
@@ -187,6 +236,26 @@
             this.value=v;
         });
         $('input[name=document_3]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_4]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_5]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_6]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_7]').on('click',function(){
+            var v=Math.abs(this.value-1);
+            this.value=v;
+        });
+        $('input[name=document_8]').on('click',function(){
             var v=Math.abs(this.value-1);
             this.value=v;
         });
