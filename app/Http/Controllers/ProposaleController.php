@@ -13,6 +13,7 @@ use App\Program;
 use Session;
 use Input;
 use App\News;
+use App\Vacation;
 
 class ProposaleController extends Controller
 {
@@ -150,8 +151,9 @@ class ProposaleController extends Controller
         $proposales = Proposale::where('proposales.user_id','=',$user_id)
               ->join('childrens','proposales.children_id','=','childrens.id')
             ->join('programs','proposales.program_id','=','programs.id')
+            ->join('vacations','proposales.vacation_id','=','vacations.id')
             ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
-                'programs.start_date as program_start','programs.finish_date as program_finish','childrens.application_form as application_form')
+                'vacations.start_date as program_start','vacations.finish_date as program_finish','childrens.application_form as application_form')
             ->get();
         $all_news = News::where('active','=','1')
             ->get();

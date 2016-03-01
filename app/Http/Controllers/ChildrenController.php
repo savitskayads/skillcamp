@@ -42,7 +42,7 @@ class ChildrenController extends Controller
         $all_news = News::where('active','=','1')
             ->get();
 
-        $members=new \Illuminate\Database\Eloquent\Collection;
+        $members= new \Illuminate\Database\Eloquent\Collection;
         return view('user.edit_children',['children'=> $children,'all_news'=>$all_news,'members'=>$members]);
     }
 

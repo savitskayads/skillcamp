@@ -126,9 +126,10 @@ class ProgramController extends Controller
     public function show($id)
     {
         $program = Program::find($id);
+        $vacations = Vacation::where('program_id','=',$id)->get();
         $all_news = News::where('active','=','1')
             ->get();
-        return view('event', ['program' => $program, 'all_news'=>$all_news]);
+        return view('event', ['program' => $program, 'all_news'=>$all_news,'vacations'=>$vacations]);
 
     }
 
