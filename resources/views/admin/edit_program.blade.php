@@ -127,99 +127,36 @@
 
     <br>
     <h3 style="margin-left: 15%;">Время проведения программы</h3>
-    <a href="{{web_url()}}/admin/programs/{{$program->id}}/vacation/create" class="btn add" style="margin-left: 15%; margin-top: 1%; margin-bottom: 1%;">Добавить</a>
-    <br>
-    @if($vacations->count()!=0)
-    <table class="table-list" style="margin-left: 15%;">
-        <tr>
-            <th>Год</th>
-            <th>Сезон</th>
-            <th>Время проведения</th>
-            <th>Смена 1</th>
-            <th>Смена 2</th>
-            <th>Смена 3</th>
-            <th>Смена 4</th>
-            <th>Смена 5</th>
-            <th>Смена 6</th>
-            <th>Смена 7</th>
-            <th>Смена 8</th>
-            <th>Смена 9</th>
-            <th>Смена 10</th>
-        </tr>
-        @foreach($vacations as $vacation)
-            <tr class='vacation' id={{$vacation->id}}>
-                <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">{{$vacation->year}}</a></td>
-                <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">{{$vacation->season}}</a></td>
-                <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">с {{$vacation->start_date}} по {{$vacation->finish_date}}</a></td>
-                <td>
-                    @if($vacation->session_1_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_1_start}} по {{$vacation->session_1_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_2_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_2_start}} по {{$vacation->session_2_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_3_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_3_start}} по {{$vacation->session_3_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_4_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_4_start}} по {{$vacation->session_4_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_5_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_5_start}} по {{$vacation->session_5_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_6_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_6_start}} по {{$vacation->session_6_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_7_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_7_start}} по {{$vacation->session_7_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_8_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_8_start}} по {{$vacation->session_8_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_9_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_9_start}} по {{$vacation->session_9_finish}}
-                    @else
-                        нет
-                    @endif
-                </td><td>
-                    @if($vacation->session_10_start!='0000-00-00 00:00:00')
-                        с {{$vacation->session_10_start}} по {{$vacation->session_10_finish}}
-                    @else
-                        нет
-                    @endif
-                </td>
-            </tr>
-        @endforeach
-    </table>
-    @else
         <br>
-        <div class="inline-block" style="margin-left: 15%;">
-            <div class="line-title"><span>Время проведения еще не добавлено</span></div>
-        </div>
+    @if(!isset($program->id))
+        <span style="margin-left: 15%; margin-bottom: 15%">Чтобы добавить время проведения программы, сначала сохраните текущую программу</span>
+        <br>
+    @else
+        <a href="{{web_url()}}/admin/programs/{{$program->id}}/vacation/create" class="btn add" style="margin-left: 15%; margin-top: 1%; margin-bottom: 1%;">Добавить</a>
+        @if($vacations->count()!=0)
+            <table class="table-list" style="margin-left: 15%;">
+                <tr>
+                    <th>Год</th>
+                    <th>Сезон</th>
+                    <th>Время проведения</th>
+                </tr>
+                @foreach($vacations as $vacation)
+                    <tr class='vacation' id={{$vacation->id}}>
+                        <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">{{$vacation->year}}</a></td>
+                        <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">{{$vacation->season}}</a></td>
+                        <td><a href="{{web_url()}}/admin/programs/vacation/{{$vacation->id}}/edit">
+                                с {{$vacation->start_date}} по {{$vacation->finish_date}}
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        @else
+            <br>
+            <div class="inline-block" style="margin-left: 15%;">
+                <div class="line-title"><span>Время проведения еще не добавлено</span></div>
+            </div>
+        @endif
     @endif
 
     <script type="text/javascript">

@@ -95,6 +95,12 @@ Route::group(['prefix' => 'admin'],function()
     Route::get('programs/vacation/{id}/edit', ['middleware' => 'admin', 'uses'=>'VacationController@edit'] );
     Route::get('programs/vacation/{vacation_id}/delete', ['middleware' => 'admin', 'uses'=>'VacationController@destroy'] );
 
+    //Sessions routes
+    Route::get('programs/{id}/session/create', ['middleware' => 'admin', 'uses'=>'SessionController@create'] );
+    Route::get('programs/session/{id}/edit', ['middleware' => 'admin', 'uses'=>'SessionController@edit'] );
+    Route::post('programs/session/save', ['middleware' => 'admin', 'uses'=>'SessionController@save'] );
+    Route::get('programs/session/{id}/delete', ['middleware' => 'admin', 'uses'=>'SessionController@destroy'] );
+
     //Proposales routes
     Route::get('proposales', ['middleware' => 'admin', 'uses'=>'ProposaleController@index'] );
 
