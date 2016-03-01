@@ -28,7 +28,10 @@ class IndexController extends Controller
             9 => 'Сентября', 10 => 'Октября', 11 => 'Ноября', 12 => 'Декабря'
         );
 
-        $programs = Program::where('active','=','1')
+        $programs = Program::join('vacations','programs.id','=','vacations.program_id')
+            ->where('programs.active','=','1')
+            ->where('vacations.active','=',1)
+            ->select('programs.*','vacations.*','vacations.id as vacation_id','programs.id as id')
             ->get();
 
         $all_news = News::where('active','=','1')

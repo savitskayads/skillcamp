@@ -29,8 +29,10 @@
 							<div class="value"><span>осталось {{ $program->places - $program->busy_places }}</span></div>
 						</div>
 						<div class="line">
-							<div class="title"><span>Дата проведения</span></div>
-							<div class="value"><span>с {{ date('d/m/Y',strtotime($program->start_date)) }} по {{ date('d/m/Y',strtotime($program->finish_date)) }}</span></div>
+							<div class="title"><span>Время проведения</span></div>
+							@foreach($vacations as $vacation)
+								<div class="value"><span>с {{ date('d/m/Y',strtotime($vacation->start_date)) }} по {{ date('d/m/Y',strtotime($vacation->finish_date)) }}</span></div>
+							@endforeach
 						</div>
 					</div>
 					<div class="col clear">
@@ -262,30 +264,6 @@
 					<div id="place-map"></div>
 					<script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=cMaesNNr-Pbg8a3DazJQ6ITWFhHkTTY3&id=place-map&lang=ru_RU&sourceType=constructor"></script>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="news block">
-		<div class="head wrap"><span>Новости</span></div>
-		<div class="content wrap">
-			<div class="content-list clear">
-				@foreach($all_news as $news)
-					<div class="item">
-						<div class="content">
-							<div class="image">
-								@if($news->image == '')
-									<div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" alt="" width="340" height="127"></div>
-								@else
-									<div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $news->image }}" alt="" width="340" height="127"></div>
-								@endif
-							</div>
-							<div class="head"><a href="{{web_url()}}/news/{{$news->id}}"><span>{{ $news->title }}</span></a></div>
-							<div class="text">
-								<span>{{ $news->description }}</span>
-							</div>
-						</div>
-					</div>
-				@endforeach
 			</div>
 		</div>
 	</div>
