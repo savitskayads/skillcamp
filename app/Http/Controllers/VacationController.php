@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Session;
+use App\Part;
 use App\Vacation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -33,8 +33,8 @@ class VacationController extends Controller
     public function create($id)
     {
         $vacation = new Vacation();
-        $sessions = new \Illuminate\Database\Eloquent\Collection;
-        return view('admin.edit_vacation',['vacation'=> $vacation,'sessions'=>$sessions,'program_id'=>$id]);
+        $parts = new \Illuminate\Database\Eloquent\Collection;
+        return view('admin.edit_vacation',['vacation'=> $vacation,'parts'=>$parts,'program_id'=>$id]);
     }
 
     public function save(){
@@ -88,8 +88,8 @@ class VacationController extends Controller
     {
         $vacation = Vacation::find($id);
         $program_id = $vacation->program_id;
-        $sessions = Session::where('vacation_id','=',$vacation->id)->get();
-        return view('admin.edit_vacation',['vacation'=> $vacation,'program_id'=>$program_id,'sessions'=>$sessions]);
+        $parts = Part::where('vacation_id','=',$vacation->id)->get();
+        return view('admin.edit_vacation',['vacation'=> $vacation,'program_id'=>$program_id,'parts'=>$parts]);
     }
 
     /**

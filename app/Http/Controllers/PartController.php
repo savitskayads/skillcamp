@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Session;
+use App\Part;
 use App\Vacation;
 use Input;
 
-class SessionController extends Controller
+class PartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,15 +26,15 @@ class SessionController extends Controller
     public function save(){
         $program_id = Input::get('program_id');
         $vacation_id = Input::get('vacation_id');
-        $session = Session::find(Input::get('id'));
-        if(!$session){
-            $session=new Session();
-            $session->program_id=$program_id;
-            $session->vacation_id=$vacation_id;
+        $part = Part::find(Input::get('id'));
+        if(!$part){
+            $part=new Part();
+            $part->program_id=$program_id;
+            $part->vacation_id=$vacation_id;
         }
-        $session->start_date = date( "Y-m-d" , strtotime(Input::get('start_date')));
-        $session->finish_date = date( "Y-m-d" ,strtotime(Input::get('finish_date')));
-        $session->save();
+        $part->start_date = date( "Y-m-d" , strtotime(Input::get('start_date')));
+        $part->finish_date = date( "Y-m-d" ,strtotime(Input::get('finish_date')));
+        $part->save();
         return redirect('/admin/programs/vacation/'.$vacation_id.'/edit');
 
     }
@@ -46,9 +46,9 @@ class SessionController extends Controller
      */
     public function create($id)
     {
-        $session = new Session();
+        $part = new Part();
         $program_id = Vacation::find($id)->program_id;
-        return view('admin.edit_session',['session'=> $session,'program_id'=>$program_id,'vacation_id'=>$id]);
+        return view('admin.edit_part',['part'=> $part,'program_id'=>$program_id,'vacation_id'=>$id]);
     }
 
 
@@ -81,10 +81,10 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $session = Session::find($id);
-        $program_id = $session->program_id;
-        $vacation_id = $session->vacation_id;
-        return view('admin.edit_session',['vacation_id'=> $vacation_id,'program_id'=>$program_id,'session'=>$session]);
+        $part = Part::find($id);
+        $program_id = $part->program_id;
+        $vacation_id = $part->vacation_id;
+        return view('admin.edit_part',['vacation_id'=> $vacation_id,'program_id'=>$program_id,'part'=>$part]);
     }
 
     /**
@@ -107,9 +107,9 @@ class SessionController extends Controller
      */
     public function destroy($id)
     {
-        $session = Session::find($id);
-        $vacation_id = $session->vacation_id;
-        $session->delete();
+        $part = Part::find($id);
+        $vacation_id = $part->vacation_id;
+        $part->delete();
         return redirect('/admin/programs/vacation/'.$vacation_id.'/edit');
     }
 }

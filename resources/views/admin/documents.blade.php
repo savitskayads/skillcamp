@@ -36,7 +36,8 @@
                             <td>{{$proposale->registration_date}}</td>
                             <td>Зима</td>
                             <td>{{$proposale->program_name}}</td>
-                            <td>{{$proposale->session}}</td>
+                            <td>{{$proposale->vacation_id}}</td>
+                            <td>{{$proposale->part_id}}</td>
                             <td>{{$proposale->children_document}}</td>
                             <td>??</td>
                             <td>??</td>

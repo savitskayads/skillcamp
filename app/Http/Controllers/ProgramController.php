@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Part;
 use App\Vacation;
 use Request;
 use Requests;
@@ -58,19 +59,16 @@ class ProgramController extends Controller
         $program->sex = Request::input('sex');
         $program->action_price = Request::input('action_price');
         $program->action_description = Request::input('action_description');
-        $program->start_date = strtotime(Request::input('start_date')) ;
-        $program->finish_date = strtotime(Request::input('finish_date')) ;
-        $program->session_1_start = strtotime(Request::input('session_1_start')) ;
-        $program->session_1_finish = strtotime(Request::input('session_1_finish')) ;
-        $program->session_2_start = strtotime(Request::input('session_2_start')) ;
-        $program->session_2_finish = strtotime(Request::input('session_2_finish')) ;
-        $program->session_3_start = strtotime(Request::input('session_3_start')) ;
-        $program->session_3_finish = strtotime(Request::input('session_3_finish')) ;
         $program->description = Request::input('description');
         $program->active = Request::input('active');
         $program->document_1 = Request::input('document_1');
         $program->document_2 = Request::input('document_2');
         $program->document_3 = Request::input('document_3');
+        $program->document_4 = Request::input('document_4');
+        $program->document_5 = Request::input('document_5');
+        $program->document_6 = Request::input('document_6');
+        $program->document_7 = Request::input('document_7');
+        $program->document_8 = Request::input('document_8');
         $program->save();
         if(Request::hasFile('img')){
 
@@ -185,5 +183,17 @@ class ProgramController extends Controller
         $program->active = 0;
         $program -> save();
         return 'true';
+    }
+
+    public function get_program($id){
+        $program = Program::find($id);
+        $vacations = Vacation::where('program_id','=',$id)->get();
+        return $vacations->toJson();
+    }
+
+    public function get_vacation($id){
+        $vacation = Vacation::find($id);
+        $parts = Part::where('vacation_id','=',$id)->get();
+        return $parts->toJson();
     }
 }

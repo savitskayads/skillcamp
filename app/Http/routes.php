@@ -36,6 +36,8 @@ Route::get('program/proposale/{id}', 'ProposaleController@get_proposale');
 Route::get('program/{id}', 'ProgramController@show');
 Route::get('news/{id}', 'NewsController@show');
 Route::get('programs/{vacation}', 'IndexController@vacations');
+Route::any('/programs/get_program/{id}','ProgramController@get_program' );
+Route::any('/programs/get_vacation/{id}','ProgramController@get_vacation' );
 
 //User routes
 Route::group(['prefix' => 'user'],function()
@@ -95,11 +97,11 @@ Route::group(['prefix' => 'admin'],function()
     Route::get('programs/vacation/{id}/edit', ['middleware' => 'admin', 'uses'=>'VacationController@edit'] );
     Route::get('programs/vacation/{vacation_id}/delete', ['middleware' => 'admin', 'uses'=>'VacationController@destroy'] );
 
-    //Sessions routes
-    Route::get('programs/{id}/session/create', ['middleware' => 'admin', 'uses'=>'SessionController@create'] );
-    Route::get('programs/session/{id}/edit', ['middleware' => 'admin', 'uses'=>'SessionController@edit'] );
-    Route::post('programs/session/save', ['middleware' => 'admin', 'uses'=>'SessionController@save'] );
-    Route::get('programs/session/{id}/delete', ['middleware' => 'admin', 'uses'=>'SessionController@destroy'] );
+    //Parts routes
+    Route::get('programs/{id}/part/create', ['middleware' => 'admin', 'uses'=>'PartController@create'] );
+    Route::get('programs/part/{id}/edit', ['middleware' => 'admin', 'uses'=>'PartController@edit'] );
+    Route::post('programs/part/save', ['middleware' => 'admin', 'uses'=>'PartController@save'] );
+    Route::get('programs/part/{id}/delete', ['middleware' => 'admin', 'uses'=>'PartController@destroy'] );
 
     //Proposales routes
     Route::get('proposales', ['middleware' => 'admin', 'uses'=>'ProposaleController@index'] );

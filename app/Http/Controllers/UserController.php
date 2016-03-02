@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Child;
+use App\Part;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

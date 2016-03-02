@@ -259,7 +259,7 @@
                         <td>{{$proposale->registration_date}}</td>
                         <td>Зима</td>
                         <td>{{$proposale->program_name}}</td>
-                        <td>{{$proposale->session}}</td>
+                        <td>{{$proposale->part}}</td>
                     </tr>
                 @endforeach
             </table>

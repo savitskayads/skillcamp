@@ -59,17 +59,17 @@
             @if(!isset($vacation->id))
                 Чтобы добавить смену, сначала добавьте и сохраните время проведения программы
             @else
-            <a href="{{web_url()}}/admin/programs/{{$vacation->id}}/session/create" class="btn add" style="margin-top: 1%; margin-bottom: 1%;">Добавить</a>
+            <a href="{{web_url()}}/admin/programs/{{$vacation->id}}/part/create" class="btn add" style="margin-top: 1%; margin-bottom: 1%;">Добавить</a>
             <br>
-                @if($sessions->count()!=0)
+                @if($parts->count()!=0)
                     <table class="table-list">
                         <tr>
                             <th>Время проведения</th>
                         </tr>
-                        @foreach($sessions as $session)
-                            <tr class='session' id={{$session->id}}>
-                                <td><a href="{{web_url()}}/admin/programs/session/{{$session->id}}/edit">
-                                        с {{$session->start_date}} по {{$session->finish_date}}
+                        @foreach($parts as $part)
+                            <tr class='part' id={{$part->id}}>
+                                <td><a href="{{web_url()}}/admin/programs/part/{{$part->id}}/edit">
+                                        с {{$part->start_date}} по {{$part->finish_date}}
                                     </a>
                                 </td>
                             </tr>

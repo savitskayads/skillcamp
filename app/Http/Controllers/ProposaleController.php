@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Children;
+use App\Part;
 use App\User;
 use App\Proposale;
 use Illuminate\Http\Request;
@@ -43,10 +44,16 @@ class ProposaleController extends Controller
             $selected_program_id = 0;
         }
         $programs = Program::all();
+        $vacations = Vacation::where('program_id','=',$id)->get();
+        $first_vacation = Vacation::where('program_id','=',$id)->first()->pluck('id');
+        $parts = Part::where('vacation_id','=',$first_vacation)->get();
         $all_news = News::where('active','=','1')
             ->get();
         return view('user.proposale')
             ->with('programs',$programs)
+            ->with('vacations',$vacations)
+            ->with('first_vacation',$first_vacation)
+            ->with('parts',$parts)
             ->with('selected_program_id',$selected_program_id)
             ->with('all_news',$all_news);
     }
@@ -63,7 +70,8 @@ class ProposaleController extends Controller
         $user_id = Session::get('user_id');
         $proposale->user_id = $user_id;
         $proposale->program_id = Input::get('program_id');
-        $proposale->session = Input::get('session');
+        $proposale->vacation_id = Input::get('vacation_id');
+        $proposale->part_id = Input::get('part_id');
         if (!Input::get('transfer')){
             $proposale->transfer = 'нет';
         } else {
@@ -134,7 +142,8 @@ class ProposaleController extends Controller
         $proposale->children_id = $children_id;
         $proposale->user_id = $user_id;
         $proposale->program_id = $temporary_proposale->program_id;
-        $proposale->session = $temporary_proposale->session;
+        $proposale->vacation_id = $temporary_proposale->vacation_id;
+        $proposale->part_id = $temporary_proposale->part_id;
         $proposale->transfer =$temporary_proposale->transfer;
         $proposale->registration_date = $temporary_proposale->registration_date;
         $proposale->save();
@@ -149,11 +158,13 @@ class ProposaleController extends Controller
     {
         $user_id = Session::get('user_id');
         $proposales = Proposale::where('proposales.user_id','=',$user_id)
-              ->join('childrens','proposales.children_id','=','childrens.id')
+            ->join('childrens','proposales.children_id','=','childrens.id')
             ->join('programs','proposales.program_id','=','programs.id')
             ->join('vacations','proposales.vacation_id','=','vacations.id')
+            ->join('parts','proposales.part_id','=','parts.id')
             ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
-                'vacations.start_date as program_start','vacations.finish_date as program_finish','childrens.application_form as application_form')
+                'vacations.start_date as program_start','vacations.finish_date as program_finish',
+                'parts.start_date as part_start','parts.finish_date as part_finish','childrens.application_form as application_form')
             ->get();
         $all_news = News::where('active','=','1')
             ->get();

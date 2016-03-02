@@ -7,18 +7,35 @@
         <br>
         <div class="form-group">
             <label for="sel1">Программа</label>
-            <select class="form-control" id="sel1" name="program_id">
+            <select class="form-control program" id="sel1" name="program_id">
                 @foreach($programs as $program)
                 <option value="{{$program->id}}" {{ $program->id == $selected_program_id ? "selected" : ""}}>{{$program->title}}</option>
                @endforeach
             </select>
         </div>
         <div class="form-group">
+            <label for="sel1">Период проведения</label>
+            <select class="form-control vacations" id="sel1" name="vacation_id">
+                @if($vacations->count()==0)
+                    <option value="0">даты проведения программы еще не добавлены</option>
+                @else
+                    @foreach($vacations as $vacation)
+                        <option value="{{$vacation->id}}"> c {{$vacation->start_date}} по {{$vacation->finish_date}}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="sel1">Смена</label>
-            <select class="form-control" id="sel1" name="session">
-                    <option value="1">Первая</option>
-                    <option value="2">Вторая</option>
-                    <option value="3">Третья</option>
+            <select class="form-control parts" id="sel1" name="part_id">
+                @if($parts->count()==0)
+                    <option value="0">даты смен не добавлены</option>
+                @else
+                    @foreach($parts as $part)
+                        <option value="{{$part->id}}">c {{$part->start_date}} по {{$part->finish_date}}</option>
+                    @endforeach
+                @endif
             </select>
         </div>
         <div class="form-group">
@@ -41,5 +58,38 @@
             <a href="{{web_url()}}" class="btn btn-danger">Отмена</a>
         </div>
     </form>
+
+    <script type="text/javascript">
+        $('.program').on('change',function(){
+            var program_id = $(this).val();
+//            console.log(program_id);
+            $.ajax({ url: "{{ web_url() }}/programs/get_program/"+program_id,
+                type: 'get',
+                dataType: 'json',
+                success:
+                        function(data) {
+                            $.each(data, function(i, v){
+                                console.log(v.start_date);
+                                console.log(v.finish_date);
+                            });
+                        }
+            });
+        });
+
+        $('.vacations').on('change',function(){
+            var vacation_id = $(this).val();
+            $.ajax({ url: "{{ web_url() }}/programs/get_vacation/"+vacation_id,
+                type: 'get',
+                dataType: 'json',
+                success:
+                        function(data) {
+                            $.each(data, function(i, v){
+                                console.log(v.start_date);
+                                console.log(v.finish_date);
+                            });
+                        }
+            });
+        })
+    </script>
 
 @stop
