@@ -20,7 +20,7 @@
                     <option value="0">даты проведения программы еще не добавлены</option>
                 @else
                     @foreach($vacations as $vacation)
-                        <option value="{{$vacation->id}}"> c {{$vacation->start_date}} по {{$vacation->finish_date}}</option>
+                        <option  class="vacation" value="{{$vacation->id}}"> c {{$vacation->start_date}} по {{$vacation->finish_date}}</option>
                     @endforeach
                 @endif
             </select>
@@ -33,7 +33,7 @@
                     <option value="0">даты смен не добавлены</option>
                 @else
                     @foreach($parts as $part)
-                        <option value="{{$part->id}}">c {{$part->start_date}} по {{$part->finish_date}}</option>
+                        <option class='part' value="{{$part->id}}">c {{$part->start_date}} по {{$part->finish_date}}</option>
                     @endforeach
                 @endif
             </select>
@@ -68,11 +68,37 @@
                 dataType: 'json',
                 success:
                         function(data) {
-                            $.each(data, function(i, v){
-                                console.log(v.start_date);
-                                console.log(v.finish_date);
-                            });
+                            $('.vacation').remove();
+                            if(data.length==0){
+                                var option = '<option class="vacation" value="0">даты проведения программы еще не добавлены</option>';
+                                $(option).prependTo('.vacations');
+                            } else {
+                                $.each(data, function(i, v){
+                                    var option = '<option class="vacation" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
+                                    $(option).prependTo('.vacations');
+                                });
+
+                                var vacation_id = data[0].id;
+                                $.ajax({ url: "{{ web_url() }}/programs/get_vacation/"+vacation_id,
+                                    type: 'get',
+                                    dataType: 'json',
+                                    success:
+                                            function(data) {
+                                                $('.part').remove();
+                                                if(data.length==0){
+                                                    var option = '<option class ="part" value="0">даты смен не добавлены</option>';
+                                                    $(option).prependTo('.parts');
+                                                } else{
+                                                    $.each(data, function(i, v){
+                                                        var option = '<option class ="part" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
+                                                        $(option).prependTo('.parts');
+                                                    });
+                                                }
+                                            }
+                                });
+                            }
                         }
+
             });
         });
 
@@ -83,10 +109,16 @@
                 dataType: 'json',
                 success:
                         function(data) {
-                            $.each(data, function(i, v){
-                                console.log(v.start_date);
-                                console.log(v.finish_date);
-                            });
+                            $('.part').remove();
+                            if(data.length==0){
+                                var option = '<option class ="part" value="0">даты смен не добавлены</option>';
+                                $(option).prependTo('.parts');
+                            } else{
+                                $.each(data, function(i, v){
+                                    var option = '<option class ="part" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
+                                    $(option).prependTo('.parts');
+                                });
+                            }
                         }
             });
         })
