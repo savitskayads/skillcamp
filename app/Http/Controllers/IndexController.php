@@ -48,31 +48,45 @@ class IndexController extends Controller
     public function vacations($vacation){
 
         if($vacation=='winter'){
-            $programs = Program::where('active','=','1')
-                ->where('vacation','=','Зима')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->where('vacations.season','=','Зима')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         } elseif($vacation=='spring') {
-            $programs = Program::where('active', '=', '1')
-                ->where('vacation', '=', 'Весна')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->where('vacations.season','=','Весна')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         } elseif($vacation=='summer') {
-            $programs = Program::where('active', '=', '1')
-                ->where('vacation', '=', 'Лето')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->where('vacations.season','=','Лето')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         } elseif($vacation=='autumn') {
-            $programs = Program::where('active', '=', '1')
-                ->where('vacation', '=', 'Осень')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->where('vacations.season','=','Осень')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         } elseif($vacation=='weekend') {
-            $programs = Program::where('active', '=', '1')
-                ->where('vacation', '=', 'Выходной')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->where('vacations.season','=','Выходной')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         } elseif($vacation=='festival') {
-            $programs = Program::where('active', '=', '1')
-                ->where('vacation', '=', 'Фестиваль')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->where('vacations.season','=','Фестиваль')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         } else {
-            $programs = Program::where('active','=','1')
+            $programs = Program::where('programs.active','=','1')
+                ->join('vacations','programs.id','=','vacations.program_id')
+                ->orderBy('programs.id', 'desc')
                 ->get();
         }
         $all_news = News::where('active','=','1')

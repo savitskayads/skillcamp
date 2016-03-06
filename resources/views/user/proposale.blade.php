@@ -9,7 +9,7 @@
             <label for="sel1">Программа</label>
             <select class="form-control program" id="sel1" name="program_id">
                 @foreach($programs as $program)
-                <option value="{{$program->id}}" {{ $program->id == $selected_program_id ? "selected" : ""}}>{{$program->title}}</option>
+                <option value="{{$program->id}}" {{ $program->id == $selected_program->id ? "selected" : ""}}>{{$program->title}}</option>
                @endforeach
             </select>
         </div>
@@ -20,7 +20,9 @@
                     <option value="0">даты проведения программы еще не добавлены</option>
                 @else
                     @foreach($vacations as $vacation)
-                        <option  class="vacation" value="{{$vacation->id}}"> c {{$vacation->start_date}} по {{$vacation->finish_date}}</option>
+                        <option  class="vacation" value="{{$vacation->id}}" {{ $vacation->id == $selected_vacation->id ? "selected" : ""}}> c
+                            {{date("d/m/Y",strtotime($vacation->start_date))}} по
+                            {{date("d/m/Y",strtotime($vacation->finish_date))}}</option>
                     @endforeach
                 @endif
             </select>
@@ -33,7 +35,8 @@
                     <option value="0">даты смен не добавлены</option>
                 @else
                     @foreach($parts as $part)
-                        <option class='part' value="{{$part->id}}">c {{$part->start_date}} по {{$part->finish_date}}</option>
+                        <option class='part' value="{{$part->id}}">c {{date("d/m/Y",strtotime($part->start_date))}} по
+                            {{date("d/m/Y",strtotime($part->finish_date))}}</option>
                     @endforeach
                 @endif
             </select>
@@ -47,6 +50,20 @@
                 <label><input type="radio" name="transfer" value="самостоятельная доставка в обе стороны">самостоятельная доставка в обе стороны</label>
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="sel1">Ребенок</label>
+            <select class="form-control" id="sel1" name="children">
+                @if($childrens->count()==0)
+                    <option value="0"> Новый ребенок</option>
+                @else
+                    @foreach($childrens as $children)
+                        <option value="{{$children->id}}"> {{$children->name}} </option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="registration_date">Дата оформления</label>
             <input type="text" name="registration_date" class="form-control" value="{{date("d.m.Y")}}" disabled >

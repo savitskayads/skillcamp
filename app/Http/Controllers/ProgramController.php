@@ -54,7 +54,7 @@ class ProgramController extends Controller
         $program->telephone = Request::input('telephone');
         $program->price = Request::input('price');
         $program->places = Request::input('places');
-        $program->vacation = Request::input('vacation');
+        $program->season = Request::input('season');
         $program->age = Request::input('age');
         $program->sex = Request::input('sex');
         $program->action_price = Request::input('action_price');
@@ -130,6 +130,12 @@ class ProgramController extends Controller
         return view('event', ['program' => $program, 'all_news'=>$all_news,'vacations'=>$vacations]);
 
     }
+
+    public function show_all(){
+        $programs = Program::where('active','=',1)->get();
+        return view('user.all_programs')->with('programs',$programs);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

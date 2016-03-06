@@ -39,22 +39,30 @@ class ProposaleController extends Controller
     }
 
     public function get_proposale($id){
-        $selected_program_id = $id;
-        if(!$selected_program_id){
-            $selected_program_id = 0;
+        $selected_vacation = Vacation::find($id);
+        if (!$selected_vacation){
+            $selected_program_id=Program::first()->id;
+            $selected_vacation = Vacation::where('program_id','=',$selected_program_id)->first();
+            $selected_vacation_id = $selected_vacation->id;
+        } else {
+            $selected_program_id = $selected_vacation->program_id;
+            $selected_vacation_id = $id;
         }
+        $selected_program = Program::find($selected_program_id);
         $programs = Program::all();
-        $vacations = Vacation::where('program_id','=',$id)->get();
-        $first_vacation = Vacation::where('program_id','=',$id)->first()->pluck('id');
-        $parts = Part::where('vacation_id','=',$first_vacation)->get();
+        $vacations = Vacation::where('program_id','=',$selected_program_id)->get();
+        $parts = Part::where('vacation_id','=',$selected_vacation_id)->get();
+        $user_id = Session::get('user_id');
+        $childrens = Children::where('user_id','=',$user_id)->get();
         $all_news = News::where('active','=','1')
             ->get();
         return view('user.proposale')
+            ->with('selected_program',$selected_program)
+            ->with('selected_vacation',$selected_vacation)
             ->with('programs',$programs)
             ->with('vacations',$vacations)
-            ->with('first_vacation',$first_vacation)
             ->with('parts',$parts)
-            ->with('selected_program_id',$selected_program_id)
+            ->with('childrens',$childrens)
             ->with('all_news',$all_news);
     }
 
@@ -69,6 +77,7 @@ class ProposaleController extends Controller
         $proposale = new Temporary_proposale();
         $user_id = Session::get('user_id');
         $proposale->user_id = $user_id;
+        $proposale->children_id = Input::get('children');
         $proposale->program_id = Input::get('program_id');
         $proposale->vacation_id = Input::get('vacation_id');
         $proposale->part_id = Input::get('part_id');
@@ -130,7 +139,13 @@ class ProposaleController extends Controller
         $children->birthday_date=Input::get('birthday_date');
         $children->document=Input::get('document');
         $children->document_number=Input::get('document_number');
-        $children->member=Input::get('member');
+        $proposales = Proposale::where('children_id','=',$children_id)->count();
+        if ($proposales!=0){
+            $children->member=1;
+        } else{
+            $children->member=0;
+            $children->marketing = Input::get('marketing');
+        }
         $children->registration=Input::get('registration');
         $children->save();
 
@@ -164,7 +179,8 @@ class ProposaleController extends Controller
             ->join('parts','proposales.part_id','=','parts.id')
             ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
                 'vacations.start_date as program_start','vacations.finish_date as program_finish',
-                'parts.start_date as part_start','parts.finish_date as part_finish','childrens.application_form as application_form')
+                'parts.start_date as part_start','parts.finish_date as part_finish',
+                'childrens.application_form as application_form','childrens.id as children_id')
             ->get();
         $all_news = News::where('active','=','1')
             ->get();
