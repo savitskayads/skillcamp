@@ -43,10 +43,17 @@
                 <input type="text" name="document_number" class="form-control" value="{{$children->document_number}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
-            <div class="radio">
-                <label><input type="radio" name="member" value="1">Старый участник</label>
-                <label><input type="radio" name="member" value="0">Новый участник</label>
+            <div class="radio member-form">
+                <label><input type="radio" name="member" value="1" @if($children->member==1) checked @endif>Старый участник</label>
+                <label><input type="radio" name="member" value="0" @if($children->member==0) checked @endif>Новый участник</label>
             </div>
+            <div class="form-group marketing-form" @if($children->member==1) style="display: none" @endif>
+                <label for="marketing">Откуда узнали о нас</label>
+                <label class="radio-inline"><input type="radio" name="marketing" value="реклама в интернете">реклама в интернете</label>
+                <label class="radio-inline"><input type="radio" name="marketing" value="рекомендации знакомых">рекомендации знакомых</label>
+                <label class="radio-inline"><input type="radio" name="marketing" value="другое">другое</label>
+            </div>
+
             <div class="form-group">
                 <label for="registration">Прописка</label>
                 <textarea class="form-control" rows="3" id="comment" name="registration">{{$children->registration}}</textarea>
@@ -60,4 +67,15 @@
         </form>
         {{--{!! Form::close() !!}--}}
     </div>
+
+    <script type="text/javascript">
+        $('.member-form').on('change',function(){
+            var member = $("input[name='member']:checked").val();
+            if(member == 0){
+                $('.marketing-form').css('display','block')
+            } else {
+                $('.marketing-form').css('display','none')
+            }
+        })
+    </script>
 @stop

@@ -27,7 +27,13 @@
                         <td>{{$proposale->program_name}}</td>
                         <td>{{$proposale->children_name}}</td>
                         <td> c {{date('d/m/Y',strtotime($proposale->part_start))}} по {{date('d/m/Y',strtotime($proposale->part_finish))}}</td>
-                        <td>{{$proposale->application_form}}</td>
+                        <td>
+                            @if($proposale->application_form!="")
+                                {{$proposale->application_form}} <a href="{{web_url()}}/user/childrens/{{$proposale->children_id}}/edit_application_form"> редактировать</a>
+                            @else
+                                <a href="{{web_url()}}/user/childrens/{{$proposale->children_id}}/edit_application_form"> заполнить</a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
