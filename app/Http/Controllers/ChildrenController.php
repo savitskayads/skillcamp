@@ -101,7 +101,6 @@ class ChildrenController extends Controller
             'communication_discomfort' => 'required',
             'conviction' => 'required',
             'bad_baby' => 'required',
-            'marketing' => 'required',
             'chronic' => 'required',
             'cold' => 'required',
             'sun' => 'required',
