@@ -64,7 +64,7 @@ class ChildrenController extends Controller
         $children->document_number = Request::input('document_number');
         $children->registration = Request::input('registration');
         $children->adress = Request::input('adress');
-        $children->reference = Request::input('reference');
+        $children->marketing = Request::input('marketing');
         $children->save();
         $all_news = News::where('active','=','1')
             ->get();

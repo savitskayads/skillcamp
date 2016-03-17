@@ -29,11 +29,6 @@
                 <input type="text" name="patronymic" class="form-control" value="{{$children->patronymic}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
-            <div class="form-group">
-                <label for="sex">Пол</label>
-                <input type="text" name="sex" class="form-control" value="{{$children->sex}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            </div>
 
             <div class="form-group">
                 <label for="sex">Пол</label>
@@ -70,7 +65,7 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
             @if($members->count()!=0)
-                <input type="hidden" name="reference" class="form-control" value="{{$children->reference}}">
+                <input type="hidden" name="marketing" class="form-control" value="{{$children->marketing}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="form-group">
                     <label for="name">Учавствовал(a)</label>
@@ -80,7 +75,7 @@
                         <tr>
                             <th>Программа</th>
                             <th>Сезон</th>
-                            <th>Время участия</th>
+                            {{--<th>Время участия</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -88,7 +83,7 @@
                         <tr>
                             <td>{{$member->program_title}}</td>
                             <td>Зима</td>
-                            <td>с {{$member->start_date}} по {{$member->finish_date}}</td>
+                            {{--<td>с {{$member->start_date}} по {{$member->finish_date}}</td>--}}
                         </tr>
                         @endforeach
                         </tbody>
