@@ -44,7 +44,7 @@
         </div>
         <br>
         <p>
-            <a href="#" class="btn btn-success show-all" style="margin-top: 5px;">Показать все активные программы</a>
+            <a href="{{web_url()}}/user/all_programs" class="btn btn-success show-all" style="margin-top: 5px;">Показать все активные программы</a>
         </p>
 
         <br>
@@ -72,54 +72,54 @@
     </div>
 
     <script type="text/javascript">
-        $('.show-all').on('click',function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "{{ web_url() }}/public/user/all_programs/",
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    $('.programs').remove();
-                    $.each(data, function (i, v) {
-                        if(v.vacation_start == null){
-                            var vacation = "Даты проведения программы не определены";
-                        } else{
-                            var vacation_start_date= new Date(v.vacation_start);
-                            var vacation_start_day = vacation_start_date.getDate();
-                            var vacation_start_month= vacation_start_date.getMonth();
-                            var vacation_start_year = vacation_start_date.getFullYear();
-                            var vacation_finish_date= new Date(v.vacation_finish);
-                            var vacation_finish_day = vacation_finish_date.getDate();
-                            var vacation_finish_month= vacation_finish_date.getMonth();
-                            var vacation_finish_year = vacation_finish_date.getFullYear();
-                            var vacation = "c " + vacation_start_day+"/"+vacation_start_month+"/"+vacation_start_year  + " по "
-                                    + vacation_finish_day+"/"+vacation_finish_month+"/"+vacation_finish_year;
-                        }
-                        if(v.part_start == null){
-                            var part = "Даты смены не определены"
-                        } else {
-                            var part_start_date= new Date(v.part_start);
-                            var part_start_day = part_start_date.getDate();
-                            var part_start_month= part_start_date.getMonth();
-                            var part_start_year = part_start_date.getFullYear();
-                            var part_finish_date= new Date(v.part_finish);
-                            var part_finish_day = part_finish_date.getDate();
-                            var part_finish_month= part_finish_date.getMonth();
-                            var part_finish_year = part_finish_date.getFullYear();
+        {{--$('.show-all').on('click',function(e) {--}}
+            {{--e.preventDefault();--}}
+            {{--$.ajax({--}}
+                {{--url: "{{ web_url() }}/public/user/all_programs/",--}}
+                {{--type: 'get',--}}
+                {{--dataType: 'json',--}}
+                {{--success: function (data) {--}}
+                    {{--$('.programs').remove();--}}
+                    {{--$.each(data, function (i, v) {--}}
+                        {{--if(v.vacation_start == null){--}}
+                            {{--var vacation = "Даты проведения программы не определены";--}}
+                        {{--} else{--}}
+                            {{--var vacation_start_date= new Date(v.vacation_start);--}}
+                            {{--var vacation_start_day = vacation_start_date.getDate();--}}
+                            {{--var vacation_start_month= vacation_start_date.getMonth();--}}
+                            {{--var vacation_start_year = vacation_start_date.getFullYear();--}}
+                            {{--var vacation_finish_date= new Date(v.vacation_finish);--}}
+                            {{--var vacation_finish_day = vacation_finish_date.getDate();--}}
+                            {{--var vacation_finish_month= vacation_finish_date.getMonth();--}}
+                            {{--var vacation_finish_year = vacation_finish_date.getFullYear();--}}
+                            {{--var vacation = "c " + vacation_start_day+"/"+vacation_start_month+"/"+vacation_start_year  + " по "--}}
+                                    {{--+ vacation_finish_day+"/"+vacation_finish_month+"/"+vacation_finish_year;--}}
+                        {{--}--}}
+                        {{--if(v.part_start == null){--}}
+                            {{--var part = "Даты смены не определены"--}}
+                        {{--} else {--}}
+                            {{--var part_start_date= new Date(v.part_start);--}}
+                            {{--var part_start_day = part_start_date.getDate();--}}
+                            {{--var part_start_month= part_start_date.getMonth();--}}
+                            {{--var part_start_year = part_start_date.getFullYear();--}}
+                            {{--var part_finish_date= new Date(v.part_finish);--}}
+                            {{--var part_finish_day = part_finish_date.getDate();--}}
+                            {{--var part_finish_month= part_finish_date.getMonth();--}}
+                            {{--var part_finish_year = part_finish_date.getFullYear();--}}
 
-                            var part = "c " +part_start_day+"/"+part_start_month+"/"+part_start_year  + " по "
-                                    + part_finish_day+"/"+part_finish_month+"/"+part_finish_year;
-                        }
-                        var t = "<tr class = 'programs'>" +
-                                "<td>"+ "<a href='/public/program/"+v.id+"'>" + v.title +"</a>"+ "</td>" +
-                                "<td>" +vacation+ "</td>" +
-                                "<td>"+part+ "</td>" +
-                                "</tr>";
-                        $(t).prependTo('tbody');
-                    });
-                }
-            });
-        });
+                            {{--var part = "c " +part_start_day+"/"+part_start_month+"/"+part_start_year  + " по "--}}
+                                    {{--+ part_finish_day+"/"+part_finish_month+"/"+part_finish_year;--}}
+                        {{--}--}}
+                        {{--var t = "<tr class = 'programs'>" +--}}
+                                {{--"<td>"+ "<a href='/public/program/"+v.id+"'>" + v.title +"</a>"+ "</td>" +--}}
+                                {{--"<td>" +vacation+ "</td>" +--}}
+                                {{--"<td>"+part+ "</td>" +--}}
+                                {{--"</tr>";--}}
+                        {{--$(t).prependTo('tbody');--}}
+                    {{--});--}}
+                {{--}--}}
+            {{--});--}}
+        {{--});--}}
 
         $('.select-program').on('change', function() {
             var year = $('.year').val();

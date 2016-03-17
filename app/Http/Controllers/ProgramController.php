@@ -142,12 +142,11 @@ class ProgramController extends Controller
         $all_news = News::where('active','=','1')
             ->get();
         $all_programs = Program::where('programs.active','=',1)->get();
-        if(Request::format() == 'html'){
-            return view('user.all_programs')->with('programs',$programs)->with('all_news',$all_news)->with('all_programs',$all_programs);
-        } else {
+        if(Request::format() == 'json'){
             return $programs->toJson();
+        } else {
+            return view('user.all_programs')->with('programs',$programs)->with('all_news',$all_news)->with('all_programs',$all_programs);
         }
-
     }
 
     public function select_programs(){
@@ -196,7 +195,16 @@ class ProgramController extends Controller
                 ->get();
         }
 
-        return $programs->toJson();
+        $all_news = News::where('active','=','1')
+            ->get();
+        $all_programs = Program::where('programs.active','=',1)->get();
+
+        if(Request::format() == 'json'){
+            return $programs->toJson();
+        } else {
+            return view('user.all_programs')->with('programs',$programs)->with('all_news',$all_news)->with('all_programs',$all_programs);
+        }
+
     }
 
 
