@@ -64,7 +64,7 @@ Route::group(['prefix' => 'user'],function()
     Route::post('proposale/create', ['middleware' => 'user','uses'=>'ProposaleController@create_temporary']);
     Route::post('proposale/parent_data', ['middleware' => 'user','uses'=>'ProposaleController@parent_data_save']);
     Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
-    Route::get('proposale/{$id}/delete', ['middleware' => 'user','uses'=>'ProposaleController@destroy']);
+    Route::any('proposale/{id}/delete', ['middleware' => 'user','uses'=>'ProposaleController@destroy']);
 
     //Programs routes
     Route::get('all_programs', ['middleware' => 'user','uses'=>'ProgramController@show_all']);

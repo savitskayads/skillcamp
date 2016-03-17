@@ -106,7 +106,9 @@ class ProposaleController extends Controller
         $user->name = Input::get('name');
         $user->email=Input::get('email');
         $user->phone=Input::get('phone');
-        $user->data_processing=Input::get('data_processing');
+        if(Input::get('data_processing')){
+            $user->data_processing=Input::get('data_processing');
+        }
         $user->passport=Input::get('passport');
         $user->passport_date=Input::get('passport_date');
         $user->save();
@@ -241,9 +243,12 @@ class ProposaleController extends Controller
     public function destroy($id)
     {
         $temporary_proposale = Temporary_proposale::find($id);
+        if(!$temporary_proposale){
+            return redirect('/');
+        }
         $temporary_proposale->delete();
         $all_news = News::where('active','=','1')
             ->get();
-        return view('index')->with('all_news',$all_news);
+        return redirect('/');
     }
 }
