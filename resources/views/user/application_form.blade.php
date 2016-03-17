@@ -8,8 +8,8 @@
             <a href="{{web_url()}}/user/proposales" type="button" class="btn btn-default">Заявки</a>
         </p>
         <hr>
-        {{--{!! Form::open(array('url'=>"user/childrens/save",'method'=>'POST', 'files'=>true)) !!}--}}
-        <form  method="POST" action="{{web_url()}}/user/childrens/save_application_form" role="form" class = "data-form">
+        {!! Form::open(array('url'=>"user/childrens/save_application_form" ,'method'=>'POST', 'files'=>true)) !!}
+        {{--<form  method="POST" action="{{web_url()}}/user/childrens/save_application_form" role="form" class = "data-form">--}}
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <h3>Данные ребенка</h3>
 
@@ -44,10 +44,33 @@
                 <input type="text" name="surname" class="form-control" value="{{$children->surname}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
+
+            <div class="upload-group">
+                <div class="inline-block">
+                    <div class="title"><span>Фото ребенка</span></div>
+                    <div class="inline-title"><span>Выберите файл</span></div>
+
+                    <div class="line-value"> {!! Form::file('img', null, [ 'class' => 'inputbox img-form']) !!}</div>
+
+                    <input type="hidden" name="path" value="">
+                </div>
+                <div class="inline-block">
+                    <div class="inline-info"><span>Загрузка файла (максимальный размер: 10 MB)</span></div>
+                </div>
+                @if($children->image == '')
+                    <div class="image"><img src="{!! web_url() !!}/uploads/small/default.png" class="img-upload" alt="" width="200" height="150"></div>
+                @else
+                    <div class="image"><img src="{!! web_url() !!}/uploads/small/{{ $children->image }}" alt="" class="img-upload" width="168" height="119"></div>
+                @endif
+            </div>
+            <div class="view-group viewuploadpreview">
+
+            </div>
+
             <div class="form-group">
                 <label for="sex">Пол</label>
-                <label class="radio-inline"><input type="radio" name="sex" value="мужской">мужской</label>
-                <label class="radio-inline"><input type="radio" name="sex" value="женский">женский</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="мужской" @if($children->sex=="мужской") checked @endif  >мужской</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="женский" @if($children->sex=="женский") checked @endif>женский</label>
             </div>
 
             <div class="form-group">
@@ -91,8 +114,8 @@
 
             <div class="form-group">
                 <label for="sea">Выезжал ли Ваш ребенок в лагеря ранее(на 7 и более дней)?</label>
-                <label class="radio-inline"><input type="radio" name="sea">Да</label>
-                <label class="radio-inline"><input type="radio" name="sea">Нет</label>
+                <label class="radio-inline"><input type="radio" name="sea" value="1" @if($children->sea=="1") checked @endif  >Да</label>
+                <label class="radio-inline"><input type="radio" name="sea" value="0" @if($children->sea=="0") checked @endif>Нет</label>
             </div>
 
             <div class="form-group">
@@ -141,16 +164,16 @@
 
             <div class="form-group">
                 <label for="self">Способность к самообслуживанию( по 10-бальной шкале)</label>
-                <label class="radio-inline"><input type="radio" name="self">1</label>
-                <label class="radio-inline"><input type="radio" name="self">2</label>
-                <label class="radio-inline"><input type="radio" name="self">3</label>
-                <label class="radio-inline"><input type="radio" name="self">4</label>
-                <label class="radio-inline"><input type="radio" name="self">5</label>
-                <label class="radio-inline"><input type="radio" name="self">6</label>
-                <label class="radio-inline"><input type="radio" name="self">7</label>
-                <label class="radio-inline"><input type="radio" name="self">8</label>
-                <label class="radio-inline"><input type="radio" name="self">9</label>
-                <label class="radio-inline"><input type="radio" name="self">10</label>
+                <label class="radio-inline"><input type="radio" name="self" value="1" @if($children->self=="1") checked @endif  >1</label>
+                <label class="radio-inline"><input type="radio" name="self" value="2" @if($children->self=="2") checked @endif >2</label>
+                <label class="radio-inline"><input type="radio" name="self" value="3" @if($children->self=="3") checked @endif>3</label>
+                <label class="radio-inline"><input type="radio" name="self" value="4" @if($children->self=="4") checked @endif>4</label>
+                <label class="radio-inline"><input type="radio" name="self" value="5" @if($children->self=="5") checked @endif>5</label>
+                <label class="radio-inline"><input type="radio" name="self" value="6" @if($children->self=="6") checked @endif>6</label>
+                <label class="radio-inline"><input type="radio" name="self" value="7" @if($children->self=="7") checked @endif>7</label>
+                <label class="radio-inline"><input type="radio" name="self" value="8" @if($children->self=="8") checked @endif>8</label>
+                <label class="radio-inline"><input type="radio" name="self" value="9" @if($children->self=="9") checked @endif>9</label>
+                <label class="radio-inline"><input type="radio" name="self" value="10" @if($children->self=="10") checked @endif>10</label>
             </div>
 
             <div class="form-group">
@@ -183,12 +206,6 @@
             </div>
 
             <div class="form-group">
-                <label for="marketing">Откуда узнали о нас?</label>
-                <input type="text" name="marketing" class="form-control" value="{{$children->marketing}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            </div>
-
-            <div class="form-group">
                 <label for="chronic">Хронические заболевания</label>
                 <textarea class="form-control" rows="2" id="comment" name="chronic">{{$children->chronic}}</textarea>
             </div>
@@ -201,8 +218,8 @@
 
             <div class="form-group">
                 <label for="sun">Как переносит солнце?</label>
-                <label class="radio-inline"><input type="radio" name="sun">Хорошо</label>
-                <label class="radio-inline"><input type="radio" name="sun">Плохо</label>
+                <label class="radio-inline"><input type="radio" name="sun" value="хорошо" @if($children->sun=="хорошо") checked @endif>Хорошо</label>
+                <label class="radio-inline"><input type="radio" name="sun" value="плохо" @if($children->sun=="плохо") checked @endif>Плохо</label>
             </div>
 
             <div class="form-group">
@@ -272,9 +289,9 @@
 
             <div class="form-group">
                 <label for="physics">Группа физподготовки</label>
-                <label class="radio-inline"><input type="radio" name="physics">основная</label>
-                <label class="radio-inline"><input type="radio" name="physics">подготовительная</label>
-                <label class="radio-inline"><input type="radio" name="physics">ЛФК</label>
+                <label class="radio-inline"><input type="radio" name="physics" value="основная" @if($children->physics=="плохо") checked @endif>основная</label>
+                <label class="radio-inline"><input type="radio" name="physics" value="подготовительная" @if($children->physics=="подготовительная") checked @endif>подготовительная</label>
+                <label class="radio-inline"><input type="radio" name="physics" value="ЛФК" @if($children->physics=="ЛФК") checked @endif>ЛФК</label>
             </div>
 
             <div class="form-group">
@@ -357,7 +374,17 @@
                 <a href="{{web_url()}}/user/childs" class="btn btn-danger">Отмена</a>
             </div>
             <br>
-        </form>
-        {{--{!! Form::close() !!}--}}
+        {{--</form>--}}
+        {!! Form::close() !!}
     </div>
+    <script type="text/javascript">
+        $('input[name=img]').on('change', function(fileInput){
+            var file = fileInput.target.files[0];
+            var imageType = /image.*/;
+            if (file.type.match(imageType)) {
+                var img = $('.img-upload');
+                img.attr('src', URL.createObjectURL(file))
+            }
+        })
+    </script>
 @stop

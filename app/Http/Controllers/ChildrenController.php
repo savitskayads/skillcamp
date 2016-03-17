@@ -78,7 +78,6 @@ class ChildrenController extends Controller
         $v = Validator::make(Request::all(), [
             'name' => 'required',
             'surname' => 'required',
-            'patronymic' => 'required',
             'sex' => 'required',
             'birthday_date' => 'required',
             'document' => 'required',
@@ -157,6 +156,7 @@ class ChildrenController extends Controller
         $children->sport = Request::input('sport');
         $children->trait = Request::input('trait');
         $children->pleasure = Request::input('pleasure');
+        $children->not_pleasure = Request::input('not_pleasure');
         $children->stress = Request::input('stress');
         $children->things = Request::input('things');
         $children->self = Request::input('self');
@@ -194,6 +194,19 @@ class ChildrenController extends Controller
         $children->weight = Request::input('weight');
         $children->clothing_size = Request::input('clothing_size');
         $children->family = Request::input('family');
+        if(Request::hasFile('img')){
+            $image = Input::file('img');
+            $validator = Validator::make(
+                array(
+                    'image' => $image,
+                ),
+                array(
+                    'image' => 'mimes:jpeg,bmp,png',
+                )
+            );
+            $children->image = upload_program_image(Input::file('img'));
+        }
+
 
         $children->save();
         return redirect('user/childrens');
@@ -385,7 +398,7 @@ class ChildrenController extends Controller
         $children = Children::find($id);
         $members = Proposale::where('proposales.children_id',$id)
             ->join('programs','proposales.program_id','=','programs.id')
-            ->select('programs.title as program_title','programs.start_date as program_start','programs.finish_date as program_finish')
+            ->select('programs.title as program_title')
             ->get();
         $all_news = News::where('active','=','1')
             ->get();

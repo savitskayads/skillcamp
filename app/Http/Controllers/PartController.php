@@ -11,6 +11,7 @@ use App\Part;
 use App\Vacation;
 use Input;
 
+
 class PartController extends Controller
 {
     /**

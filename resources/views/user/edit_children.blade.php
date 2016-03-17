@@ -34,6 +34,13 @@
                 <input type="text" name="sex" class="form-control" value="{{$children->sex}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
+
+            <div class="form-group">
+                <label for="sex">Пол</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="мужской" @if($children->sex=="мужской") checked @endif  >мужской</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="женский" @if($children->sex=="женский") checked @endif>женский</label>
+            </div>
+
             <div class="form-group">
                 <label for="birthday_date">Дата рождения</label>
                 <input type="text" name="birthday_date" class="form-control" value="{{$children->birthday_date}}">
@@ -48,6 +55,12 @@
             <div class="form-group">
                 <label for="document_number">Серия  номер документа</label>
                 <input type="text" name="document_number" class="form-control" value="{{$children->document_number}}">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            </div>
+
+            <div class="form-group">
+                <label for="registration">Прописка</label>
+                <textarea class="form-control" rows="3" id="comment" name="registration">{{$children->registration}}</textarea>
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
 
@@ -75,17 +88,18 @@
                         <tr>
                             <td>{{$member->program_title}}</td>
                             <td>Зима</td>
-                            <td>с {{$member->program_start}} по {{$member->program_finish}}</td>
+                            <td>с {{$member->start_date}} по {{$member->finish_date}}</td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
             @else
-                <div class="form-group">
-                    <label for="name">Откуда узнали о нас?</label>
-                    <input type="text" name="reference" class="form-control" value="{{$children->reference}}">
-                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                <div class="form-group marketing-form" >
+                    <label for="marketing">Откуда узнали о нас</label>
+                    <label class="radio-inline"><input type="radio" name="marketing" value="реклама в интернете" @if($children->marketing=="реклама в интернете") checked @endif  >реклама в интернете</label>
+                    <label class="radio-inline"><input type="radio" name="marketing" value="рекомендации знакомых" @if($children->marketing=="рекомендации знакомых") checked @endif>рекомендации знакомых</label>
+                    <label class="radio-inline"><input type="radio" name="marketing" value="другое" @if($children->marketing=="другое") checked @endif>другое</label>
                 </div>
             @endif
 

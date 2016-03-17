@@ -91,7 +91,17 @@
                                 $(option).prependTo('.vacations');
                             } else {
                                 $.each(data, function(i, v){
-                                    var option = '<option class="vacation" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
+                                    var start_date= new Date(v.start_date);
+                                    var start_day = start_date.getDate();
+                                    var start_month= start_date.getMonth();
+                                    var start_year = start_date.getFullYear();
+                                    var finish_date= new Date(v.finish_date);
+                                    var finish_day = finish_date.getDate();
+                                    var finish_month= finish_date.getMonth();
+                                    var finish_year = finish_date.getFullYear();
+                                    var option = '<option class ="vacation" value="'+v.id+'">c ' +start_day+"/"+start_month+"/"+start_year  + " по "
+                                            + finish_day+"/"+finish_month+"/"+finish_year +'</option>';
+//                                    var option = '<option class="vacation" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
                                     $(option).prependTo('.vacations');
                                 });
 
@@ -107,7 +117,17 @@
                                                     $(option).prependTo('.parts');
                                                 } else{
                                                     $.each(data, function(i, v){
-                                                        var option = '<option class ="part" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
+                                                        var start_date= new Date(v.start_date);
+                                                        var start_day = start_date.getDate();
+                                                        var start_month= start_date.getMonth();
+                                                        var start_year = start_date.getFullYear();
+                                                        var finish_date= new Date(v.finish_date);
+                                                        var finish_day = finish_date.getDate();
+                                                        var finish_month= finish_date.getMonth();
+                                                        var finish_year = finish_date.getFullYear();
+                                                        var option = '<option class ="part" value="'+v.id+'">c ' +start_day+"/"+start_month+"/"+start_year  + " по "
+                                                                + finish_day+"/"+finish_month+"/"+finish_year +'</option>';
+                                                        //var option = '<option class ="part" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
                                                         $(option).prependTo('.parts');
                                                     });
                                                 }
@@ -132,7 +152,16 @@
                                 $(option).prependTo('.parts');
                             } else{
                                 $.each(data, function(i, v){
-                                    var option = '<option class ="part" value="'+v.id+'">c '+v.start_date+' по '+ v.finish_date+'</option>';
+                                    var start_date= new Date(v.start_date);
+                                    var start_day = start_date.getDate();
+                                    var start_month= start_date.getMonth();
+                                    var start_year = start_date.getFullYear();
+                                    var finish_date= new Date(v.finish_date);
+                                    var finish_day = finish_date.getDate();
+                                    var finish_month= finish_date.getMonth();
+                                    var finish_year = finish_date.getFullYear();
+                                    var option = '<option class ="part" value="'+v.id+'">c ' +start_day+"/"+start_month+"/"+start_year  + " по "
+                                            + finish_day+"/"+finish_month+"/"+finish_year +'</option>';
                                     $(option).prependTo('.parts');
                                 });
                             }

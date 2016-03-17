@@ -10,7 +10,7 @@
         </p>
         <hr>
         <h3>Ваши заявки</h3>
-       <p><a href="{{web_url()}}/user/proposale/1" type="button" class="btn btn-success">Создать новую заявку</a></p>
+       <p><a href="{{web_url()}}/user/all_programs" type="button" class="btn btn-success">Создать новую заявку</a></p>
         <div class="table-responsive">
             <table class="table">
                 <thead>

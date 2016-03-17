@@ -132,8 +132,71 @@ class ProgramController extends Controller
     }
 
     public function show_all(){
-        $programs = Program::where('active','=',1)->get();
-        return view('user.all_programs')->with('programs',$programs);
+        $programs = Program::where('programs.active','=',1)
+            ->leftJoin('vacations','programs.id','=','vacations.program_id')
+            ->leftJoin('parts','vacations.id','=','parts.vacation_id')
+            ->select('programs.*','vacations.start_date as vacation_start','vacations.finish_date as vacation_finish',
+                'parts.start_date as part_start','parts.finish_date as part_finish')
+            ->orderBy('vacations.start_date', 'desc')
+            ->get();
+        $all_news = News::where('active','=','1')
+            ->get();
+        $all_programs = Program::where('programs.active','=',1)->get();
+        if(Request::format() == 'html'){
+            return view('user.all_programs')->with('programs',$programs)->with('all_news',$all_news)->with('all_programs',$all_programs);
+        } else {
+            return $programs->toJson();
+        }
+
+    }
+
+    public function select_programs(){
+//        $year = Input::get('year');
+        $season = Input::get('season');
+        $program = Input::get('program');
+
+
+
+        if($program != "*" && $season != "*"){
+            $programs = Program::where('programs.active','=',1)
+                ->leftJoin('vacations','programs.id','=','vacations.program_id')
+                ->leftJoin('parts','vacations.id','=','parts.vacation_id')
+                ->select('programs.*','vacations.start_date as vacation_start','vacations.finish_date as vacation_finish',
+                    'parts.start_date as part_start','parts.finish_date as part_finish')
+                ->orderBy('vacations.start_date', 'desc')
+                ->where('programs.id','=',$program)->where('programs.season','=',$season)
+                ->get();
+        }
+        elseif($season != "*" && $program == "*"){
+            $programs = Program::where('programs.active','=',1)
+                ->leftJoin('vacations','programs.id','=','vacations.program_id')
+                ->leftJoin('parts','vacations.id','=','parts.vacation_id')
+                ->select('programs.*','vacations.start_date as vacation_start','vacations.finish_date as vacation_finish',
+                    'parts.start_date as part_start','parts.finish_date as part_finish')
+                ->orderBy('vacations.start_date', 'desc')
+                ->where('programs.season','=',$season)
+                ->get();
+        } elseif($season == "*" && $program != "*"){
+            $programs = Program::where('programs.active','=',1)
+                ->leftJoin('vacations','programs.id','=','vacations.program_id')
+                ->leftJoin('parts','vacations.id','=','parts.vacation_id')
+
+                ->select('programs.*','vacations.start_date as vacation_start','vacations.finish_date as vacation_finish',
+                    'parts.start_date as part_start','parts.finish_date as part_finish')
+                ->orderBy('vacations.start_date', 'desc')
+                ->where('programs.id','=',$program)
+                ->get();
+        } else {
+            $programs = Program::where('programs.active','=',1)
+                ->leftJoin('vacations','programs.id','=','vacations.program_id')
+                ->leftJoin('parts','vacations.id','=','parts.vacation_id')
+                ->select('programs.*','vacations.start_date as vacation_start','vacations.finish_date as vacation_finish',
+                    'parts.start_date as part_start','parts.finish_date as part_finish')
+                ->orderBy('vacations.start_date', 'desc')
+                ->get();
+        }
+
+        return $programs->toJson();
     }
 
 
