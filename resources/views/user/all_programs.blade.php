@@ -111,7 +111,7 @@
                                     + part_finish_day+"/"+part_finish_month+"/"+part_finish_year;
                         }
                         var t = "<tr class = 'programs'>" +
-                                "<td>"+ "<a href='skillcamp.procotm.com/public/program/'"+v.id+">" + v.title +"</a>"+ "</td>" +
+                                "<td>"+ "<a href='skillcamp.procotm.com/public/program/"+v.id+"'>" + v.title +"</a>"+ "</td>" +
                                 "<td>" +vacation+ "</td>" +
                                 "<td>"+part+ "</td>" +
                                 "</tr>";
@@ -163,7 +163,7 @@
                                     + part_finish_day+"/"+part_finish_month+"/"+part_finish_year;
                         }
                         var t = "<tr class = 'programs'>" +
-                                "<td>"+ "<a href='skillcamp.procotm.com/public/program/'"+v.id+">" + v.title +"</a>"+ "</td>" +
+                                "<td>"+ "<a href='skillcamp.procotm.com/public/program/"+v.id+"'>" + v.title +"</a>"+ "</td>" +
                                 "<td>" + vacation + "</td>" +
                                 "<td>" + part + "</td>" +
                                 "</tr>";
