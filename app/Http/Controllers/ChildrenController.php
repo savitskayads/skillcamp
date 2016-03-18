@@ -386,6 +386,86 @@ class ChildrenController extends Controller
 
     }
 
+    public function children_documents($id){
+        $children = Children::find($id);
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.documents')->with('children',$children)->with('all_news',$all_news);
+    }
+
+    public function save_documents(){
+
+        $children = Children::find(Input::get('id'));
+        if(Request::hasFile('document_1')){
+            $image = Input::file('document_1');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_1 = upload_program_image(Input::file('document_1'));
+        }
+        if(Request::hasFile('document_2')){
+            $image = Input::file('document_2');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_2 = upload_program_image(Input::file('document_2'));
+        }
+        if(Request::hasFile('document_3')){
+            $image = Input::file('document_3');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_3 = upload_program_image(Input::file('document_3'));
+        }
+        if(Request::hasFile('document_4')){
+            $image = Input::file('document_4');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_4 = upload_program_image(Input::file('document_4'));
+        }
+        if(Request::hasFile('document_5')){
+            $image = Input::file('document_5');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_5 = upload_program_image(Input::file('document_5'));
+        }
+        if(Request::hasFile('document_6')){
+            $image = Input::file('document_6');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_6 = upload_program_image(Input::file('document_6'));
+        }
+        if(Request::hasFile('document_7')){
+            $image = Input::file('document_7');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_7 = upload_program_image(Input::file('document_7'));
+        }
+        if(Request::hasFile('document_8')){
+            $image = Input::file('document_8');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png',)
+            );
+            $children->document_8 = upload_program_image(Input::file('document_8'));
+        }
+        $children->save();
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('user.documents')->with('children',$children)->with('all_news',$all_news);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

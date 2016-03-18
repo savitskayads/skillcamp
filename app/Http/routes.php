@@ -53,8 +53,10 @@ Route::group(['prefix' => 'user'],function()
     Route::get('childrens', ['middleware' => 'user', 'uses'=>'ChildrenController@index'] );
     Route::get('childrens/create', ['middleware' => 'user', 'uses'=>'ChildrenController@create'] );
     Route::get('childrens/{id}/edit', ['middleware' => 'user', 'uses'=>'ChildrenController@edit'] );
+    Route::any('childrens/{id}/documents', ['middleware' => 'user', 'uses'=>'ChildrenController@children_documents'] );
     Route::get('childrens/{id}/edit_application_form', ['middleware' => 'user', 'uses'=>'ChildrenController@edit_application_form'] );
     Route::post('childrens/save', ['middleware' => 'user', 'uses'=>'ChildrenController@save'] );
+    Route::post('childrens/save_documents', ['middleware' => 'user', 'uses'=>'ChildrenController@save_documents'] );
     Route::post('childrens/save_application_form', ['middleware' => 'user', 'uses'=>'ChildrenController@save_application_form'] );
     Route::any('childrens/{id}/delete', ['middleware' => 'user', 'uses'=>'ChildrenController@destroy'] );
 

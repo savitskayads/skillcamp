@@ -58,7 +58,7 @@
             </div>
             <div class="inline-block">
                 <input class="btn btn-success" type="submit" value="Сохранить">
-                <a href="{{web_url()}}/user/childs" class="btn btn-danger">Отмена</a>
+                <a href="{{web_url()}}/user/childrens" class="btn btn-danger">Отмена</a>
             </div>
             <br>
         </form>

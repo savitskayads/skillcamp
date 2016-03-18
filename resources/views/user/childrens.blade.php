@@ -28,9 +28,8 @@
                         <th>Имя</th>
                         <th>Фамилия</th>
                         <th>Дата рождения</th>
-                        <th>Документ</th>
-                        <th>Прописка</th>
                         <th>Анкета</th>
+                        <th>Документы</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -40,15 +39,16 @@
                             <td>{{$children->name}}</td>
                             <td>{{$children->surname}}</td>
                             <td>{{$children->birthday_date}}</td>
-                            <td>{{$children->document}}</td>
-                            <td>{{$children->registration}}</td>
                             <td>
                                 @if($children->application_form!="")
-                                    {{$children->application_form}} <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form">. редактировать</a>
+                                    <span class="badge bg-green">{{$children->application_form}}</span>
+                                    <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form"> редактировать</a>
                                 @else
+                                    <span class="badge bg-red">заполнена не полностью</span>
                                     <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form"> заполнить</a>
                                 @endif
                             </td>
+                            <td><a href="{{web_url()}}/user/childrens/{{$children->id}}/documents" >Просмотр</a></td>
                             <td><a href="{{web_url()}}/user/childrens/{{$children->id}}/edit" >Изменить основные данные</a></td>
                             <td><a href="{{web_url()}}/user/childrens/{{$children->id}}/delete" >Удалить</a></td>
                         </tr>
