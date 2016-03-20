@@ -14,6 +14,7 @@
     <script src="{{asset('assets/js/jquery.js')}}"></script>
     <script src="{{asset('assets/js/script.js')}}"></script>
     <script src="{{asset('assets/js/jquery.cover.js')}}"></script>
+    <script src="http://sharewall.ru/webmaster-area/getconfig"></script>
 
 
 </head>
@@ -24,7 +25,7 @@
         <div class="logo"><img src="{{web_url()}}/img/logo.svg" alt="Логотип Skillcamp - Детский лагерь навыка"></div>
         <div class="social-links">
             <div class="content-list">
-                <div class="item vk"><a href=""><span><i class="fa fa-fw fa-vk"></i></span></a></div>
+                <div class="item vk"><a href=""><div id='sharewallContainer'><span>script</span></div></a></div>
                 <div class="item in"><a href=""><span><i class="fa fa-fw fa-instagram"></i></span></a></div>
                 <div class="item fb"><a href=""><span><i class="fa fa-fw fa-facebook"></i></span></a></div>
                 <div class="item ok"><a href=""><span><i class="fa fa-fw fa-odnoklassniki"></i></span></a></div>
