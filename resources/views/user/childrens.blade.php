@@ -41,10 +41,10 @@
                             <td>{{$children->birthday_date}}</td>
                             <td>
                                 @if($children->application_form!="")
-                                    <span class="badge bg-green">{{$children->application_form}}</span>
+                                    <span class="badge " style="background: green">{{$children->application_form}}</span><br>
                                     <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form"> редактировать</a>
                                 @else
-                                    <span class="badge bg-red">заполнена не полностью</span>
+                                    <span class="badge bg-red" style="background: red">заполнена не полностью</span><br>
                                     <a href="{{web_url()}}/user/childrens/{{$children->id}}/edit_application_form"> заполнить</a>
                                 @endif
                             </td>
