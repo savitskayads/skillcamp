@@ -39,16 +39,14 @@ class ProposaleController extends Controller
     }
 
     public function get_proposale($id){
-        $selected_vacation = Vacation::find($id);
-        if (!$selected_vacation){
-            $selected_program_id=Program::first()->id;
-            $selected_vacation = Vacation::where('program_id','=',$selected_program_id)->first();
-            $selected_vacation_id = $selected_vacation->id;
-        } else {
-            $selected_program_id = $selected_vacation->program_id;
-            $selected_vacation_id = $id;
-        }
+        $selected_program_id = $id;
         $selected_program = Program::find($selected_program_id);
+         if (!$selected_program){
+             $selected_program_id=Program::first()->id;
+             $selected_program = Program::find($selected_program_id);
+         }
+        $selected_vacation = Vacation::where('program_id','=',$selected_program_id)->first();
+        $selected_vacation_id = $selected_vacation->id;
         $programs = Program::all();
         $vacations = Vacation::where('program_id','=',$selected_program_id)->get();
         $parts = Part::where('vacation_id','=',$selected_vacation_id)->get();
@@ -189,6 +187,11 @@ class ProposaleController extends Controller
         return view('user.proposales')->with('proposales',$proposales)->with('all_news',$all_news);
     }
 
+    public function agreement($id){
+        $proposale = Proposale::find($id);
+        return view ('user.agreement');
+
+    }
     /**
      * Store a newly created resource in storage.
      *
