@@ -11,7 +11,7 @@
 				</div>
 				<div class="share">
 					<div class="content-list clear">
-						<div class="item vk"><div id='sharewallContainer'>script</div></div>
+						<div class="item vk"><a href=""><span><i class="fa fa-fw fa-vk"></i></span></a></div>
 						<div class="item ok"><a href=""><span><i class="fa fa-odnoklassniki"></i></span></a></div>
 						<div class="item fb"><a href=""><span><i class="fa fa-facebook"></i></span></a></div>
 						<div class="item tw"><a href=""><span><i class="fa fa-twitter"></i></span></a></div>
