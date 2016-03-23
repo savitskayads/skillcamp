@@ -110,7 +110,8 @@ class ProposaleController extends Controller
         $user->passport=Input::get('passport');
         $user->passport_date=Input::get('passport_date');
         $user->save();
-        $children = Children::where('user_id','=',$user_id)->first();
+        $proposale = Temporary_proposale::find($proposale_id);
+        $children = Children::find($proposale->children_id);
         if(!$children){
             $children = new Children();
         }

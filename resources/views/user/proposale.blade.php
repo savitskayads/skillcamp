@@ -60,6 +60,7 @@
                     @foreach($childrens as $children)
                         <option value="{{$children->id}}"> {{$children->name}} </option>
                     @endforeach
+                        <option value="0">Новый ребенок</option>
                 @endif
             </select>
         </div>
