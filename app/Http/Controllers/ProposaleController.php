@@ -189,8 +189,15 @@ class ProposaleController extends Controller
     }
 
     public function agreement($id){
+        $all_news = News::where('active','=','1')
+            ->get();
         $proposale = Proposale::find($id);
-        return view ('user.agreement');
+        if(!$proposale){
+            return view ('user.agreement')->with('all_news',$all_news);
+        } else {
+            return view ('user.agreement')->with('all_news',$all_news);
+        }
+
 
     }
     /**
