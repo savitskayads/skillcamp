@@ -67,6 +67,7 @@ Route::group(['prefix' => 'user'],function()
     Route::post('proposale/parent_data', ['middleware' => 'user','uses'=>'ProposaleController@parent_data_save']);
     Route::post('proposale/children_data', ['middleware' => 'user','uses'=>'ProposaleController@children_data_save']);
     Route::any('proposale/{id}/agreement', ['middleware' => 'user','uses'=>'ProposaleController@agreement']);
+    Route::any('proposale/{id}/agreement/print', ['middleware' => 'user','uses'=>'ProposaleController@print_agreement']);
     Route::any('proposale/{id}/delete', ['middleware' => 'user','uses'=>'ProposaleController@destroy']);
 
     //Programs routes

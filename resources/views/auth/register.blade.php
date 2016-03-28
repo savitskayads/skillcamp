@@ -27,10 +27,20 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="checkbox-inline"><input type="checkbox" name="delivery" value="1">Я хочу получать рассылку</label>
+            <div class="radio">
+                <label><input type="radio" name="delivery" value="1" checked>Я хочу получать рассылку</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="delivery" value="0">Я не хочу получать рассылку</label>
+            </div>
         </div>
         <div class="form-group">
-            <label class="checkbox-inline"><input type="checkbox" name="data_processing" value="1">Я согласен на обработку персональных данных</label>
+            <div class="radio">
+             <label><input type="radio" name="data_processing" value="1" checked>Я согласен на обработку персональных данных</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="data_processing" value="0">Я не согласен на обработку персональных данных</label>
+            </div>
         </div>
         @if(isset($message))
             <div class="danger-message">

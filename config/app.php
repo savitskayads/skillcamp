@@ -138,6 +138,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Illuminate\Html\HtmlServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -197,8 +198,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'=> 'Illuminate\Html\FormFacade',
         'HTML'=> 'Illuminate\Html\HtmlFacade',
-        'Image' => 'Intervention\Image\Facades\Image'
-
+        'Image' => 'Intervention\Image\Facades\Image',
+        'PDF' => 'Barryvdh\DomPDF\Facade::class',
     ],
 
 ];
