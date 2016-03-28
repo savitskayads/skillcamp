@@ -8,6 +8,7 @@ use Mail;
 use Flash;
 use Input;
 use Redirect;
+use App\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -80,22 +81,26 @@ class AuthController extends Controller
 
     public function getRegister()
     {
-        return view('auth.register');
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view('auth.register')->with('all_news',$all_news);
     }
 
     public function postUserRegister(Request $request)
     {
         $validator = $this->validator($request->all());
         $email = User::where('email','=',$request->input('email'))->count();
+        $all_news = News::where('active','=','1')
+            ->get();
         if($email>0){
             $message='Пользователь с таким e-mail уже существует';
-            return view('auth.register')->with('message', $message);
+            return view('auth.register')->with('message', $message)->with('all_news',$all_news);
         }
 
         if ($validator->fails()) {
 
             $message='Вы ввели неверные данные';
-            return view('auth.register')->with('message', $message);
+            return view('auth.register')->with('message', $message)->with('all_news',$all_news);
         }
 
         $user = $this->create($request->all());
@@ -111,6 +116,7 @@ class AuthController extends Controller
             ->with('message',$message)
             ->with('message_type',$message_type)
             ->with('email',$email)
+            ->with('all_news',$all_news)
             ->with('id',$id);
     }
 
