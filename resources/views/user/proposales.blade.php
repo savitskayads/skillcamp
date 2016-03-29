@@ -38,10 +38,10 @@
                             @endif
                         </td>
                         <td>
-                            @if($proposale->agreement!=="")
+                            @if($proposale->agreement=="")
                                 не прикреплено <br><a href="{{web_url()}}/user/proposale/{{$proposale->id}}/agreement"> распечатать и прикрепить</a>
                             @else
-                                прикреплено <br><a href="{{web_url()}}/user/proposale/{{$proposale->id}}/agreement"> посмотреть </a>
+                                прикреплено <br><a href="{{web_url()}}/user/proposale/{{$proposale->id}}/agreement"> распечатать повторно </a>
                             @endif
                         </td>
 

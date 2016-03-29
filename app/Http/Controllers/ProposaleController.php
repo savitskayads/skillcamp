@@ -6,9 +6,9 @@ use App\Children;
 use App\Part;
 use App\User;
 use App\Proposale;
-use Illuminate\Http\Request;
+use Request;
 use App\Temporary_proposale;
-use App\Http\Requests;
+//use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Program;
 use Session;
@@ -17,6 +17,7 @@ use App\News;
 use App\Vacation;
 use App;
 use PDF;
+use Validator;
 
 class ProposaleController extends Controller
 {
@@ -197,18 +198,38 @@ class ProposaleController extends Controller
         if(!$proposale){
             return view ('user.empty_agreement')->with('all_news',$all_news);
         } else {
-            $program = Program::find($proposale->program_id);
-            $user = User::find($proposale->user_id);
-            $children = Children::find($proposale->children_id);
+//            $program = Program::find($proposale->program_id);
+//            $user = User::find($proposale->user_id);
+//            $children = Children::find($proposale->children_id);
             return view ('user.agreement')
                 ->with('all_news',$all_news)
-                ->with('program',$program)
-                ->with('user',$user)
-                ->with('proposale',$proposale)
-                ->with('children',$children);
+                //->with('program',$program)
+                //->with('user',$user)
+                ->with('proposale',$proposale);
+                //->with('children',$children);
         }
 
 
+    }
+
+    public function save_agreement(){
+        $proposale = Proposale::find(Input::get('id'));
+        if(Request::hasFile('agreement')){
+            $image = Input::file('agreement');
+            $validator = Validator::make(
+                array('image' => $image,),
+                array('image' => 'mimes:jpeg,bmp,png,pdf,doc,docx',)
+            );
+            $proposale->agreement = upload_file(Input::file('agreement'));
+        }
+        $proposale->save();
+        $all_news = News::where('active','=','1')
+            ->get();
+        return view ('user.agreement')
+            ->with('all_news',$all_news)
+            //->with('program',$program)
+            //->with('user',$user)
+            ->with('proposale',$proposale);
     }
 
     public function print_agreement($id){
