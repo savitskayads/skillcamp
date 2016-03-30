@@ -199,7 +199,7 @@ return [
         'Form'=> 'Illuminate\Html\FormFacade',
         'HTML'=> 'Illuminate\Html\HtmlFacade',
         'Image' => 'Intervention\Image\Facades\Image',
-        'PDF' => 'Barryvdh\DomPDF\Facade::class',
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
