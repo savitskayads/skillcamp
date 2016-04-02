@@ -32,6 +32,14 @@
             </div>
         </div>
         <br>
+        <div class="form-group">
+            <div class="radio">
+                <label><input type="radio" name="agreement_save" value="1" checked>Я согласен с условиями, описанными в соглашении</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="agreement_save" value="0">Я не согласен с условиями, описанными в соглашении</label>
+            </div>
+        </div>
         <div class="inline-block">
             <input class="btn btn-success" type="submit" value="Сохранить">
             <a href="{{web_url()}}/user/proposales" class="btn btn-danger">Отмена</a>

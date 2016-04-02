@@ -222,6 +222,7 @@ class ProposaleController extends Controller
             );
             $proposale->agreement = upload_file(Input::file('agreement'));
         }
+        $proposale->agreement_save = Input::get('agreement_save');
         $proposale->save();
         $all_news = News::where('active','=','1')
             ->get();
