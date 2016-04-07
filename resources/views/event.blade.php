@@ -38,8 +38,14 @@
 					<div class="col clear">
 						<div class="price">
 							<div class="main">
-								<div class="sale"><span>{{ $program->action_price }}</span><div class="info" tooltip="{{$program->action_description}}"><i class="fa fa-info-circle"></i></div></div>
-								<div class="original"><span>{{ $program->price }}</span></div>
+								<div class="sale">{{$program->action_description}} <br><span>{{ $program->action_price }}</span><div class="info" tooltip="{{$program->action_description}}"><i class="fa fa-info-circle"></i></div></div>
+								Обычная цена <div class="original"><span>{{ $program->price }}</span></div>
+								@if($program->member_discount!="")
+								Цена для старых участников <div class="original"><span>{{ $program->member_discount}}</span></div>
+								@endif
+								@if($program->friend_discount!="")
+								Для тех, кто привел друга <div class="original"><span>{{ $program->friend_discount}}</span></div>
+								@endif
 							</div>
 							<div class="bottom">
 								<div class="order"><i class="fa pull-left fa-shopping-cart"></i><span><a href="{{web_url()}}/user/proposale/{{$program->id}}">Заказать</a></span></div>

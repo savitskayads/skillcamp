@@ -47,24 +47,37 @@
                 <div class="line-title"><span>Цена программы</span></div><div class="line-value">{!! Form::text('price', $program->price, ['placeholder' => 'Цена', 'class'=>'inputbox']) !!}</div>
             </div>
             <div class="inline-block">
-                <div class="line-title"><span>Цена по акции</span></div><div class="line-value">{!! Form::text('action_price', $program->action_price, ['placeholder' => 'Цена по акции', 'class'=>'inputbox']) !!}</div>
+                <div class="line-title"><span>Цена по акции №1</span></div><div class="line-value">{!! Form::text('action_price', $program->action_price, ['placeholder' => 'Цена по акции', 'class'=>'inputbox']) !!}</div>
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Описание акции</span></div><div class="line-value">{!! Form::text('action_description', $program->action_description, ['placeholder' => 'Описание акции', 'class'=>'inputbox']) !!}</div>
             </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Цена по акции №2</span></div><div class="line-value">{!! Form::text('action_price_2', $program->action_price_2, ['placeholder' => 'Цена по акции', 'class'=>'inputbox']) !!}</div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Описание акции</span></div><div class="line-value">{!! Form::text('action_description_2', $program->action_description_2, ['placeholder' => 'Описание акции', 'class'=>'inputbox']) !!}</div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Цена для старого участника </span></div><div class="line-value">{!! Form::text('member_discount', $program->member_discount, ['class'=>'inputbox']) !!} </div>
+            </div>
+            <div class="inline-block">
+                <div class="line-title"><span>Цена для того, кто привел друга</span></div><div class="line-value">{!! Form::text('friend_discount', $program->friend_discount, ['class'=>'inputbox']) !!} </div>
+            </div>
+
 
             <div class="inline-block">
                 <div class="line-title"><span>Количество мест</span></div><div class="line-value">{!! Form::text('places', $program->places, ['placeholder' => 'Количество мест', 'class'=>'inputbox']) !!}</div>
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Сезон</span></div>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Зима" @if($program->season=='Зима')checked="checked"@endif>Зима</label>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Весна" @if($program->season=='Весна')checked="checked"@endif>Весна</label>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Лето" @if($program->season=='Лето')checked="checked"@endif>Лето</label>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Осень" @if($program->season=='Осень')checked="checked"@endif>Осень</label>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Выходной день" @if($program->season=='Выходной день')checked="checked"@endif>Выходной день</label>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Фестиваль" @if($program->season=='Фестиваль')checked="checked"@endif>Фестиваль</label>
-                <label class="radio-inline"><input type="radio" name="vacation" value="Все сезоны" @if($program->season=='Все сезоны')checked="checked"@endif>Все сезоны</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Зима" @if($program->season=='Зима')checked="checked"@endif>Зима</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Весна" @if($program->season=='Весна')checked="checked"@endif>Весна</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Лето" @if($program->season=='Лето')checked="checked"@endif>Лето</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Осень" @if($program->season=='Осень')checked="checked"@endif>Осень</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Выходной день" @if($program->season=='Выходной день')checked="checked"@endif>Выходной день</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Фестиваль" @if($program->season=='Фестиваль')checked="checked"@endif>Фестиваль</label>
+                <label class="radio-inline"><input type="radio" name="season" value="Все сезоны" @if($program->season=='Все сезоны')checked="checked"@endif>Все сезоны</label>
             </div>
             <div class="inline-block">
                 <div class="line-title"><span>Возраст участников</span></div><div class="line-value">{!! Form::text('age', $program->age, ['placeholder' => 'Возраст участников', 'class'=>'inputbox']) !!}</div>

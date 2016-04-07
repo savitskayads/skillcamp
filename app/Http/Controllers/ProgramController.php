@@ -59,6 +59,10 @@ class ProgramController extends Controller
         $program->sex = Request::input('sex');
         $program->action_price = Request::input('action_price');
         $program->action_description = Request::input('action_description');
+        $program->action_price_2 = Request::input('action_price_2');
+        $program->action_description_2 = Request::input('action_description_2');
+        $program->member_discount = Request::input('member_discount');
+        $program->friend_discount = Request::input('friend_discount');
         $program->description = Request::input('description');
         $program->active = Request::input('active');
         $program->document_1 = Request::input('document_1');
