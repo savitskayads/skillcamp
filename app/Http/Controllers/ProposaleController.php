@@ -31,9 +31,17 @@ class ProposaleController extends Controller
         $proposales = Proposale::join('childrens','proposales.children_id','=','childrens.id')
             ->join('users','proposales.user_id','=','users.id')
             ->join('programs','proposales.program_id','=','programs.id')
+            ->join('vacations','proposales.vacation_id','=','vacations.id')
+            ->join('parts','proposales.part_id','=','parts.id')
             ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
                 'users.name as user_name',
-                'programs.start_date as program_start','programs.finish_date as program_finish')
+                'vacations.start_date as program_start','vacations.finish_date as program_finish',
+                'parts.start_date as part_start','parts.finish_date as part_finish',
+                'childrens.application_form as application_form','childrens.id as children_id','childrens.application_form as application_form')
+//            ->select('proposales.*','childrens.name as children_name','programs.title as program_name',
+//                'vacations.start_date as program_start','vacations.finish_date as program_finish',
+//                'parts.start_date as part_start','parts.finish_date as part_finish',
+//                'childrens.application_form as application_form','childrens.id as children_id')
             ->orderBy('proposales.id','desc')
             ->get();
         $all_news = News::where('active','=','1')

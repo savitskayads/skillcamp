@@ -21,14 +21,16 @@
                         <th class="col-4">Время проведения</th>
                         <th>От кого</th>
                         <th>Ребенок</th>
+                        <th>Анкета</th>
                     </tr>
                     @foreach($proposales as $proposale)
                     <tr class='proposale' >
                         <td>{{$proposale->id}}</td>
                         <td class="center col-2">{{$proposale->program_name}}</td>
-                        <td>C {{(date('d/m/Y',strtotime($proposale->program_start))}} по {{date('d/m/Y',strtotime($proposale->program_finish))}}</td>
+                        <td>C {{date('d/m/Y',strtotime($proposale->program_start))}} по {{date('d/m/Y',strtotime($proposale->program_finish))}}</td>
                         <td>{{$proposale->user_name}}</td>
                         <td>{{$proposale->children_name}} {{$proposale->children_surname}}</td>
+                        <td>{{$proposale->application_form}}</td>
                     </tr>
                     @endforeach
                 </table>

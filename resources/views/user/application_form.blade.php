@@ -44,7 +44,11 @@
                 <input type="text" name="surname" class="form-control" value="{{$children->surname}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
-
+        <div class="form-group">
+            <label for="surname">Отчество</label>
+            <input type="text" name="patronymic" class="form-control" value="{{$children->patronymic}}">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        </div>
             <div class="upload-group">
                 <div class="inline-block">
                     <div class="title"><span>Фото ребенка</span></div>
@@ -135,7 +139,9 @@
                 <input type="text" name="sport" class="form-control" value="{{$children->sport}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
-
+            <br>
+            <h4><b>Индивидуальные особенности</b></h4>
+            <br>
             <div class="form-group">
                 <label for="trait">Перечислите 5 наиболее выраженных черт характера, присущих Вашему ребенку</label>
                 <textarea class="form-control" rows="2" id="comment" name="trait">{{$children->trait}}</textarea>
@@ -204,6 +210,27 @@
                 <input type="text" name="bad_baby" class="form-control" value="{{$children->bad_baby}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
+        <div class="form-group">
+            <label for="height">Рост</label>
+            <input type="text" name="height" class="form-control" value="{{$children->height}}">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        </div>
+
+        <div class="form-group">
+            <label for="weight">Вес</label>
+            <input type="text" name="weight" class="form-control" value="{{$children->weight}}">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        </div>
+
+        <div class="form-group">
+            <label for="clothing_size">Размер одежды</label>
+            <input type="text" name="clothing_size" class="form-control" value="{{$children->clothing_size}}">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        </div>
+
+        <br>
+        <h4><b>Медицинские данные</b></h4>
+        <br>
 
             <div class="form-group">
                 <label for="chronic">Хронические заболевания</label>
@@ -285,8 +312,9 @@
                 <label for="another_medicine">Другие особенности(по медицинским данным)</label>
                 <textarea class="form-control" rows="2" id="comment" name="another_medicine">{{$children->another_medicine}}</textarea>
             </div>
-
-
+            <br>
+            <h4><b>Физическое состояние</b></h4>
+            <br>
             <div class="form-group">
                 <label for="physics">Группа физподготовки</label>
                 <label class="radio-inline"><input type="radio" name="physics" value="основная" @if($children->physics=="плохо") checked @endif>основная</label>
@@ -338,24 +366,6 @@
             <div class="form-group">
                 <label for="health">Другие особенности(по физическому состоянию)</label>
                 <textarea class="form-control" rows="4" id="comment" name="health">{{$children->health}}</textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="height">Рост</label>
-                <input type="text" name="height" class="form-control" value="{{$children->height}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            </div>
-
-            <div class="form-group">
-                <label for="weight">Вес</label>
-                <input type="text" name="weight" class="form-control" value="{{$children->weight}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            </div>
-
-            <div class="form-group">
-                <label for="clothing_size">Размер одежды</label>
-                <input type="text" name="clothing_size" class="form-control" value="{{$children->clothing_size}}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
 
             <div class="form-group">

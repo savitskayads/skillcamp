@@ -78,6 +78,7 @@ class ChildrenController extends Controller
         $v = Validator::make(Request::all(), [
             'name' => 'required',
             'surname' => 'required',
+            'patronymic' => 'required',
             'sex' => 'required',
             'birthday_date' => 'required',
             'document' => 'required',
@@ -92,7 +93,6 @@ class ChildrenController extends Controller
             'sport' => 'required',
             'trait' => 'required',
             'pleasure' => 'required',
-            'stress' => 'required',
             'stress' => 'required',
             'things' => 'required',
             'self' => 'required',
@@ -141,6 +141,7 @@ class ChildrenController extends Controller
         $children->user_id = Session::get('user_id');
         $children->name = Request::input('name');
         $children->surname = Request::input('surname');
+        $children->patronymic = Request::input('patronymic');
         $children->sex = Request::input('sex');
         $children->birthday_date = Request::input('birthday_date');
         $children->document = Request::input('document');
@@ -463,6 +464,24 @@ class ChildrenController extends Controller
         $children->save();
         $all_news = News::where('active','=','1')
             ->get();
+        $proposales = Proposale::where('children_id','=',$children->id)->get();
+        foreach($proposales as $proposale){
+            $program = Program::find($proposale->program_id);
+            if(
+             (($program->document_1==1&&$children->document_1!="")||$program->document_1==0)&&
+             (($program->document_2==1&&$children->document_2!="")||$program->document_2==0)&&
+             (($program->document_3==1&&$children->document_3!="")||$program->document_3==0)&&
+             (($program->document_4==1&&$children->document_4!="")||$program->document_4==0)&&
+             (($program->document_5==1&&$children->document_5!="")||$program->document_5==0)&&
+             (($program->document_6==1&&$children->document_6!="")||$program->document_6==0)&&
+             (($program->document_7==1&&$children->document_7!="")||$program->document_7==0)&&
+             (($program->document_8==1&&$children->document_8!="")||$program->document_8==0)
+            ){
+                $proposale->documents = 1;
+            } else {
+                $proposale->documents = "";
+            }
+        }
         return view('user.documents')->with('children',$children)->with('all_news',$all_news);
     }
 
@@ -520,6 +539,10 @@ class ChildrenController extends Controller
         $children = Children::find($id);
         $children->delete();
         return redirect('user/childrens');
+    }
+
+    public function save_form(){
+        return view('form');
     }
 
 }
