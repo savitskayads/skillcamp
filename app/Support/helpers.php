@@ -1,6 +1,6 @@
 <?php
 //use Image;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 function web_url()
 {
     return URL::to('/');
