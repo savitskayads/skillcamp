@@ -23,6 +23,7 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 
 // Registration Routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::get('form', 'ChildrenController@save_form');
 Route::post('auth/register', 'Auth\AuthController@postUserRegister');
 Route::get('register/verify/{confirmationCode}','Auth\AuthController@confirm');
 Route::post('user/check_email','UserController@check_email');
@@ -59,6 +60,7 @@ Route::group(['prefix' => 'user'],function()
     Route::post('childrens/save_documents', ['middleware' => 'user', 'uses'=>'ChildrenController@save_documents'] );
     Route::post('childrens/save_application_form', ['middleware' => 'user', 'uses'=>'ChildrenController@save_application_form'] );
     Route::any('childrens/{id}/delete', ['middleware' => 'user', 'uses'=>'ChildrenController@destroy'] );
+    Route::get('children/form/{id}', ['middleware' => 'user', 'uses'=>'UserController@form']);
 
     //Proposale routes
     Route::get('proposale/{id}', ['middleware' => 'user','uses'=>'ProposaleController@get_proposale']);

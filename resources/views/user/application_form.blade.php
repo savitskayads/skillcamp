@@ -381,6 +381,7 @@
             @endif
             <div class="inline-block">
                 <input class="btn btn-success" type="submit" value="Сохранить">
+                <a href="{{web_url()}}/user/children/form/{{$proposale->id}}" class="btn btn-primary">Отпечатать анкету</a>
                 <a href="{{web_url()}}/user/childrens" class="btn btn-danger">Отмена</a>
             </div>
             <br>

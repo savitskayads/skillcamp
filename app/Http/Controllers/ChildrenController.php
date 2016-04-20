@@ -504,10 +504,17 @@ class ChildrenController extends Controller
     }
 
     public function edit_application_form($id){
-        $children = Children::find($id);
+        $proposale = Proposale::find($id);
+        $children_id = $proposale->children_id;
+        $children = Children::find($children_id);
         $all_news = News::where('active','=','1')
             ->get();
-        return view('user.application_form',['children'=> $children,'all_news'=>$all_news]);
+        if(!$proposale||!$children){
+            return view('user.application_form',['proposale'=>$proposale,'children'=> $children,'all_news'=>$all_news]);
+        } else {
+            return view('user.application_form',['proposale'=>$proposale,'children'=> $children,'all_news'=>$all_news]);
+        }
+
     }
 
     public function admin_edit($id)
