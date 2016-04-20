@@ -32,9 +32,9 @@
                         <td> c {{date('d/m/Y',strtotime($proposale->part_start))}} по {{date('d/m/Y',strtotime($proposale->part_finish))}}</td>
                         <td>
                             @if($proposale->application_form!="")
-                                {{$proposale->application_form}} <br><a href="{{web_url()}}/user/childrens/{{$proposale->children_id}}/edit_application_form"> редактировать</a>
+                                {{$proposale->application_form}} <br><a href="{{web_url()}}/user/childrens/{{$proposale->id}}/edit_application_form"> редактировать</a>
                             @else
-                                <br><a href="{{web_url()}}/user/childrens/{{$proposale->children_id}}/edit_application_form"> заполнить</a>
+                                <br><a href="{{web_url()}}/user/childrens/{{$proposale->id}}/edit_application_form"> заполнить</a>
                             @endif
                         </td>
                         <td>
