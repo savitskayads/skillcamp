@@ -8,6 +8,7 @@
             <div class="clear">
                 <div class="title"><span>Вед. размеров</span></div>
                 <div class="controls">
+                    <a href="#" class="btn add"><i class="fa pull-left fa-floppy-o"></i>Сохранить</a>
                 </div>
             </div>
         </div>

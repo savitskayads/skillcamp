@@ -47,15 +47,7 @@
 
                         <td>
                             @if($proposale->documents=="")
-                                Для этой программы должны быть прикреплены:
-                                @if($proposale->program_doc_1!=0)<br> документ ребенка @endif
-                                @if($proposale->program_doc_2!=0)<br> полис @endif
-                                @if($proposale->program_doc_3!=0)<br> справка СЭС @endif
-                                @if($proposale->program_doc_3!=0)<br> справка 79 @endif
-                                @if($proposale->program_doc_4!=0)<br> согласие @endif
-                                @if($proposale->program_doc_5!=0)<br> справка  о нагрузках @endif
-                                @if($proposale->program_doc_6!=0)<br> справка школьника @endif
-                                @if($proposale->program_doc_7!=0)<br> справка в бассейн @endif
+                                У вас прикреплены не все документы
                                 <br>
                                 <a href="{{web_url()}}/user/childrens/{{$proposale->children_id}}/documents" >прикрепить</a>
                             @else
