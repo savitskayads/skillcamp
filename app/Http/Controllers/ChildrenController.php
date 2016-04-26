@@ -14,6 +14,7 @@ use Illuminate\Routing;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Validator;
 use App\News;
+use App\Temporary_proposale;
 class ChildrenController extends Controller
 {
     /**
@@ -85,6 +86,7 @@ class ChildrenController extends Controller
             'document_number' => 'required',
             'registration' => 'required',
             'adress' => 'required',
+            'index' => 'required',
             'school_number' => 'required',
             'school_class' => 'required',
             'sea' => 'required',
@@ -147,6 +149,7 @@ class ChildrenController extends Controller
         $children->document = Request::input('document');
         $children->document_number = Request::input('document_number');
         $children->registration = Request::input('registration');
+        $children->index= Request::input('index');
         $children->adress = Request::input('adress');
         $children->school_number = Request::input('school_number');
         $children->school_class = Request::input('school_class');
@@ -514,7 +517,6 @@ class ChildrenController extends Controller
         } else {
             return view('user.application_form',['proposale'=>$proposale,'children'=> $children,'all_news'=>$all_news]);
         }
-
     }
 
     public function admin_edit($id)

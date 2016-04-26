@@ -87,5 +87,15 @@
                 });
             }
         });
+        $('.add').on('click',function(){
+                    var c = $('.active-row').find('td').not(':first');
+                    $.each(c, function(i, v) {
+                        var text = $(v).find('input').val();
+                        $(v).find('input').remove();
+                        $(v).text(text);
+                    });
+                    $('.active-row').removeClass('active-row');
+                }
+        )
     </script>
 @stop

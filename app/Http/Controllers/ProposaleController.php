@@ -173,11 +173,26 @@ class ProposaleController extends Controller
         $proposale->part_id = $temporary_proposale->part_id;
         $proposale->transfer =$temporary_proposale->transfer;
         $proposale->registration_date = $temporary_proposale->registration_date;
+        $part = Part::find($temporary_proposale->part_id);
+        $vacation = Vacation::find($temporary_proposale->vacation_id);
+        $start_date = NULL;
+        $finish_date = NULL;
+        if($vacation){
+           if($part){
+               $start_date = $part->start_date;
+               $finish_date = $part->finish_date;
+           } else{
+               $start_date = $vacation->start_date;
+               $finish_date = $vacation->finish_date;
+           }
+        }
+        $proposale->start_date = $start_date;
+        $proposale->finish_date = $finish_date;
         $proposale->save();
         $temporary_proposale->delete();
         $all_news = News::where('active','=','1')
             ->get();
-        return view('user.proposale_success',['children'=> $children, 'all_news'=>$all_news]);
+        return view('user.proposale_success',['children'=> $children, 'all_news'=>$all_news, 'proposale'=>$proposale]);
 
     }
 

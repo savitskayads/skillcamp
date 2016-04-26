@@ -52,41 +52,48 @@ class IndexController extends Controller
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->where('vacations.season','=','Зима')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.*','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         } elseif($vacation=='spring') {
             $programs = Program::where('programs.active','=','1')
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->where('vacations.season','=','Весна')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.*','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         } elseif($vacation=='summer') {
             $programs = Program::where('programs.active','=','1')
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->where('vacations.season','=','Лето')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.*','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         } elseif($vacation=='autumn') {
             $programs = Program::where('programs.active','=','1')
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->where('vacations.season','=','Осень')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.id as id','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         } elseif($vacation=='weekend') {
             $programs = Program::where('programs.active','=','1')
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->where('vacations.season','=','Выходной')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.*','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         } elseif($vacation=='festival') {
             $programs = Program::where('programs.active','=','1')
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->where('vacations.season','=','Фестиваль')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.*','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         } else {
             $programs = Program::where('programs.active','=','1')
                 ->join('vacations','programs.id','=','vacations.program_id')
                 ->orderBy('programs.id', 'desc')
+                ->select('programs.*','vacations.start_date as start_date','vacations.finish_date as finish_date')
                 ->get();
         }
         $all_news = News::where('active','=','1')

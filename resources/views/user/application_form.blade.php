@@ -79,7 +79,7 @@
 
             <div class="form-group">
                 <label for="birthday_date">Дата рождения</label>
-                <input type="text" name="birthday_date" class="form-control" value="{{$children->birthday_date}}">
+                <input type="text" name="birthday_date" class="form-control datepicker" value="{{$children->birthday_date}}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             </div>
             <h5><b>Документ ребенка</b></h5>
@@ -103,6 +103,12 @@
                 <label for="adress">Фактическое место жительства</label>
                 <textarea class="form-control" rows="3" id="adress" name="adress">{{$children->adress}}</textarea>
             </div>
+
+        <div class="form-group">
+            <label for="index">Индекс</label>
+            <input type="text" name="index" class="form-control" value="{{$children->index}}">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        </div>
 
             <div class="form-group">
                 <label for="school_number">Номер школы</label>

@@ -4,6 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/fonts.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datetimepicker.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.structure.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.theme.css') }}" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -12,6 +16,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="{{asset('assets/js/jquery.js')}}"></script>
+    <script src="{{asset('admin_assets/js/jquery.datetimepicker.js')}}"></script>
+    <script type="text/javascript"  src="{{ asset('admin_assets/js/script.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('admin_assets/js/jquery-ui-1.11.4.custom/jquery-ui.js') }}"></script>
     <script src="{{asset('assets/js/script.js')}}"></script>
     <script src="{{asset('assets/js/jquery.cover.js')}}"></script>
     <script src="http://sharewall.ru/webmaster-area/getconfig"></script>
@@ -189,6 +196,11 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function() {
+            $( ".datepicker" ).datepicker();
+        });
+    </script>
 </footer>
 </body>
 </html>
